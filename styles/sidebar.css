@@ -1,0 +1,129 @@
+.sidebar {
+  width: 257px;
+  height: 800px;
+  background-color: #1C2AA8;
+  position: fixed;
+}
+
+.hr-title {
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: 25px;
+  font-weight: bold;
+  padding: 33px 0 0 60px;
+}
+
+.seach-input {
+  background-image: url(/assets/search-icon.svg);
+  background-repeat: no-repeat;
+  background-position: left 10px center;
+  background-size: 20px 20px; 
+  width: 200px;
+  height: 35px;
+  margin-left: 5px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding-left: 40px; 
+  font-family: Poppins, sans-serif;
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.9); 
+}
+
+.seach-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: bold;
+}
+
+.seach-input:focus {
+  outline: none;
+}
+
+.general-title {
+  color: rgba(255, 255, 255, 0.9);
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  padding-left: 12px;
+  padding-top: 20px;
+}
+
+.employee-button,
+.payroll-button,
+.job-button,
+.calendar-button {
+  width: 220px;
+  height: 49px;
+  border: none;
+  background-color: #1C2AA8;
+  font-size: 20px;
+  font-family: Poppins, sans-serif;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: bold;
+  display: flex;               
+  align-items: center;         
+  justify-content: center;     
+  gap: 8px;                    
+  cursor: pointer;
+  margin-left: 12px;
+  border-radius: 10px;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.employee-button:hover,
+.payroll-button:hover,
+.job-button:hover,
+.calendar-button:hover {
+  background-color: #09104D;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.employee-text,
+.payroll-text,
+.job-text,
+.calendar-text {
+  display: inline-block;
+}
+
+.employee-icon,
+.payroll-icon,
+.job-icon,
+.calendar-icon {
+  width: 26px;
+  height: 26px;
+  margin-left: -65px;
+  transition: 0.15s ease;
+}
+
+.employee-button:hover .employee-icon {
+  content: url(/assets/employee-icon-hover.svg);
+}
+
+.payroll-button:hover .payroll-icon {
+  content: url(/assets/payroll-icon-hover.svg);
+}
+
+.job-button:hover .job-icon {
+  content: url(/assets/job-icon-hover.svg);
+}
+
+.calendar-button:hover .calendar-icon {
+  content: url(/assets/calendar-icon-hover.svg);
+}
+
+.payroll-button,
+.job-button,
+.calendar-button {
+  margin-top: 16px;
+}
+
+.payroll-icon {
+  margin-left: -100px;
+}
+
+.job-icon {
+  margin-left: -125px;
+}
+
+
+

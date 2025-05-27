@@ -15,8 +15,10 @@
     <!--CSS LINK-->
     <link rel="stylesheet" href="styles/employee-profile.css">
     <link rel="stylesheet" href="styles/general.css">
+    <link rel="stylesheet" href="styles/sidebar.css">
   </head>
   <body>
+
     <!--Side Bar Navigation-->
     <div class="sidebar">
       <div>
@@ -24,32 +26,41 @@
       </div>
       <!--Search Button side bar nav-->
       <div>
-        <img class="search-icon" src="assets/search icon.png" alt="search">
         <input class="seach-input" type="text" placeholder="Search" name="search" id="search">
       </div>
       <div>
-        <h3>General</h3>
+        <h3 class="general-title">General</h3>
         <!--Employee Nav-->
-        <div>
-          <img src="assets/employee icon.png" alt="employee">
-          <h1>Employee</h1>
+        <div class="employee-nav">
+          <button class="employee-button">
+            <img class="employee-icon" src="assets/employee-icon.svg" alt="employee">
+            <span class="employee-text">Employee</span>
+          </button>
         </div>
         <!--Payroll Nav-->
         <div>
-          <img src="assets/payroll icon.png" alt="payroll">
-          <h1>Payroll</h1>
+          <button class="payroll-button">
+            <img class="payroll-icon" src="assets/payroll-icon.svg" alt="Payroll">
+            <span class="payroll-text">Payroll</span>
+          </button>
         </div>
         <!--Job Nav-->
         <div>
-          <img src="assets/job icon.png" alt="job">
-          <h1>Job</h1>
+          <button class="job-button">
+            <img class="job-icon" src="assets/job-icon.svg" alt="job">
+            <span class="job-text">Job</span>
+          </button>
         </div>
         <!--Calendar Nav-->
         <div>
-          <img src="assets/calendar icon.png" alt="calendar">
-          <h1>Calendar</h1>
+          <button class="calendar-button">
+            <img class="calendar-icon" src="assets/calendar-icon.svg" alt="calendar">
+            <span class="caledar-text">Calendar</span>
+          </button>
         </div>
       </div>
     </div>
+
+    <!--Main Content-->
   </body>
 </html>
