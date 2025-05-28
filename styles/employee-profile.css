@@ -1,1 +1,269 @@
+.manage-employee-header {
+  position: fixed;
+  width: 100%;
+  height: 90px;
+  background-color: rgba(223, 231, 255, 0.5);
+  margin-left: 257px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.manage-employee-title {
+  font-family: Poppins, sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+  padding-left: 25px;
+}
+
+.add-employee-button {
+  position: absolute;
+  right: 300px;
+  width: 220px;
+  height: 45px;
+  border: none;
+  background-color: #1CC510;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  border-radius: 5px;
+  gap: 15px;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.add-employee-button:hover {
+  background-color: #0A7B00;
+}
+
+.add-employee-button:active {
+  background-color: rgba(10, 123, 0, 0.8);
+}
+
+.add-icon {
+  width: 35px;
+  height: 35px;
+  padding-left: 8px;
+}
+
+.add-text {
+  font-family: "Inter", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  color: white;
+}
+
+.employee-information-header {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  margin-left: 300px;
+  margin-top: 100px;
+}
+
+.employee-info-text {
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.seach-employee-input {
+  position: relative;
+  right: -700px;
+  background-image: url(/assets/search-employee-icon.svg);
+  background-repeat: no-repeat;
+  background-position: left 10px center;
+  background-size: 20px 20px; 
+  width: 250px;
+  height: 35px;
+  margin-left: 5px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgb(255, 255, 255);
+  padding-left: 40px; 
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.612); 
+  border: 1px solid #D9D9D9;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+}
+
+.seach-employee-input::placeholder {
+  color: #D9D9D9;
+  font-weight: bold;
+}
+
+.seach-employee-input:focus {
+  outline: none;
+}
+
+.employee-table {
+  border-collapse: collapse;
+}
+
+.employee-table-header {
+  background-color: rgba(217, 217, 217, 0.3);
+  white-space: nowrap;
+  height: 55px;
+  font-family: "Inter", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  color: #1C2AA8;
+}
+
+.employee-id-text {
+  width: 120px;
+  border-top-left-radius: 20px;
+}
+
+.name-text {
+  width: 200px;
+}
+
+.position-text {
+  width: 200px;
+}
+
+.department-text {
+  width: 150px;
+}
+
+.address-text {
+  width: 250px;
+}
+
+.contact-text {
+  width: 150px;
+}
+
+.action-text {
+  border-top-right-radius: 20px;
+  width: 150px;
+}
+
+.employee-table-body td {
+  height: 45px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-family: "Inter", sans-serif;
+  font-weight: regular;
+  font-size: 13px;
+  border-bottom: 1px solid #D9D9D9;
+}
+
+.id-input,
+.name-input,
+.position-input,
+.dept-input,
+.address-input,
+.contact-input,
+.edit-input {
+  border: none;
+  border-bottom: 1px solid #D9D9D9;
+  width: calc(100% - 10px);
+  height: 30px;
+  padding-left: 5px;
+}
+
+.id-input:focus,
+.name-input:focus,
+.position-input:focus,
+.dept-input:focus,
+.address-input:focus,
+.contact-input:focus,
+.edit-input:focus {
+  outline: none;
+  border-bottom: 2px solid #1C2AA8;
+}
+
+.action-button,
+.edit-save-button{
+  border: none;
+  width: 88px;
+  height: 31px;
+  background-color: #1CC510;
+  color: white;
+  border-radius: 10px;
+  font-family: "Inter", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.action-button:hover,
+.edit-save-button:hover {
+  background-color: #0A7B00;
+}
+
+.employee-table th,
+.employee-table td {
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.employee-table-container {
+  position: absolute;
+  width: 1225px;
+  height: calc(100vh - 190px); 
+  margin-left: 270px;
+  margin-top: 160px;
+  background-color: white;
+  border: 1px solid #D9D9D9;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 
+    rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+.table-scroll {
+  flex: 1;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+.action-text,
+.action-cell {
+  width: 150px; 
+}
+
+/* Inside the action cell */
+.action-row-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px; 
+  width: 100%; 
+}
+
+.edit-button,
+.delete-button {
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.edit-button:hover,
+.delete-button:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.edit-icon,
+.delete-icon {
+  width: 100%;
+  height: 100%;
+}
+
+
+
 
