@@ -1,6 +1,7 @@
 const searchInputGeneral = document.getElementById('searchGeneral');
 const sidebarButtons = document.querySelectorAll('.sidebar button');
 
+//
 searchInputGeneral.addEventListener('input', () => {
   const searchTerm = searchInputGeneral.value.toLowerCase();
 
