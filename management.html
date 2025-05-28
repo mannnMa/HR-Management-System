@@ -26,7 +26,7 @@
       </div>
       <!--Search Button side bar nav-->
       <div>
-        <input class="seach-input" type="text" placeholder="Search" name="search" id="search">
+        <input class="seach-input" type="text" placeholder="Search" name="search" id="searchGeneral">
       </div>
       <div>
         <h3 class="general-title">General</h3>
@@ -55,12 +55,51 @@
         <div>
           <button class="calendar-button">
             <img class="calendar-icon" src="assets/calendar-icon.svg" alt="calendar">
-            <span class="caledar-text">Calendar</span>
+            <span class="calendar-text">Calendar</span>
           </button>
         </div>
       </div>
     </div>
 
-    <!--Main Content-->
+    <!--MANAGE EMPLOYEE PAGE-->
+    <!--MANAGE EMPLOYEE HEADER-->
+    <div class="manage-employee-header">
+      <h1 class="manage-employee-title">Manage Employee</h1>
+      <button id="add-employee-button-js" class="add-employee-button">
+        <img class="add-icon" src="assets/add-employee-icon.svg" alt="Add Employee">
+        <span class="add-text">Add New Employee</span>
+      </button>
+    </div>
+
+    <!--Employee search header-->
+    <div class="employee-information-header">
+      <h3 class="employee-info-text">Employee Information</h3>
+      <input class="seach-employee-input" type="text" placeholder="Search Employee ID" name="search" id="employeeSearch">
+    </div>
+
+
+    <!--Employee Table Data-->
+    <div class="employee-table-container">
+      <div class="table-scroll">
+        <table class="employee-table">
+          <thead class="employee-table-header">
+            <tr>
+              <th class="employee-id-text">Employee ID</th>
+              <th class="name-text">Name</th>
+              <th class="position-text">Position</th>
+              <th class="department-text">Department</th>
+              <th class="address-text">Address</th>
+              <th class="contact-text">Contact</th>
+              <th class="action-text" colspan="2">Action</th>
+            </tr>
+          </thead>
+          <tbody id="employee-table-body-js" class="employee-table-body">
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script src="js/management.js" defer></script>
+    <script src="js/sidebar.js" defer></script>
   </body>
 </html>
