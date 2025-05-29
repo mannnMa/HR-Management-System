@@ -3,7 +3,7 @@
   position: fixed;
   width: 100%;
   height: 90px;
-  background-color: rgba(223, 231, 255, 0.5);
+  background-color: #dfe7ff80;
   margin-left: 257px;
   display: flex;
   flex-direction: row;
@@ -11,7 +11,7 @@
 }
 
 .manage-employee-title {
-  font-family: Poppins, sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: bold;
   font-size: 30px;
   text-align: center;

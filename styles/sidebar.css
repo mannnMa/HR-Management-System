@@ -5,6 +5,34 @@
   position: fixed;
 }
 
+.sidebar-logo-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  margin-bottom: -25px;
+  height: 70px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.company-logo {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-image: url('path/to/your/logo.png'); 
+  background-size: cover;
+  background-position: center;
+  left: 20px;
+}
+
+#company-logo-text {
+  position: absolute;
+  font-family: "Public Sans", sans-serif;
+  font-size: 30px;
+  color: white;
+  left: 70px;
+  top: 5px;
+}
+
 .hr-title {
   color: white;
   font-family: "Poppins", sans-serif;
