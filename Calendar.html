@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Calendar</title>
+    <link rel="icon" href="assets/hr-logo-title.svg" type="image/svg+xml">
+
+    <!--FONT LINKS-->
+      <!--POPPINS FONT-->
+      <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
+      <!--INTER FONTS-->
+      <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+
+      <!--PUBLICK SAN-->
+      <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!--CSS LINK-->
+    <link rel="stylesheet" href="styles/sidebar.css">
+    <link rel="stylesheet" href="styles/general.css">
+    <link rel="stylesheet" href="styles/calendar.css">
+
+  </head>
+  <body>
+    <!--Side Bar Navigation-->
+    <div class="sidebar">
+      <!--Company Logo-->
+      <div class="sidebar-logo-container">
+        <div>
+          <img class="company-logo" src="assets/company logo.png" alt="company-logo">
+        </div>
+        <div>
+          <h1 id="company-logo-text">Connectiv7</h1>
+        </div>
+      </div>
+      <div>
+        <h1 class="hr-title">HR ADMIN</h1>
+      </div>
+      <!--Search Button side bar nav-->
+      <div>
+        <input class="seach-input" type="text" placeholder="Search" name="search" id="searchGeneral">
+      </div>
+      <!--General Buttons-->
+      <div class="general-buttons">
+        <h3 class="general-title">General</h3>
+          <div>
+          <!--Employee Nav-->
+          <div class="employee-nav">
+            <button class="employee-button">
+              <img class="employee-icon" src="assets/employee-icon.svg" alt="employee">
+              <span class="employee-text">Employee</span>
+            </button>
+          </div>
+          <!--Payroll Nav-->
+          <div>
+            <button class="payroll-button">
+              <img class="payroll-icon" src="assets/payroll-icon.svg" alt="Payroll">
+              <span class="payroll-text">Payroll</span>
+            </button>
+          </div>
+          <!--Job Nav-->
+          <div>
+            <button class="job-button">
+              <img class="job-icon" src="assets/job-icon.svg" alt="job">
+              <span class="job-text">Job</span>
+            </button>
+          </div>
+          <!--Calendar Nav-->
+          <div>
+            <button class="calendar-button">
+              <img class="calendar-icon" src="assets/calendar-icon.svg" alt="calendar">
+              <span class="calendar-text">Calendar</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <form action="Login.html">
+        <div class="log-out-container">
+          <button class="log-out-button" id="logOutButton">
+            <img class="log-out-icon" src="assets/log out - icon.svg" alt="log out">
+            <span class="log-out-text">Log Out</span>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Main Content Area -->
+     <div class="calendar-main-content">
+      <!--Calendar Container-->
+      <div class="Calendar-container">
+        <div class="calendar-header">
+          <img class="calendar-page-icon" src="assets/calendar-page-icon.svg" alt="calendar page">
+          <p class="calendar-page-text">Calendar Connectiv7</p>
+        </div>
+        <div class="wrapper">
+          <header>
+            <p class="current-date"></p>
+            <div class="icons-calendar">
+              <span id="prev" class="material-sysmbols-rounded"><img src="assets/chevron-left.svg" alt="chevron-left"></span>
+              <span id="next" class="material-sysmbols-rounded"><img src="assets/chevron-right.svg" alt="chevron-right"></span>
+            </div>
+          </header>
+          <div class="calendar">
+            <ul class="weeks">
+              <li>Sun</li>
+              <li>Mon</li>
+              <li>Tue</li>  
+              <li>Wed</li>
+              <li>Thu</li>
+              <li>Fri</li>
+              <li>Sat</li>
+            </ul>
+            <ul class="days"></ul>
+          </div>
+        </div>
+      </div>
+
+      <!--To-Do Task Container-->
+    </div>
+
+    <!-- Confirmation container Log Out Button -->
+    <div class="confirm-overlay-sidebar" id="confirmOverlay">
+      <div class="confirm-box-sidebar">
+        <video class="logout-animate" src="assets/animation/logout.mp4" autoplay muted loop playsinline></video>
+        <p>Are you sure you want to log out?</p>
+        <div class="confirm-actions-sidebar">
+          <button id="confirmYes">Confirm</button>
+          <button id="confirmCancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="js/calendar.js" defer></script>
+    <script src="js/to-do.js" defer></script>
+    <script src="js/sidebar.js" defer></script>
+  </body>
+</html>
