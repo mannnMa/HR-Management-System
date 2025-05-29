@@ -1,7 +1,9 @@
 const searchInputGeneral = document.getElementById('searchGeneral');
-const sidebarButtons = document.querySelectorAll('.sidebar button');
+const sidebarButtons = document.querySelectorAll(
+  '.employee-button, .payroll-button, .job-button, .calendar-button'
+);
 
-//search functionality for general sidebar
+//search funtionality for general button search input
 searchInputGeneral.addEventListener('input', () => {
   const searchTerm = searchInputGeneral.value.toLowerCase();
 

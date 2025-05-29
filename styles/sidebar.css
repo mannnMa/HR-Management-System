@@ -1,6 +1,8 @@
 .sidebar {
   width: 257px;
-  height: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
   background-color: #1C2AA8;
   position: fixed;
 }
@@ -79,7 +81,8 @@
 .employee-button,
 .payroll-button,
 .job-button,
-.calendar-button {
+.calendar-button,
+.log-out-button {
   width: 220px;
   height: 49px;
   border: none;
@@ -101,7 +104,8 @@
 .employee-button:hover,
 .payroll-button:hover,
 .job-button:hover,
-.calendar-button:hover {
+.calendar-button:hover,
+.log-out-button:hover {
   background-color: #09104D;
   color: rgba(255, 255, 255, 0.9);
 }
@@ -109,7 +113,8 @@
 .employee-text,
 .payroll-text,
 .job-text,
-.calendar-text {
+.calendar-text
+.log-out-text {
   display: inline-block;
 }
 
@@ -139,6 +144,10 @@
   content: url(/assets/calendar-icon-hover.svg);
 }
 
+.log-out-button:hover .log-out-icon {
+  content: url(/assets/log-out-hover.svg);
+}
+
 .payroll-button,
 .job-button,
 .calendar-button {
@@ -152,6 +161,32 @@
 .job-icon {
   margin-left: -125px;
 }
+
+.log-out-icon {
+  margin-left: -10px;
+  width: 35px;
+  height: 35px;
+}
+
+.log-out-container {
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 15px 0;
+}
+
+.log-out-button {
+  margin-top: 5px;
+}
+
+.log-out-text {
+  margin-left: 5px;
+}
+
+.general-buttons {
+  flex: 1;
+  overflow-y: auto;
+}
+
 
 
 
