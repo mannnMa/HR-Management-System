@@ -1,0 +1,595 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payroll Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'sidebar-bg': '#1E3A8A', // Dark Blue
+                        'content-bg': '#F3F4F6', // Light Gray
+                        'card-bg': '#FFFFFF',
+                        'primary-button': '#10B981', // Green
+                        'primary-button-hover': '#059669',
+                        'secondary-button': '#6B7280',
+                        'secondary-button-hover': '#4B5563',
+                        'danger-text': '#EF4444',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for a cleaner look if needed */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        .input-field {
+            @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm;
+        }
+        .label-text {
+            @apply block text-sm font-medium text-gray-700 mb-1;
+        }
+        .summary-label {
+            @apply text-sm text-gray-600;
+        }
+        .summary-value {
+            @apply text-sm font-semibold text-gray-900;
+        }
+        .summary-value-emphasis {
+            @apply text-lg font-bold text-gray-900;
+        }
+        .summary-value-deduction {
+            @apply text-lg font-bold text-danger-text;
+        }
+    </style>
+</head>
+<body class="bg-content-bg font-sans">
+    <div class="flex h-screen">
+        <aside class="w-64 bg-sidebar-bg text-white flex flex-col p-4 space-y-6">
+            <div class="text-2xl font-semibold">HR ADMIN</div>
+            <div class="relative">
+                <input type="search" placeholder="Search" class="w-full py-2 px-3 rounded-md bg-blue-900 text-white placeholder-gray-300 focus:outline-none">
+                </div>
+            <nav class="flex-grow">
+                <ul>
+                    <li class="mb-2"><a href="#" class="block py-2 px-3 rounded-md hover:bg-blue-700">General</a></li>
+                    <li class="mb-2"><a href="#" class="block py-2 px-3 rounded-md hover:bg-blue-700">Employees</a></li>
+                    <li class="mb-2"><a href="#" class="block py-2 px-3 rounded-md bg-blue-700 font-semibold">Payroll</a></li>
+                    <li class="mb-2"><a href="#" class="block py-2 px-3 rounded-md hover:bg-blue-700">Jobs</a></li>
+                    <li class="mb-2"><a href="#" class="block py-2 px-3 rounded-md hover:bg-blue-700">Calendar</a></li>
+                </ul>
+            </nav>
+            </aside>
+
+        <main class="flex-1 p-6 overflow-y-auto">
+            <header class="flex justify-between items-center mb-6">
+                <h1 class="text-3xl font-bold text-gray-800">Payroll Management</h1>
+                <div class="flex items-center space-x-4">
+                    <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+                    <div class="w-8 h-8 bg-primary-button rounded-full"></div> </div>
+            </header>
+
+            <section id="payrollOverview" class="bg-card-bg p-6 rounded-lg shadow-md mb-6">
+                <h2 class="text-xl font-semibold text-gray-700 mb-4">Payroll Overview</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+                    <div>
+                        <label for="filterEmployees" class="label-text">Filter Employees:</label>
+                        <select id="filterEmployees" class="input-field">
+                            <option>All Employees</option>
+                            </select>
+                    </div>
+                    <div>
+                        <label for="department" class="label-text">Department:</label>
+                        <select id="department" class="input-field">
+                            <option>All</option>
+                            </select>
+                    </div>
+                    <div>
+                        <label for="status" class="label-text">Status:</label>
+                        <select id="status" class="input-field">
+                            <option>All</option>
+                            </select>
+                    </div>
+                    <div>
+                        <label for="jobTitle" class="label-text">Job Title:</label>
+                        <select id="jobTitle" class="input-field">
+                            <option>All</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center mb-4">
+                    <div>
+                        <label for="sortBy" class="label-text">Sort By:</label>
+                        <select id="sortBy" class="input-field w-auto inline-block">
+                            <option>Name (A-Z)</option>
+                            </select>
+                    </div>
+                    <span class="text-sm text-gray-600">Displaying 0 of 0 Employees</span>
+                </div>
+                <button class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md">
+                    Export Payroll Data
+                </button>
+                </section>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <section id="employeePayrollDetails" class="lg:col-span-2 bg-card-bg p-6 rounded-lg shadow-md">
+                    <h2 class="text-xl font-semibold text-gray-700 mb-6">Employee Payroll Details</h2>
+                    <form id="payrollForm" class="space-y-4">
+                        <div>
+                            <label for="employeeName" class="label-text">Employee Name:</label>
+                            <input type="text" id="employeeName" class="input-field" placeholder="e.g., Juan Dela Cruz">
+                        </div>
+                        <div>
+                            <label for="employeeId" class="label-text">Employee ID:</label>
+                            <input type="text" id="employeeId" class="input-field" placeholder="e.g., EMP-001">
+                        </div>
+                        <div>
+                            <label for="basicSalary" class="label-text">Basic Salary (₱):</label>
+                            <input type="number" id="basicSalary" class="input-field" placeholder="0.00">
+                        </div>
+                        <div>
+                            <label for="workingDays" class="label-text">Working Days / Payroll Period:</label>
+                            <input type="text" id="workingDays" class="input-field" value="May 1 - May 31, 2025" placeholder="e.g., May 1 - May 15, 2025">
+                             </div>
+                         <div>
+                            <label for="daysWorked" class="label-text">Actual Days Worked (this period):</label>
+                            <input type="number" id="daysWorked" class="input-field" placeholder="e.g., 22">
+                        </div>
+                        <div>
+                            <label for="overtimeHours" class="label-text">Overtime Hours:</label>
+                            <input type="number" id="overtimeHours" class="input-field" placeholder="0.00">
+                        </div>
+                        <div>
+                            <label for="allowances" class="label-text">Allowances (₱):</label>
+                            <input type="number" id="allowances" class="input-field" placeholder="0.00">
+                        </div>
+                         <div>
+                            <label for="otherDeductions" class="label-text">Other Deductions (e.g., Loans) (₱):</label>
+                            <input type="number" id="otherDeductions" class="input-field" placeholder="0.00">
+                        </div>
+
+                        <div class="flex space-x-3 pt-4">
+                            <button type="button" id="resetButton" class="bg-secondary-button hover:bg-secondary-button-hover text-white font-medium py-2 px-4 rounded-md">Reset</button>
+                            <button type="button" id="calculateButton" class="bg-primary-button hover:bg-primary-button-hover text-white font-medium py-2 px-4 rounded-md">Calculate Net Pay</button>
+                        </div>
+                    </form>
+                </section>
+
+                <section id="payrollSummary" class="bg-card-bg p-6 rounded-lg shadow-md">
+                    <h2 class="text-xl font-semibold text-gray-700 mb-6">Payroll Summary</h2>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="summary-label">Basic Pay:</span>
+                            <span id="summaryBasicPay" class="summary-value">₱0.00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="summary-label">Total Allowances:</span>
+                            <span id="summaryTotalAllowances" class="summary-value">₱0.00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="summary-label">Overtime Pay:</span>
+                            <span id="summaryOvertimePay" class="summary-value">₱0.00</span>
+                        </div>
+                        <hr class="my-2">
+                        <div class="flex justify-between">
+                            <span class="summary-label font-bold">Gross Pay:</span>
+                            <span id="summaryGrossPay" class="summary-value-emphasis">₱0.00</span>
+                        </div>
+                        <hr class="my-2">
+                        <div class="flex justify-between">
+                            <span class="summary-label">Withholding Tax:</span>
+                            <span id="summaryWithholdingTax" class="summary-value">₱0.00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="summary-label">SSS:</span>
+                            <span id="summarySSS" class="summary-value">₱0.00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="summary-label">PhilHealth:</span>
+                            <span id="summaryPhilHealth" class="summary-value">₱0.00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="summary-label">Pag-IBIG:</span>
+                            <span id="summaryPagibig" class="summary-value">₱0.00</span>
+                        </div>
+                         <div class="flex justify-between">
+                            <span class="summary-label">Other Deductions:</span>
+                            <span id="summaryOtherDeductions" class="summary-value">₱0.00</span>
+                        </div>
+                        <hr class="my-2">
+                        <div class="flex justify-between">
+                            <span class="summary-label font-bold">Total Deductions:</span>
+                            <span id="summaryTotalDeductions" class="summary-value-deduction">-₱0.00</span>
+                        </div>
+                        <hr class="my-2 border-2 border-gray-300">
+                        <div class="flex justify-between">
+                            <span class="summary-label text-xl font-bold">Net Pay:</span>
+                            <span id="summaryNetPay" class="summary-value-emphasis text-primary-button">₱0.00</span>
+                        </div>
+                    </div>
+                    <div class="mt-8 flex flex-col space-y-3">
+                        <button id="savePayrollButton" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md w-full">Save Payroll</button>
+                        <button id="generatePayslipButton" class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md w-full">Generate Payslip</button>
+                    </div>
+                </section>
+            </div>
+            
+            <div id="messageArea" class="mt-6 p-4 rounded-md text-center hidden"></div>
+
+        </main>
+    </div>
+
+<script type="module">
+    // Firebase SDKs - Import only what you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+    import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
+    import { getFirestore, doc, setDoc, collection, serverTimestamp, setLogLevel } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
+    // If you need analytics, uncomment the line below and the corresponding initialization
+    // import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-analytics.js";
+
+    // Your web app's Firebase configuration
+    // IMPORTANT: Replace with your actual Firebase config object if not using the provided one
+    const firebaseConfig = {
+        apiKey: "AIzaSyAWwfUOhfq0gvli2ToaXHSwm6rTPSTBzMs",
+        authDomain: "payrollsystem-ffa42.firebaseapp.com",
+        projectId: "payrollsystem-ffa42",
+        storageBucket: "payrollsystem-ffa42.firebasestorage.app",
+        messagingSenderId: "386950136786",
+        appId: "1:386950136786:web:03bb63947aed12edc93e0b",
+        measurementId: "G-VQ5N2176MJ" // Optional, if you want to use Firebase Analytics
+    };
+    
+    let app;
+    let auth;
+    let db;
+    let currentUserId = null;
+
+    const appIdFromHost = firebaseConfig.appId.split(':')[2] || 'default-payroll-app'; // Extract app ID from config or use default
+
+    // Initialize Firebase only if the project ID is not a placeholder
+    if (firebaseConfig && firebaseConfig.projectId !== "YOUR_PROJECT_ID") { 
+        try {
+            app = initializeApp(firebaseConfig);
+            auth = getAuth(app);
+            db = getFirestore(app);
+            setLogLevel('debug'); // For development, shows detailed logs
+
+            // If you want to use Firebase Analytics, uncomment the next two lines:
+            // const analytics = getAnalytics(app);
+            // console.log("Firebase Analytics initialized.");
+
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    currentUserId = user.uid;
+                    console.log("User is signed in with UID:", currentUserId);
+                    showMessage(`Firebase ready. User: ${currentUserId.substring(0,8)}...`, "success");
+                } else {
+                    // User is signed out
+                    console.log("User is signed out. Attempting to sign in anonymously...");
+                    try {
+                        // In a real application, you'd handle proper user authentication (email/password, Google, etc.)
+                        // For this demo, we're signing in anonymously or with a custom token if provided by the host.
+                        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+                        if (initialAuthToken) {
+                            await signInWithCustomToken(auth, initialAuthToken);
+                            console.log("Signed in with custom token.");
+                        } else {
+                            await signInAnonymously(auth);
+                            console.log("Signed in anonymously.");
+                        }
+                    } catch (error) {
+                        console.error("Error during sign-in:", error);
+                        showMessage("Error: Could not sign in to Firebase. Saving will not work.", "error");
+                    }
+                }
+            });
+        } catch (e) {
+            console.error("Error initializing Firebase:", e);
+            showMessage("Error: Could not initialize Firebase. Saving will not work.", "error");
+            db = null; // Ensure db is null if init fails
+        }
+    } else {
+        console.warn("Firebase is not configured or using placeholder. 'Save Payroll' will be a mock.");
+        showMessage("Firebase not configured. 'Save Payroll' is a mock.", "warning");
+    }
+
+
+    // DOM Elements
+    const employeeNameEl = document.getElementById('employeeName');
+    const employeeIdEl = document.getElementById('employeeId');
+    const basicSalaryEl = document.getElementById('basicSalary');
+    const workingDaysEl = document.getElementById('workingDays'); // Payroll period string
+    const daysWorkedEl = document.getElementById('daysWorked'); // Actual days worked
+    const overtimeHoursEl = document.getElementById('overtimeHours');
+    const allowancesEl = document.getElementById('allowances');
+    const otherDeductionsInputEl = document.getElementById('otherDeductions');
+
+
+    const summaryBasicPayEl = document.getElementById('summaryBasicPay');
+    const summaryTotalAllowancesEl = document.getElementById('summaryTotalAllowances');
+    const summaryOvertimePayEl = document.getElementById('summaryOvertimePay');
+    const summaryGrossPayEl = document.getElementById('summaryGrossPay');
+    const summaryWithholdingTaxEl = document.getElementById('summaryWithholdingTax');
+    const summarySSSEl = document.getElementById('summarySSS');
+    const summaryPhilHealthEl = document.getElementById('summaryPhilHealth');
+    const summaryPagibigEl = document.getElementById('summaryPagibig');
+    const summaryOtherDeductionsEl = document.getElementById('summaryOtherDeductions');
+    const summaryTotalDeductionsEl = document.getElementById('summaryTotalDeductions');
+    const summaryNetPayEl = document.getElementById('summaryNetPay');
+
+    const calculateButton = document.getElementById('calculateButton');
+    const resetButton = document.getElementById('resetButton');
+    const savePayrollButton = document.getElementById('savePayrollButton');
+    const generatePayslipButton = document.getElementById('generatePayslipButton');
+    const payrollForm = document.getElementById('payrollForm');
+    const messageArea = document.getElementById('messageArea');
+
+    // --- Helper Functions ---
+    function formatCurrency(amount) {
+        return `₱${parseFloat(amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`;
+    }
+
+    function showMessage(message, type = "info") {
+        messageArea.textContent = message;
+        messageArea.classList.remove('hidden', 'bg-green-100', 'text-green-700', 'bg-red-100', 'text-red-700', 'bg-yellow-100', 'text-yellow-700', 'bg-blue-100', 'text-blue-700');
+        if (type === "success") {
+            messageArea.classList.add('bg-green-100', 'text-green-700');
+        } else if (type === "error") {
+            messageArea.classList.add('bg-red-100', 'text-red-700');
+        } else if (type === "warning") {
+            messageArea.classList.add('bg-yellow-100', 'text-yellow-700');
+        } else {
+            messageArea.classList.add('bg-blue-100', 'text-blue-700');
+        }
+        messageArea.classList.remove('hidden');
+        setTimeout(() => {
+            if (messageArea.textContent === message) { // Hide only if the message hasn't changed
+                messageArea.classList.add('hidden');
+            }
+        }, 5000);
+    }
+
+    // --- Calculation Logic ---
+    // Note: These are simplified. Real calculations are complex.
+    // Standard number of working days in a month (can be adjusted)
+    const STANDARD_MONTHLY_WORKING_DAYS = 22; // Example, adjust as per company policy or average
+
+    function calculateProratedBasicPay(monthlySalary, daysWorkedInPeriod, standardDaysInMonth) {
+        if (!monthlySalary || !daysWorkedInPeriod || !standardDaysInMonth || standardDaysInMonth <= 0) return 0;
+        return (monthlySalary / standardDaysInMonth) * daysWorkedInPeriod;
+    }
+
+    function calculateOvertimePay(basicSalary, overtimeHours) {
+        if (!basicSalary || !overtimeHours) return 0;
+        // Assuming daily rate = basicSalary / STANDARD_MONTHLY_WORKING_DAYS (e.g. 22)
+        // Assuming hourly rate = daily rate / 8 hours
+        // Assuming OT rate = hourly rate * 1.25 (regular day OT)
+        // This is a major simplification. OT rates vary (regular day, rest day, holiday).
+        const dailyRate = basicSalary / STANDARD_MONTHLY_WORKING_DAYS; 
+        const hourlyRate = dailyRate / 8;
+        const otPay = hourlyRate * 1.25 * overtimeHours;
+        return otPay;
+    }
+
+    function calculateSSS(grossPay) {
+        // VERY SIMPLIFIED - SSS contributions are based on salary brackets.
+        // Refer to the official SSS contribution table.
+        // For 2025, this needs to be updated with the latest table.
+        // Example: 4.5% of gross pay, capped at a certain MSC.
+        // This is just a placeholder.
+        if (grossPay <= 0) return 0;
+        let contribution = 0;
+        if (grossPay < 4250) contribution = 180;
+        else if (grossPay < 4750) contribution = 202.50;
+        // ... many more brackets ...
+        else if (grossPay >= 29750) contribution = 1350; // Max employee share based on P30,000 MSC
+        else contribution = grossPay * 0.045; // Fallback rough estimate, not accurate
+        
+        // This is a very rough example for SSS based on some older values, it should be a lookup table.
+        // Example for a gross pay of P20,000, employee share might be around P900.
+        // For P30,000 gross, employee share is P1350.
+        if (grossPay >= 30000) return 1350.00;
+        if (grossPay >= 20000) return 900.00;
+        if (grossPay >= 10000) return 450.00;
+        return 225.00; // Minimum example
+    }
+
+    function calculatePhilHealth(basicSalary) {
+        // SIMPLIFIED - PhilHealth is 5% of basic monthly salary for 2025,
+        // shared 50/50 between employee and employer.
+        // Salary floor P10,000, ceiling P100,000.
+        // Employee share = 2.5%
+        if (basicSalary <= 0) return 0;
+        let premiumBase = Math.max(10000, Math.min(basicSalary, 100000));
+        const employeeShare = premiumBase * 0.025; // 2.5% is employee's share of 5%
+        return employeeShare;
+    }
+
+    function calculatePagibig(basicSalary) {
+        // SIMPLIFIED - Pag-IBIG (HDMF)
+        // If basic salary > P1,500, employee share is 2% (max P100).
+        // If basic salary <= P1,500, employee share is 1%.
+        if (basicSalary <= 0) return 0;
+        let contribution = 0;
+        if (basicSalary <= 1500) {
+            contribution = basicSalary * 0.01;
+        } else {
+            contribution = basicSalary * 0.02;
+        }
+        return Math.min(contribution, 100); // Max P100 employee share
+    }
+
+    function calculateWithholdingTax(grossPay, sss, philhealth, pagibig) {
+        // EXTREMELY SIMPLIFIED - Tax calculation is complex and uses BIR tables.
+        // Taxable Income = Gross Pay - SSS - PhilHealth - Pag-IBIG
+        // This does not account for non-taxable allowances, 13th month, tax status, etc.
+        if (grossPay <= 0) return 0;
+        const taxableIncome = grossPay - sss - philhealth - pagibig;
+        if (taxableIncome <= 20833) { // Roughly P250,000 annually / 12 months
+            return 0; // No tax if below this threshold
+        }
+        // This is a placeholder for a graduated tax rate.
+        // Example: (Taxable Income - 20833) * 0.15 (for the next bracket, very simplified)
+        let tax = 0;
+        if (taxableIncome > 20833 && taxableIncome <= 33333) {
+            tax = (taxableIncome - 20833) * 0.15;
+        } else if (taxableIncome > 33333 && taxableIncome <= 66667) {
+            tax = (20833 * 0) + ( (33333-20833) * 0.15) + (taxableIncome - 33333) * 0.20;
+             // Simplified: 1875 + (taxableIncome - 33333) * 0.20;
+        } else if (taxableIncome > 66667 && taxableIncome <= 166667) {
+            tax = (20833 * 0) + ( (33333-20833) * 0.15) + ( (66667-33333) * 0.20) + (taxableIncome - 66667) * 0.25;
+            // Simplified: 1875 + 6666.8 + (taxableIncome - 66667) * 0.25;
+        } // ... and so on for higher brackets.
+        // For a more accurate calculation, you need to implement the full BIR tax table logic.
+        return Math.max(0, tax);
+    }
+
+    function performCalculations() {
+        const basicSalary = parseFloat(basicSalaryEl.value) || 0;
+        const actualDaysWorked = parseFloat(daysWorkedEl.value) || STANDARD_MONTHLY_WORKING_DAYS; // Default to standard if not specified
+        const overtimeHours = parseFloat(overtimeHoursEl.value) || 0;
+        const allowances = parseFloat(allowancesEl.value) || 0;
+        const otherDeductions = parseFloat(otherDeductionsInputEl.value) || 0;
+
+        // Calculate prorated basic pay if actual days worked is different from standard full month
+        // For simplicity, if the input "Basic Salary" is already the pay for the period,
+        // then this proration might not be needed or handled differently.
+        // Assuming basicSalaryEl.value is the *monthly* salary.
+        const actualBasicPayForPeriod = calculateProratedBasicPay(basicSalary, actualDaysWorked, STANDARD_MONTHLY_WORKING_DAYS);
+        const overtimePay = calculateOvertimePay(basicSalary, overtimeHours); // OT usually based on full basic salary
+        const grossPay = actualBasicPayForPeriod + allowances + overtimePay;
+
+        const sssContribution = calculateSSS(grossPay); // SSS is often based on total actual remuneration for the month.
+        const philHealthContribution = calculatePhilHealth(basicSalary); // Philhealth is based on basic monthly salary.
+        const pagibigContribution = calculatePagibig(basicSalary); // Pag-ibig also typically on basic salary.
+        
+        // For tax, it's usually (Gross Pay for the period - statutory deductions for the period)
+        const withholdingTax = calculateWithholdingTax(grossPay, sssContribution, philHealthContribution, pagibigContribution);
+
+        const totalDeductions = sssContribution + philHealthContribution + pagibigContribution + withholdingTax + otherDeductions;
+        const netPay = grossPay - totalDeductions;
+
+        // Update Summary
+        summaryBasicPayEl.textContent = formatCurrency(actualBasicPayForPeriod);
+        summaryTotalAllowancesEl.textContent = formatCurrency(allowances);
+        summaryOvertimePayEl.textContent = formatCurrency(overtimePay);
+        summaryGrossPayEl.textContent = formatCurrency(grossPay);
+
+        summaryWithholdingTaxEl.textContent = formatCurrency(withholdingTax);
+        summarySSSEl.textContent = formatCurrency(sssContribution);
+        summaryPhilHealthEl.textContent = formatCurrency(philHealthContribution);
+        summaryPagibigEl.textContent = formatCurrency(pagibigContribution);
+        summaryOtherDeductionsEl.textContent = formatCurrency(otherDeductions);
+        summaryTotalDeductionsEl.textContent = formatCurrency(totalDeductions);
+        summaryNetPayEl.textContent = formatCurrency(netPay);
+
+        return { // Return all values for saving
+            employeeName: employeeNameEl.value,
+            employeeId: employeeIdEl.value,
+            payrollPeriod: workingDaysEl.value, // This is the string from the input
+            basicSalaryInput: basicSalary, // The monthly salary input
+            daysWorked: actualDaysWorked,
+            actualBasicPayForPeriod: actualBasicPayForPeriod,
+            overtimeHours: overtimeHours,
+            overtimePay: overtimePay,
+            allowances: allowances,
+            grossPay: grossPay,
+            sssContribution: sssContribution,
+            philHealthContribution: philHealthContribution,
+            pagibigContribution: pagibigContribution,
+            withholdingTax: withholdingTax,
+            otherDeductions: otherDeductions,
+            totalDeductions: totalDeductions,
+            netPay: netPay,
+            calculatedAt: serverTimestamp() // For Firebase
+        };
+    }
+
+    // --- Event Listeners ---
+    calculateButton.addEventListener('click', () => {
+        performCalculations();
+        showMessage("Payroll calculated!", "success");
+    });
+
+    resetButton.addEventListener('click', () => {
+        payrollForm.reset();
+        // Also reset summary, or just call performCalculations which will use 0s
+        performCalculations(); // Recalculate with empty/0 values to clear summary
+        showMessage("Form reset.", "info");
+    });
+
+    savePayrollButton.addEventListener('click', async () => {
+        if (!db || !currentUserId) {
+            showMessage("Firebase not ready or user not signed in. Cannot save payroll.", "error");
+            console.error("Firestore instance (db) or currentUserId is not available.");
+            return;
+        }
+
+        const payrollData = performCalculations(); // Get current calculated data
+        if (!payrollData.employeeId || !payrollData.employeeName) {
+            showMessage("Employee Name and ID are required to save.", "warning");
+            return;
+        }
+
+        const docId = `${payrollData.employeeId}_${payrollData.payrollPeriod.replace(/\s+/g, '-')}_${Date.now()}`;
+        // Using public path for demo: /artifacts/{appId}/public/data/payrolls/{docId}
+        const payrollDocRef = doc(db, "artifacts", appIdFromHost, "public/data/payrolls", docId);
+
+        try {
+            await setDoc(payrollDocRef, payrollData);
+            showMessage(`Payroll for ${payrollData.employeeName} saved successfully! ID: ${docId.substring(0,15)}...`, "success");
+            console.log("Payroll data saved with ID:", docId);
+        } catch (error) {
+            console.error("Error saving payroll data: ", error);
+            showMessage("Error saving payroll data. Check console for details.", "error");
+        }
+    });
+
+    generatePayslipButton.addEventListener('click', () => {
+        const payrollData = performCalculations();
+        // For a real payslip, you'd format this into a new page/modal or PDF.
+        console.log("--- GENERATE PAYSLIP (DATA) ---");
+        console.log(payrollData);
+        showMessage(`Payslip data for ${payrollData.employeeName} logged to console. (This is a mock)`, "info");
+        // Example of a simple alert-like display (replace with a proper modal)
+        alert(`Mock Payslip for: ${payrollData.employeeName}\nNet Pay: ${formatCurrency(payrollData.netPay)}\n(Full details in console)`);
+
+    });
+    
+    // Auto-calculate on input changes for a more dynamic feel (optional)
+    // Be mindful of performance if calculations are very heavy
+    [basicSalaryEl, daysWorkedEl, overtimeHoursEl, allowancesEl, otherDeductionsInputEl].forEach(el => {
+        el.addEventListener('input', () => {
+            // Debounce or throttle if performance becomes an issue
+            // For now, direct calculation
+            performCalculations();
+        });
+    });
+
+    // Initial calculation to set ₱0.00 format correctly
+    performCalculations(); 
+
+</script>
+</body>
+</html>
