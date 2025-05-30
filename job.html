@@ -167,11 +167,23 @@
 
     <!-- Jobs -->
     <div id="jobList" class="job-list hidden">
-  <button id="closeJobListBtn" class="close-btn">Close ✖</button>
-  <h2 id="jobListTitle">Job Listings</h2>
-  <div id="jobCards" class="job-cards-container"></div>
-</div>
+      <button id="closeJobListBtn" class="close-btn">Close ✖</button>
+      <h2 id="jobListTitle">Job Listings</h2>
+    <div id="jobCards" class="job-cards-container"></div>
   </div>
+  </div>
+
+  <!-- Confirmation container Log Out Button -->
+    <div class="confirm-overlay-sidebar" id="confirmOverlay">
+      <div class="confirm-box-sidebar">
+        <video class="logout-animate" src="assets/animation/logout.mp4" autoplay muted loop playsinline></video>
+        <p>Are you sure you want to log out?</p>
+        <div class="confirm-actions-sidebar">
+          <button id="confirmYes">Confirm</button>
+          <button id="confirmCancel">Cancel</button>
+        </div>
+      </div>
+    </div>
 
   <script src="js/sidebar.js"></script>
   <script src="js/job.js"></script>
