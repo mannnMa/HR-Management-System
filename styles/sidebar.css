@@ -240,5 +240,44 @@
   height: 155px;
 }
 
+/*Link tag style*/
+.employee-nav-link,
+.job-nav-link,
+.calendar-nav-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+.employee-button.active,
+.payroll-button.active,
+.job-button.active,
+.calendar-button.active,
+.log-out-button.active {
+  background-color: #09104D;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.employee-button.active .employee-icon {
+  content: url(/assets/employee-icon-hover.svg);
+}
+
+.payroll-button.active .payroll-icon {
+  content: url(/assets/payroll-icon-hover.svg);
+}
+
+.job-button.active .job-icon {
+  content: url(/assets/job-icon-hover.svg);
+}
+
+.calendar-button.active .calendar-icon {
+  content: url(/assets/calendar-icon-hover.svg);
+}
+
+.log-out-button.active .log-out-icon {
+  content: url(/assets/log-out-hover.svg);
+}
+
+
 
 
