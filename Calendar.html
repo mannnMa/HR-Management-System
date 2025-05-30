@@ -119,10 +119,21 @@
       <!--To-Do Task Container-->
       <div class="to-do-container">
         <div>
-          <h1 class="your-agenda-text">Your Agend</h1>
+          <h1 class="your-agenda-text">Your Agenda</h1>
         </div> 
         <div class="todo-list">
           <h2>To-Do List <img src="assets/to-do-icon.svg" alt="to-do"></h2>
+          <div class="row-input">
+            <input type="text" name="inputTaskToDo" id="input-task" placeholder="Add Your Task">
+            <button onclick="addTask()">
+              Add
+            </button>
+          </div>
+          <ul id="list-container" class="list-container">
+            <!-- <li class="checked">Task 1</li>
+            <li>Task 2</li>
+            <li>Task 3</li> -->
+          </ul>
         </div>
       </div>
     </div>
