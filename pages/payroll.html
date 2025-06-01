@@ -3,7 +3,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>HR Payroll</title>
-        <link rel="icon" href="/assets/hr-logo-title.svg" type="image/svg+xml">
+        <link rel="icon" href="../../assets/hr-logo-title.svg" type="image/svg+xml">
 
         <!--FONT LINKS-->
             <!--POPPINS FONT-->
@@ -17,9 +17,9 @@
 
         <script src="https://cdn.tailwindcss.com"></script>
         <!--CSS LINK-->
-        <link rel="stylesheet" href="/pages/styles/general.css">
-        <link rel="stylesheet" href="/pages/styles/sidebar.css">
-        <link rel="stylesheet" href="/pages/styles/payroll.css">
+        <link rel="stylesheet" href="./styles/general.css">
+        <link rel="stylesheet" href="./styles/sidebar.css">
+        <link rel="stylesheet" href="./styles/payroll.css">
 
         <script>
             tailwind.config = {
@@ -129,74 +129,74 @@
     </head>
     <body class="bg-content-bg font-sans">
         <!--Side Bar Navigation-->
-    <div class="sidebar">
-      <!--Company Logo-->
-      <div class="sidebar-logo-container">
-        <div>
-          <img class="company-logo" src="/assets/company logo.png" alt="company-logo">
-        </div>
-        <div>
-          <h1 id="company-logo-text">Connectiv7</h1>
-        </div>
-      </div>
-      <div>
-        <h1 class="hr-title">HR ADMIN</h1>
-      </div>
-      <!--Search Button side bar nav-->
-      <div>
-        <input class="seach-input" type="text" placeholder="Search" name="search" id="searchGeneral">
-      </div>
-      <!--General Buttons-->
-      <div class="general-buttons">
-        <h3 class="general-title">General</h3>
-          <div>
-          <!--Employee Nav-->
-          <a href="/pages/management.html" class="employee-nav-link">
-            <div class="employee-nav">
-              <button class="employee-button">
-                <img class="employee-icon" src="/assets/employee-icon.svg" alt="employee">
-                <span class="employee-text">Employee</span>
-              </button>
-            </div>
-          </a>
-          <!--Payroll Nav-->
-          <a href="/pages/payroll.html" class="payroll-nav-link">
+        <div class="sidebar">
+        <!--Company Logo-->
+        <div class="sidebar-logo-container">
             <div>
-              <button class="payroll-button">
-                <img class="payroll-icon" src="/assets/payroll-icon.svg" alt="Payroll">
-                <span class="payroll-text">Payroll</span>
-              </button>
+            <img class="company-logo" src="../../assets/company logo.png" alt="company-logo">
             </div>
-          </a>
-          <!--Job Nav-->
-          <a href="/pages/job.html" class="job-nav-link">
-          <div>
-              <button class="job-button">
-                <img class="job-icon" src="/assets/job-icon.svg" alt="job">
-                <span class="job-text">Job</span>
-              </button>
-            </div>
-          </a>
-          <!--Calendar Nav-->
-          <a href="/pages/calendar.html" class="calendar-nav-link">
             <div>
-              <button class="calendar-button">
-                <img class="calendar-icon" src="/assets/calendar-icon.svg" alt="calendar">
-                <span class="calendar-text">Calendar</span>
-              </button>
+            <h1 id="company-logo-text">Connectiv7</h1>
             </div>
-          </a>
         </div>
-      </div>
-      <form action="index.html">
-        <div class="log-out-container">
-          <button class="log-out-button" id="logOutButton">
-            <img class="log-out-icon" src="/assets/log out - icon.svg" alt="log out">
-            <span class="log-out-text">Log Out</span>
-          </button>
+        <div>
+            <h1 class="hr-title">HR ADMIN</h1>
         </div>
-      </form>
-    </div>
+        <!--Search Button side bar nav-->
+        <div>
+            <input class="seach-input" type="text" placeholder="Search" name="search" id="searchGeneral">
+        </div>
+        <!--General Buttons-->
+        <div class="general-buttons">
+            <h3 class="general-title">General</h3>
+            <div>
+            <!--Employee Nav-->
+            <a href="./management.html" class="employee-nav-link">
+                <div class="employee-nav">
+                <button class="employee-button">
+                    <img class="employee-icon" src="../../assets/employee-icon.svg" alt="employee">
+                    <span class="employee-text">Employee</span>
+                </button>
+                </div>
+            </a>
+            <!--Payroll Nav-->
+            <a href="./payroll.html" class="payroll-nav-link">
+                <div>
+                <button class="payroll-button">
+                    <img class="payroll-icon" src="../../assets/payroll-icon.svg" alt="Payroll">
+                    <span class="payroll-text">Payroll</span>
+                </button>
+                </div>
+            </a>
+            <!--Job Nav-->
+            <a href="./job.html" class="job-nav-link">
+            <div>
+                <button class="job-button">
+                    <img class="job-icon" src="../../assets/job-icon.svg" alt="job">
+                    <span class="job-text">Job</span>
+                </button>
+                </div>
+            </a>
+            <!--Calendar Nav-->
+            <a href="./calendar.html" class="calendar-nav-link">
+                <div>
+                <button class="calendar-button">
+                    <img class="calendar-icon" src="../../assets/calendar-icon.svg" alt="calendar">
+                    <span class="calendar-text">Calendar</span>
+                </button>
+                </div>
+            </a>
+            </div>
+        </div>
+        <form action="../index.html">
+            <div class="log-out-container">
+            <button class="log-out-button" id="logOutButton">
+                <img class="log-out-icon" src="../../assets/log out - icon.svg" alt="log out">
+                <span class="log-out-text">Log Out</span>
+            </button>
+            </div>
+        </form>
+        </div>
 
         <!--Main Content-->
         <div class="tw-container" style="margin-left: 257px;">
@@ -326,7 +326,7 @@
         <!-- Confirmation container Log Out Button -->
         <div class="confirm-overlay-sidebar" id="confirmOverlay">
             <div class="confirm-box-sidebar">
-                <video class="logout-animate" src="/assets/animation/logout.mp4" autoplay muted loop playsinline></video>
+                <video class="logout-animate" src="../../assets/animation/logout.mp4" autoplay muted loop playsinline></video>
                 <p>Are you sure you want to log out?</p>
                 <div class="confirm-actions-sidebar">
                 <button id="confirmYes">Confirm</button>
@@ -337,7 +337,7 @@
 
 
         <!--JS LINK-->
-        <script src="/pages/js/payroll.js" defer></script>
-        <script src="/pages/js/sidebar.js" defer></script>
+        <script src="./js/payroll.js" defer></script>
+        <script src="./js/sidebar.js" defer></script>
     </body>
 </html>
