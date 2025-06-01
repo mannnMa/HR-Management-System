@@ -1,57 +1,61 @@
-.main {
-    margin-left: 260px;
-    padding: 20px;
-    font-family: "Poppins", sans-serif;
-    font-style: bold;
-    color: #1C2AA8;
-    background-color: #DFE7FF;
-}
+/* Make sidebar collapse on small screens */
+@media (max-width: 768px) {
+     .tw-container {
+        margin-left: 0 !important;
+        padding: 1rem;
+    }
 
-.poCard {
-    background-color: #ffffff; 
-    border-radius: 0.75rem; /* 12px */ 
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    background-color: #f0f2f5;
-}
+    main {
+        padding: 1rem;
+    }
 
-.payroll-overview {
-  font-size: x-large; /* equivalent to text-xl */
-  font-weight: 600;   /* equivalent to font-semibold */
-  color: #1C2AA8;     /* equivalent to text-gray-700 */
-  margin-bottom: 1rem; /* equivalent to mb-4 */
-}
+    /* Sidebar toggle button */
+    .sidebar-toggle {
+        display: block;
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        z-index: 100;
+        background-color: #1E3A8A;
+        color: white;
+        padding: 0.5rem;
+        border-radius: 0.375rem;
+    }
 
-/* Grid Container Styles */
-.payroll-grid {
-  display: grid;
-  grid-template-columns: 1fr; /* default: 1 column */
-  gap: 1rem;                  /* equivalent to gap-4 */
-  margin-bottom: 1rem;        /* equivalent to mb-4 */
-}
+    /* Grid stack the two sections vertically */
+    .grid {
+        display: flex;
+        flex-direction: column;
+    }
 
-.btn-outline:hover {
-    background-color: #137e0b;
-}
+    /* Adjust buttons to stack */
+    .flex.space-x-3 {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
 
-.btn-outline:disabled {
-    color: #19A30F;
-    border-color: #9ca3af;
-    cursor: not-allowed;
-}
+    .flex.space-x-3 button {
+        width: 100%;
+    }
 
-.card {
-    border-radius: 20px;
-}
+    /* Resize fonts for smaller screens */
+    h1.text-3xl {
+        font-size: 1.5rem;
+    }
 
-/* Responsive columns */
-@media (min-width: 768px) {
-  .payroll-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+    h2.text-xl {
+        font-size: 1.25rem;
+    }
 
-@media (min-width: 1024px) {
-  .payroll-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
+    .label-text {
+        font-size: 0.9rem;
+    }
+
+    .summary-label, .summary-value {
+        font-size: 0.85rem;
+    }
+
+    .summary-value-emphasis, .summary-value-deduction {
+        font-size: 1rem;
+    }
 }
