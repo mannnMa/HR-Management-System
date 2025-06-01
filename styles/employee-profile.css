@@ -80,6 +80,7 @@
   width: 250px;
   height: 35px;
   margin-left: 5px;
+  margin-top: 5px;
   border-radius: 10px;
   border: none;
   background-color: rgb(255, 255, 255);
@@ -186,7 +187,7 @@
 }
 
 .action-button,
-.edit-save-button{
+.edit-save-button {
   border: none;
   width: 88px;
   height: 31px;
@@ -375,10 +376,95 @@
 @media (max-width: 992px) {
   .manage-employee-title { 
     font-size: 24px;
-   }
+  }
   .add-employee-button { 
     width: 150px; 
     height: 40px; 
     font-size: 14px;
-   }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .manage-employee-header {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding: 10px 20px;
+  }
+  .manage-employee-title {
+    font-size: 24px;
+    padding-left: 0;
+  }
+  .add-employee-button {
+    width: 180px;
+    margin-top: 10px;
+    right: 50px;
+  }
+  .employee-information-header {
+    margin-left: 0;
+    margin-top: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .employee-info-text {
+    font-size: 14px;
+    margin-left: 12px;
+  }
+  .seach-employee-input {
+    width: calc(100% - 280px);
+    margin-left: 230px;
+    margin-top: -40px;
+  }
+}
+
+/* Mobile devices (≤480px) */
+@media screen and (max-width: 480px) {
+  .manage-employee-header {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding: 10px 15px;
+    margin-left: 0;
+  }
+  .manage-employee-title {
+    font-size: 20px;
+    padding-left: 0;
+  }
+  .add-employee-button {
+    width: 160px;
+    height: 40px;
+    font-size: 12px;
+    right: 15px;
+    margin-top: 8px;
+  }
+  .employee-information-header {
+    margin-left: 0;
+    margin-top: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .employee-info-text {
+    font-size: 12px;
+    margin-left: 10px;
+  }
+  .seach-employee-input {
+    width: 100%;
+    margin: 10px 0 0 0;
+    right: 0;
+  }
+  .employee-table-container {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 120px;
+    border-radius: 10px;
+  }
+  .employee-table-header,
+  .employee-table-body td {
+    font-size: 12px;
+  }
+  .action-button,
+  .edit-save-button {
+    width: 70px;
+    font-size: 12px;
+  }
 }

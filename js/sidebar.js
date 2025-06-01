@@ -33,21 +33,21 @@ logOutButton.addEventListener('click', function (event) {
   }
 });
 
-// Confirm button → submit the form
+// Confirm button - submit the form
 if (confirmYes) {
   confirmYes.addEventListener('click', function () {
     document.querySelector('form').submit();
   });
 }
 
-// Cancel button → close modal
+// Cancel button - close modal
 if (confirmCancel) {
   confirmCancel.addEventListener('click', function () {
     if (confirmOverlay) confirmOverlay.style.display = 'none';
   });
 }
 
-// ACTIVE CLASS HANDLING BASED ON URL
+// Highlight the active sidebar button based on the current URL path
 const buttons = {
   management: '.employee-button',
   payroll: '.payroll-button',
