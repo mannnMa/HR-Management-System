@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HR Job</title>
+  <link rel="icon" href="assets/hr-logo-title.svg" type="image/svg+xml">
+
+  <!--FONT LINKS-->
+      <!--POPPINS FONT-->
+      <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
+      <!--INTER FONTS-->
+      <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+
+      <!--PUBLICK SAN-->
+      <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/sidebar.css" />
+  <link rel="stylesheet" href="styles/job.css" />
+  <link rel="stylesheet" href="styles/general.css">
+</head>
+<body>
+
+   <!--Side Bar Navigation-->
+    <div class="sidebar">
+      <!--Company Logo-->
+      <div class="sidebar-logo-container">
+        <div>
+          <img class="company-logo" src="/assets/company logo.png" alt="company-logo">
+        </div>
+        <div>
+          <h1 id="company-logo-text">Connectiv7</h1>
+        </div>
+      </div>
+      <div>
+        <h1 class="hr-title">HR ADMIN</h1>
+      </div>
+      <!--Search Button side bar nav-->
+      <div>
+        <input class="seach-input" type="text" placeholder="Search" name="search" id="searchGeneral">
+      </div>
+      <!--General Buttons-->
+      <div class="general-buttons">
+        <h3 class="general-title">General</h3>
+          <div>
+          <!--Employee Nav-->
+          <a href="/pages/management.html" class="employee-nav-link">
+            <div class="employee-nav">
+              <button class="employee-button">
+                <img class="employee-icon" src="/assets/employee-icon.svg" alt="employee">
+                <span class="employee-text">Employee</span>
+              </button>
+            </div>
+          </a>
+          <!--Payroll Nav-->
+          <a href="/pages/payroll.html" class="payroll-nav-link">
+            <div>
+              <button class="payroll-button">
+                <img class="payroll-icon" src="/assets/payroll-icon.svg" alt="Payroll">
+                <span class="payroll-text">Payroll</span>
+              </button>
+            </div>
+          </a>
+          <!--Job Nav-->
+          <a href="/pages/job.html" class="job-nav-link">
+          <div>
+              <button class="job-button">
+                <img class="job-icon" src="/assets/job-icon.svg" alt="job">
+                <span class="job-text">Job</span>
+              </button>
+            </div>
+          </a>
+          <!--Calendar Nav-->
+          <a href="/pages/calendar.html" class="calendar-nav-link">
+            <div>
+              <button class="calendar-button">
+                <img class="calendar-icon" src="/assets/calendar-icon.svg" alt="calendar">
+                <span class="calendar-text">Calendar</span>
+              </button>
+            </div>
+          </a>
+        </div>
+      </div>
+      <form action="index.html">
+        <div class="log-out-container">
+          <button class="log-out-button" id="logOutButton">
+            <img class="log-out-icon" src="/assets/log out - icon.svg" alt="log out">
+            <span class="log-out-text">Log Out</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  
+  <!-- Main Content -->
+  <div class="main">
+    <div class="header">
+      <h1 class="company-department-title">Company Department</h1>
+      <div class="subheading">Job information</div>
+      <p class="description">Recruitment, Vacancies, and Update</p>
+    </div>  
+
+    <!-- Department -->
+    <div class="grid" id="departmentGrid">
+      <div class="dept-card">
+        <h2 class="dept-name">ADMIN DEPARTMENT</h2>
+        <ul class="job-list-inside">
+          <li>Admin Manager</li>
+          <li>Office Assistant</li>
+          <li>Document Controller</li>
+          <li>Receptionist</li>
+          <li>Executive Assistant</li>
+        </ul>
+        <button class="view-info-btn" data-dept="admin">View Info</button>
+      </div>
+
+      <div class="dept-card">
+        <h2 class="dept-name">IT DEPARTMENT</h2>
+        <ul class="job-list-inside">
+          <li>System Analyst</li>
+          <li>Junior Developer</li>
+          <li>IT Support Specialist</li>
+          <li>Frontend Developer</li>
+          <li>Network Engineer</li>
+        </ul>
+        <button class="view-info-btn" data-dept="it">View Info</button>
+      </div>
+
+      <div class="dept-card">
+        <h2 class="dept-name">HR DEPARTMENT</h2>
+        <ul class="job-list-inside">
+          <li>HR Manager</li>
+          <li>Recruiter</li>
+          <li>HR Assistant</li>
+          <li>Training Coordinator</li>
+          <li>Compensation Analyst</li>
+        </ul>
+        <button class="view-info-btn" data-dept="hr">View Info</button>
+      </div>
+
+      <div class="dept-card">
+        <h2 class="dept-name">SALE DEPARTMENT</h2>
+        <ul class="job-list-inside">
+          <li>Sales Executive</li>
+          <li>Account Manager</li>
+          <li>Sales Coordinator</li>
+          <li>Business Development Officer</li>
+          <li>Sales Manager</li>
+        </ul>
+        <button class="view-info-btn" data-dept="sales">View Info</button>
+      </div>
+
+      <div class="dept-card">
+        <h2 class="dept-name">MARKETING DEPARTMENT</h2>
+        <ul class="job-list-inside">
+          <li>Marketing Strategist</li>
+          <li>Content Specialist</li>
+          <li>SEO Analyst</li>
+          <li>Social Media Manager</li>
+          <li>Product Marketing Manager</li>
+        </ul>
+        <button class="view-info-btn" data-dept="marketing">View Info</button>
+      </div>
+
+      <div class="dept-card">
+        <h2 class="dept-name">FINANCE DEPARTMENT</h2>
+        <ul class="job-list-inside">
+          <li>Accountant</li>
+          <li>Financial Analyst</li>
+          <li>Accounts Payable Clerk</li>
+          <li>Budget Officer</li>
+          <li>Internal Auditor</li>
+        </ul>
+        <button class="view-info-btn" data-dept="finance">View Info</button>
+      </div>
+    </div>
+
+    <!-- Jobs -->
+    <div id="jobList" class="job-list hidden">
+      <button id="closeJobListBtn" class="close-btn">Close ✖</button>
+      <h2 id="jobListTitle">Job Listings</h2>
+    <div id="jobCards" class="job-cards-container"></div>
+  </div>
+  </div>
+
+  <!-- Confirmation container Log Out Button -->
+    <div class="confirm-overlay-sidebar" id="confirmOverlay">
+      <div class="confirm-box-sidebar">
+        <video class="logout-animate" src="/assets/animation/logout.mp4" autoplay muted loop playsinline></video>
+        <p>Are you sure you want to log out?</p>
+        <div class="confirm-actions-sidebar">
+          <button id="confirmYes">Confirm</button>
+          <button id="confirmCancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+  <script src="/pages/js/sidebar.js" defer></script>
+  <script src="/pages/js/job.js" defer></script>
+</body>
+</html>

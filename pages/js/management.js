@@ -40,7 +40,7 @@ function addInputRow() {
     <div class="action-row-buttons">
       <button class="action-button save-button">Save</button>
       <button class="cancel-add-button">
-        <img src="assets/cancel-icon.svg" alt="cancel">
+        <img src="../assets/cancel-icon.svg" alt="cancel">
       </button> 
     </div>
     </td>
@@ -103,10 +103,10 @@ function addEmployeeRow(values) {
     <td class="action-cell">
       <div class="action-row-buttons">
         <button class="edit-button">
-          <img class="edit-icon" src="assets/edit-icon.svg" alt="Edit">  
+          <img class="edit-icon" src="../assets/edit-icon.svg" alt="Edit">  
         </button>
         <button class="delete-button">
-          <img class="delete-icon" src="assets/delete-icon.svg" alt="Delete">
+          <img class="delete-icon" src="../assets/delete-icon.svg" alt="Delete">
         </button>
       </div>
     </td>
@@ -164,7 +164,7 @@ function addEmployeeRow(values) {
           cells[i].textContent = originalValues[i];
         }
 
-        editBtn.innerHTML = `<img class="edit-icon" src="assets/edit-icon.svg" alt="Edit">`;
+        editBtn.innerHTML = `<img class="edit-icon" src="../assets/edit-icon.svg" alt="Edit">`;
         editBtn.classList.remove('edit-save-button');
         editBtn.classList.add('edit-button');
         deleteBtn.style.display = '';
@@ -182,7 +182,7 @@ function addEmployeeRow(values) {
     }
 
     // Reset button to edit mode
-    editBtn.innerHTML = `<img class="edit-icon" src="assets/edit-icon.svg" alt="Edit">`;
+    editBtn.innerHTML = `<img class="edit-icon" src="../assets/edit-icon.svg" alt="Edit">`;
     editBtn.classList.remove('edit-save-button');
     editBtn.classList.add('edit-button');
     deleteBtn.style.display = '';
@@ -273,11 +273,11 @@ function showPrompt(message, onConfirm, onCancel, type = 'default') {
 
   //animation icons
   if (type === 'delete') {
-    animationHTML = `<video class="trash-bin-vid" src="assets/animation/trash-bin.mp4" autoplay muted loop></video>`;
+    animationHTML = `<video class="trash-bin-vid" src="../assets/animation/trash-bin.mp4" autoplay muted loop></video>`;
   } else if (type === 'save') {
-    animationHTML = `<video class="save-check-vid" src="assets/animation/missing-fill.mp4" autoplay muted loop></video>`;
+    animationHTML = `<video class="save-check-vid" src="../assets/animation/missing-fill.mp4" autoplay muted loop></video>`;
   } else if (type === 'newEmployee') {
-    animationHTML = `<video class="new-employee-vid" src="assets/animation/employee.mp4" autoplay muted loop></video>`;
+    animationHTML = `<video class="new-employee-vid" src="../assets/animation/employee.mp4" autoplay muted loop></video>`;
   } else {
     animationHTML = `<div class="default-icon"></div>`;
   }
