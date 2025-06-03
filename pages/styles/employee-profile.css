@@ -58,6 +58,7 @@
 
 .employee-information-header {
   position: absolute;
+  justify-content: space-between;
   display: flex;
   flex-direction: row;
   margin-left: 300px;
@@ -73,7 +74,7 @@
 .seach-employee-input {
   position: relative;
   right: -700px;
-  background-image: url(../../assets/search-employee-icon.svg);
+  background-image: url(../../assets/search-employee-icon.webp);
   background-repeat: no-repeat;
   background-position: left 10px center;
   background-size: 20px 20px; 
@@ -211,8 +212,14 @@
   transition: background-color 0.15s, color 0.15s;
 }
 
+.cancel-add-button img {
+  width: 30px;
+  height: 30px;
+}
+
 .cancel-add-button:hover {
   background-color: rgba(0, 0, 0, 0.03);
+  border-radius: 50%;
 }
 
 .action-button:hover,
@@ -345,126 +352,160 @@
 }
 
 /*Responsiveness*/
-@media (max-width: 1200px) {
-  .manage-employee-header { 
-    margin-left: 0; 
-    padding: 0 20px;
-    position: relative; 
-  }
-  .add-employee-button { 
-    right: 20px; 
-    width: 180px; 
-  }
-  .employee-information-header { 
-    margin-left: 20px; 
-    margin-top: 20px;
-    flex-wrap: wrap; 
-  }
-  .seach-employee-input { 
-    right: 0; 
-    margin-top: 10px; 
-    margin-left: 50px;
-    width: 200px; 
-  }
-  .employee-table-container { 
-    width: calc(100% - 40px); 
-    margin-left: 20px; 
-    margin-top: 100px;
-  }
-}
-
-@media (max-width: 992px) {
-  .manage-employee-title { 
-    font-size: 24px;
-  }
-  .add-employee-button { 
-    width: 150px; 
-    height: 40px; 
-    font-size: 14px;
-  }
-}
-
-@media screen and (max-width: 768px) {
+@media (max-width: 763px) {
   .manage-employee-header {
-    flex-direction: column;
-    align-items: flex-start;
+    position: relative;
+    margin-left: 0;
     height: auto;
-    padding: 10px 20px;
+    padding: 10px 15px;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
+
   .manage-employee-title {
     font-size: 24px;
     padding-left: 0;
+    flex: 1 1 100%;
+    text-align: left;
+    margin-bottom: 10px;
   }
+
   .add-employee-button {
-    width: 180px;
-    margin-top: 10px;
-    right: 50px;
+    position: relative;
+    right: auto;
+    width: 100%;
+    max-width: 220px;
+    height: 40px;
+    margin-left: auto;
   }
+
   .employee-information-header {
+    position: relative;
     margin-left: 0;
-    margin-top: 10px;
-    flex-direction: column;
-    align-items: flex-start;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
   }
+
   .employee-info-text {
     font-size: 14px;
-    margin-left: 12px;
   }
+
   .seach-employee-input {
-    width: calc(100% - 280px);
-    margin-left: 230px;
-    margin-top: -40px;
+    position: relative;
+    right: auto;
+    width: 100%;
+    max-width: 250px;
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .employee-table-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin-left: 0;
+    margin-top: 20px;
+    border-radius: 10px;
+  }
+
+  .employee-table {
+    width: 100%;
+    font-size: 13px;
+  }
+
+  .employee-table-header th,
+  .employee-table-body td {
+    padding: 6px 4px;
+  }
+
+  .action-text,
+  .action-cell {
+    width: auto;
+  }
+
+  .action-row-buttons {
+    gap: 8px;
+  }
+
+  .edit-button,
+  .delete-button {
+    width: 30px;
+    height: 30px;
   }
 }
 
-/* Mobile devices (≤480px) */
-@media screen and (max-width: 480px) {
+/* Responsive adjustments for smaller mobile devices */
+@media (max-width: 600px) {
   .manage-employee-header {
     flex-direction: column;
-    align-items: flex-start;
     height: auto;
-    padding: 10px 15px;
-    margin-left: 0;
+    padding: 15px;
   }
+
   .manage-employee-title {
     font-size: 20px;
     padding-left: 0;
+    text-align: center;
+    margin-bottom: 15px;
   }
+
   .add-employee-button {
-    width: 160px;
-    height: 40px;
-    font-size: 12px;
-    right: 15px;
-    margin-top: 8px;
+    width: 200px;
+    max-width: none;
+    height: 45px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    right: 140px;
   }
+
   .employee-information-header {
-    margin-left: 0;
-    margin-top: 10px;
     flex-direction: column;
-    align-items: flex-start;
+    margin-top: 15px;
   }
+
   .employee-info-text {
-    font-size: 12px;
-    margin-left: 10px;
+    font-size: 13px;
+    text-align: center;
   }
+
   .seach-employee-input {
-    width: 100%;
-    margin: 10px 0 0 0;
-    right: 0;
+    width: 200px;
+    justify-content: center;
+    align-items: center;
+    margin-left: 125px;
+    max-width: none;
+    margin-top: 10px;
   }
+
   .employee-table-container {
     width: 100%;
+    height: auto;
     margin-left: 0;
-    margin-top: 120px;
-    border-radius: 10px;
+    margin-top: 15px;
+    border-radius: 8px;
   }
-  .employee-table-header,
+
+  .employee-table-header th,
   .employee-table-body td {
     font-size: 12px;
+    padding: 4px 3px;
   }
-  .action-button,
-  .edit-save-button {
-    width: 70px;
-    font-size: 12px;
+
+  .table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .action-row-buttons {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .edit-button,
+  .delete-button {
+    width: 30px;
+    height: 30px;
   }
 }

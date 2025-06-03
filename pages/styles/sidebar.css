@@ -43,12 +43,14 @@
 }
 
 .seach-input {
-  background-image: url(../../assets/search-icon.svg);
+  background-image: url(../../assets/search-icon.webp);
   background-repeat: no-repeat;
   background-position: left 10px center;
   background-size: 20px 20px;
+  width: 220px; 
   margin-left: 12px;
-  width: 190px;
+  padding-left: 40px;
+  box-sizing: border-box;
   height: 35px;
   border-radius: 10px;
   border: none;
@@ -100,6 +102,10 @@
   transition: background-color 0.15s, color 0.15s;
 }
 
+button {
+  transition: background-color 0.3s ease;
+}
+
 .employee-button:hover,
 .payroll-button:hover,
 .job-button:hover,
@@ -120,19 +126,19 @@
 }
 
 .employee-button:hover .employee-icon { 
-  content: url(../../assets/employee-icon-hover.svg); 
+  content: url(../../assets/employee-icon-hover.webp); 
 }
 .payroll-button:hover .payroll-icon { 
-  content: url(../../assets/payroll-icon-hover.svg); 
+  content: url(../../assets/payroll-icon-hover.webp); 
 }
 .job-button:hover .job-icon { 
-  content: url(../../assets/job-icon-hover.svg); 
+  content: url(../../assets/job-icon-hover.webp); 
 }
 .calendar-button:hover .calendar-icon { 
-  content: url(../../assets/calendar-icon-hover.svg); 
+  content: url(../../assets/calendar-icon-hover.webp); 
 }
 .log-out-button:hover .log-out-icon { 
-  content: url(../../assets/log-out-hover.svg); 
+  content: url(../../assets/log-out-hover.webp); 
 }
 
 .payroll-button, 
@@ -158,7 +164,10 @@
   padding: 15px 0;
 }
 
-.general-buttons { flex: 1; overflow-y: auto; }
+.general-buttons { 
+  flex: 1; 
+  overflow-y: auto; 
+}
 
 /* Confirmation overlay */
 .confirm-overlay-sidebar {
@@ -231,22 +240,22 @@
 }
 
 .employee-button.active .employee-icon { 
-  content: url(../../assets/employee-icon-hover.svg); 
+  content: url(../../assets/employee-icon-hover.webp); 
 }
 .payroll-button.active .payroll-icon { 
-  content: url(../../assets/payroll-icon-hover.svg); 
+  content: url(../../assets/payroll-icon-hover.webp); 
 }
 .job-button.active .job-icon { 
-  content: url(../../assets/job-icon-hover.svg); 
+  content: url(../../assets/job-icon-hover.webp); 
 }
 .calendar-button.active .calendar-icon { 
-  content: url(../../assets/calendar-icon-hover.svg); 
+  content: url(../../assets/calendar-icon-hover.webp); 
 }
 .log-out-button.active .log-out-icon { 
-  content: url(../../assets/log-out-hover.svg); 
+  content: url(../../assets/log-out-hover.webp); 
 }
 
-/* RESPONSIVENESS */
+/* responsiveness */
 @media (max-width: 768px) {
   .sidebar {
     width: 100%;
@@ -266,35 +275,31 @@
     height: auto;
   }
 
-  .company-logo {
+  .company-logo,
+  #company-logo-text {
     position: static;
     margin-left: 10px;
   }
 
   #company-logo-text {
-    position: static;
-    margin-left: 10px;
     margin-top: 5px;
     font-size: 24px;
   }
 
   .hr-title {
     padding: 0;
-    text-align: center;
-    font-size: 25px;
     margin-top: -10px;
     margin-bottom: 30px;
     margin-left: 175px;
+    font-size: 25px;
+    text-align: center;
   }
 
   .seach-input {
-    width: calc(100% - 250px);
-    margin-left: 80px;
-    margin-right: 10px;
-    margin-top: -10px;
+    width: 250px;
+    margin: -10px 10px 0 80px;
     padding-left: 40px;
     font-size: 16px;
-    width: 250px;
     height: 40px;
   }
 
@@ -319,75 +324,112 @@
   .job-button,
   .calendar-button,
   .log-out-button {
-    height: 40px;
-    font-size: 20px;
-    padding: 0 10px;
-    margin-right: 10px;
     width: 300px;
     height: 50px;
+    font-size: 20px;
+    margin-right: 10px;
   }
 
   .log-out-container {
     border-top: none;
     position: relative;
-    top: -500px;
-    right: -280px;
+    top: -510px;
+    right: -200px;
   }
 
   .log-out-button {
-    margin-top: 10px;
     width: 170px;
     height: 50px;
-  }
-
-  /* Confirmation Overlay adjustments */
-  .confirm-overlay-sidebar {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-
-  .confirm-box-sidebar {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    font-family: "Poppins", sans-serif;
-    font-size: 16px;
-    text-align: center;
-    width: 100%;
-    max-width: 300px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  }
-
-  .confirm-box-sidebar video.logout-animate {
-    width: 100%;
-    max-width: 200px;
-    margin-bottom: 15px;
-  }
-
-  .confirm-actions-sidebar button {
-    margin: 5px;
-    padding: 8px 16px;
-    font-size: 14px;
-    width: 100px;
-  }
-
-
-  .confirm-overlay-sidebar {
-    z-index: 9999;
+    margin-top: 10px;
   }
 }
 
-@media (max-width: 768px) {
-  .main-content {
+/* Mobile (up to 600px) */
+@media (max-width: 600px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    padding: 10px 5px;
+    position: relative;
+  }
+
+  .sidebar-logo-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    height: auto;
+    border-bottom: none;
+  }
+
+  .company-logo {
+    width: 35px;
+    height: 35px;
     margin-left: 0;
-    margin-top: calc(70px + 20px);
+    margin-bottom: 5px;
+    position: static;
+  }
+
+  #company-logo-text {
+    font-size: 20px;
+    margin-left: 0;
+    text-align: center;
+    margin-bottom: 10px;
+    position: static;
+  }
+
+  .hr-title {
+    font-size: 20px;
+    text-align: center;
+    margin: 10px 0 15px 0;
+    padding: 0;
+  }
+
+  .seach-input {
+    width: 100%;
+    margin: 0 auto 15px auto;
+    font-size: 16px;
+    height: 38px;
+    padding-left: 40px;
+    display: block;
+  }
+
+  .general-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .employee-button,
+  .payroll-button,
+  .job-button,
+  .calendar-button,
+  .log-out-button {
+    width: 180px;
+    max-width: 280px;
+    height: 45px;
+    font-size: 18px;
+    margin-left: 0;
+    border-radius: 8px;
+    padding-left: 40px;
+  }
+
+  .log-out-container {
+    position: relative;
+    top: 0;
+    right: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 15px 0 0 0;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: 100px;
+  }
+  .log-out-button {
+    margin-left: 50px;
+    width: 160px;
   }
 }

@@ -204,4 +204,4 @@ generatePayslipButton.addEventListener('click', () => {
 });
 
 performCalculations();
-// 
+

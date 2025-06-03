@@ -40,7 +40,7 @@ function addInputRow() {
     <div class="action-row-buttons">
       <button class="action-button save-button">Save</button>
       <button class="cancel-add-button">
-        <img src="../../assets/cancel-icon.svg" alt="cancel">
+        <img src="../../assets/cancel-icon.webp" alt="cancel">
       </button> 
     </div>
     </td>
@@ -103,10 +103,10 @@ function addEmployeeRow(values) {
     <td class="action-cell">
       <div class="action-row-buttons">
         <button class="edit-button">
-          <img class="edit-icon" src="../../assets/edit-icon.svg" alt="Edit">  
+          <img class="edit-icon" src="../../assets/edit-icon.webp" alt="Edit">  
         </button>
         <button class="delete-button">
-          <img class="delete-icon" src="../../assets/delete-icon.svg" alt="Delete">
+          <img class="delete-icon" src="../../assets/delete-icon.webp" alt="Delete">
         </button>
       </div>
     </td>
@@ -164,7 +164,7 @@ function addEmployeeRow(values) {
           cells[i].textContent = originalValues[i];
         }
 
-        editBtn.innerHTML = `<img class="edit-icon" src="../../assets/edit-icon.svg" alt="Edit">`;
+        editBtn.innerHTML = `<img class="edit-icon" src="../../assets/edit-icon.webp" alt="Edit">`;
         editBtn.classList.remove('edit-save-button');
         editBtn.classList.add('edit-button');
         deleteBtn.style.display = '';
@@ -182,7 +182,7 @@ function addEmployeeRow(values) {
     }
 
     // Reset button to edit mode
-    editBtn.innerHTML = `<img class="edit-icon" src="../../assets/edit-icon.svg" alt="Edit">`;
+    editBtn.innerHTML = `<img class="edit-icon" src="../../assets/edit-icon.webp" alt="Edit">`;
     editBtn.classList.remove('edit-save-button');
     editBtn.classList.add('edit-button');
     deleteBtn.style.display = '';

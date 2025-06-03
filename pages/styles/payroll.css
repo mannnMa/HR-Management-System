@@ -1,4 +1,3 @@
-/* Make sidebar collapse on small screens */
 @media (max-width: 768px) {
      .tw-container {
         margin-left: 0 !important;
@@ -9,7 +8,6 @@
         padding: 1rem;
     }
 
-    /* Sidebar toggle button */
     .sidebar-toggle {
         display: block;
         position: fixed;
@@ -22,13 +20,11 @@
         border-radius: 0.375rem;
     }
 
-    /* Grid stack the two sections vertically */
     .grid {
         display: flex;
         flex-direction: column;
     }
 
-    /* Adjust buttons to stack */
     .flex.space-x-3 {
         flex-direction: column;
         gap: 0.5rem;
@@ -38,7 +34,6 @@
         width: 100%;
     }
 
-    /* Resize fonts for smaller screens */
     h1.text-3xl {
         font-size: 1.5rem;
     }
