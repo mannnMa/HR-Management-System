@@ -69,43 +69,51 @@ function calculateOvertimePay(basicSalary, overtimeHours) {
     return otPay;
 }
 
-function calculateSSS(grossPay) {
+function calculateSSS(grossPay, isHalfPeriod = false) {
     if (grossPay <= 0) return 0;
     let msc = 0;
     if (grossPay < 3250) msc = 3250;
     else if (grossPay >= 30000) msc = 30000;
     else msc = Math.ceil(grossPay / 500) * 500;
-    return msc * 0.045;
+    
+    const contribution = msc * 0.045;
+    return isHalfPeriod ? contribution / 2 : contribution;
 }
 
-function calculatePhilHealth(basicSalary) {
+function calculatePhilHealth(basicSalary, isHalfPeriod = false) {
     if (basicSalary <= 0) return 0;
     let premiumBase = Math.max(10000, Math.min(basicSalary, 100000));
-    return premiumBase * 0.025;
+    const contribution = premiumBase * 0.025;
+    return isHalfPeriod ? contribution / 2 : contribution;
 }
 
-function calculatePagibig(basicSalary) {
+function calculatePagibig(basicSalary, isHalfPeriod = false) {
     if (basicSalary <= 0) return 0;
     let rate = basicSalary < 1500 ? 0.01 : 0.02;
     let contribution = basicSalary * rate;
-    return Math.min(contribution, 100);
+    contribution = Math.min(contribution, 100);
+    return isHalfPeriod ? contribution / 2 : contribution;
 }
 
-function calculateWithholdingTax(grossPay, sss, philhealth, pagibig) {
+function calculateWithholdingTax(grossPay, sss, philhealth, pagibig, isHalfPeriod = false) {
     const taxableIncome = grossPay - sss - philhealth - pagibig;
+    let tax = 0;
+    
     if (taxableIncome <= 20833) {
-        return 0;
+        tax = 0;
     } else if (taxableIncome <= 33333) {
-        return (taxableIncome - 20833) * 0.15;
+        tax = (taxableIncome - 20833) * 0.15;
     } else if (taxableIncome <= 66667) {
-        return 1875 + (taxableIncome - 33333) * 0.20;
+        tax = 1875 + (taxableIncome - 33333) * 0.20;
     } else if (taxableIncome <= 166667) {
-        return 8541.80 + (taxableIncome - 66667) * 0.25;
+        tax = 8541.80 + (taxableIncome - 66667) * 0.25;
     } else if (taxableIncome <= 666667) {
-        return 33541.80 + (taxableIncome - 166667) * 0.30;
+        tax = 33541.80 + (taxableIncome - 166667) * 0.30;
     } else {
-        return 183541.80 + (taxableIncome - 666667) * 0.35;
+        tax = 183541.80 + (taxableIncome - 666667) * 0.35;
     }
+    
+    return isHalfPeriod ? tax / 2 : tax;
 }
 
 function performCalculations() {
@@ -114,15 +122,17 @@ function performCalculations() {
     const overtimeHours = parseFloat(overtimeHoursEl.value) || 0;
     const allowances = parseFloat(allowancesEl.value) || 0;
     const otherDeductions = parseFloat(otherDeductionsInputEl.value) || 0;
+    const payrollPeriod = workingDaysEl.value;
+    const isHalfPeriod = payrollPeriod === "15 Days";
 
     const actualBasicPayForPeriod = calculateProratedBasicPay(basicSalary, actualDaysWorked, STANDARD_MONTHLY_WORKING_DAYS);
     const overtimePay = calculateOvertimePay(basicSalary, overtimeHours);
     const grossPay = actualBasicPayForPeriod + allowances + overtimePay;
 
-    const sssContribution = calculateSSS(grossPay);
-    const philHealthContribution = calculatePhilHealth(basicSalary);
-    const pagibigContribution = calculatePagibig(basicSalary);
-    const withholdingTax = calculateWithholdingTax(grossPay, sssContribution, philHealthContribution, pagibigContribution);
+    const sssContribution = calculateSSS(grossPay, isHalfPeriod);
+    const philHealthContribution = calculatePhilHealth(basicSalary, isHalfPeriod);
+    const pagibigContribution = calculatePagibig(basicSalary, isHalfPeriod);
+    const withholdingTax = calculateWithholdingTax(grossPay, sssContribution, philHealthContribution, pagibigContribution, isHalfPeriod);
 
     const totalDeductions = sssContribution + philHealthContribution + pagibigContribution + withholdingTax + otherDeductions;
     const netPay = grossPay - totalDeductions;
@@ -143,7 +153,7 @@ function performCalculations() {
     return {
         employeeName: employeeNameEl.value,
         employeeId: employeeIdEl.value,
-        payrollPeriod: workingDaysEl.value,
+        payrollPeriod: payrollPeriod,
         basicSalaryInput: basicSalary,
         daysWorked: actualDaysWorked,
         actualBasicPayForPeriod: actualBasicPayForPeriod,
@@ -163,7 +173,7 @@ function performCalculations() {
 }
 
 // --- Event Listeners ---
-[employeeNameEl, employeeIdEl, basicSalaryEl, daysWorkedEl, overtimeHoursEl, allowancesEl, otherDeductionsInputEl].forEach(el => {
+[employeeNameEl, employeeIdEl, basicSalaryEl, daysWorkedEl, overtimeHoursEl, allowancesEl, otherDeductionsInputEl, workingDaysEl].forEach(el => {
     el.addEventListener('input', () => {
         performCalculations();
     });
@@ -203,5 +213,5 @@ generatePayslipButton.addEventListener('click', () => {
     alert(`Mock Payslip for: ${payrollData.employeeName}\nNet Pay: ${formatCurrency(payrollData.netPay)}`);
 });
 
+// Initialize calculations
 performCalculations();
-
