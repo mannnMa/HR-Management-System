@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payroll History</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans p-6">
+
+  <h1 class="text-3xl font-bold mb-4 text-blue-700">Payroll History</h1>
+
+  <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+    <thead class="bg-blue-600 text-white">
+      <tr>
+        <th class="px-4 py-2 text-left">Employee Name</th>
+        <th class="px-4 py-2 text-left">Employee ID</th>
+        <th class="px-4 py-2 text-left">Period</th>
+        <th class="px-4 py-2 text-left">Net Pay</th>
+        <th class="px-4 py-2 text-left">Date Saved</th>
+      </tr>
+    </thead>
+    <tbody id="historyTableBody">
+      <!-- Dynamic rows will appear here -->
+    </tbody>
+  </table>
+
+  <p id="emptyMessage" class="text-gray-600 mt-6 hidden">No saved payroll records found.</p>
+
+  <script>
+    const tableBody = document.getElementById("historyTableBody");
+    const emptyMessage = document.getElementById("emptyMessage");
+
+    const formatCurrency = (amount) => {
+      return `₱${parseFloat(amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`;
+    };
+
+    const savedPayrolls = Object.keys(localStorage)
+      .filter(key => key.startsWith("payroll_"))
+      .map(key => JSON.parse(localStorage.getItem(key)));
+
+    if (savedPayrolls.length === 0) {
+      emptyMessage.classList.remove("hidden");
+    } else {
+      savedPayrolls.forEach(data => {
+        const row = document.createElement("tr");
+        row.className = "border-b hover:bg-gray-100";
+
+        row.innerHTML = `
+          <td class="px-4 py-2">${data.employeeName}</td>
+          <td class="px-4 py-2">${data.employeeId}</td>
+          <td class="px-4 py-2">${data.payrollPeriod}</td>
+          <td class="px-4 py-2 text-green-600 font-semibold">${formatCurrency(data.netPay)}</td>
+          <td class="px-4 py-2 text-sm text-gray-500">${new Date(data.calculatedAt).toLocaleString()}</td>
+        `;
+
+        tableBody.appendChild(row);
+      });
+    }
+  </script>
+
+</body>
+</html>
