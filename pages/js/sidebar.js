@@ -58,7 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const buttons = {
       management: '.employee-button',
       payroll: '.payroll-button',
-      payrollhistory: '.payroll-history-button',
       job: '.job-button',
       calendar: '.calendar-button',
       login: '.log-out-button',
