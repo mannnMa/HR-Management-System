@@ -221,7 +221,7 @@
                         </div>
                         <div>
                             <label for="overtimeHours" class="label-text">Overtime Hours:</label>
-                            <input type="number" id="overtimeHours" min="0" step="0.01" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all placeholder-gray-400" placeholder="0">
+                            <input type="number" id="overtimeHours" min="0" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all placeholder-gray-400" placeholder="0">
                         </div>
                         <div>
                             <label for="allowances" class="label-text">Allowances (₱):</label>
@@ -303,37 +303,36 @@
                         </section>
                 </div>
                 <div id="messageArea" class="mt-6 p-4 rounded-md text-center hidden"></div>
+               
                 <!-- Collapsible Payroll History Section -->
-        <div style="margin-top: 40px; font-family: 'Poppins', sans-serif;">
-      <button id="toggleHistoryBtn"
-        style="background-color: #1C2AA8; color: white; font-weight: bold; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer;">
-        Show Payroll History
-      </button>
-    
-      <div id="payrollHistoryContainer" style="margin-top: 20px; display: none;">
-        <h2 style="font-size: 24px; font-weight: bold; color: #1C2AA8;">Saved Payroll History</h2>
-    
-        <table id="historyTable" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
-          <thead style="background-color: #1C2AA8; color: white;">
-            <tr>
-              <th style="padding: 10px; text-align: left;">Name</th>
-              <th style="padding: 10px; text-align: left;">ID</th>
-              <th style="padding: 10px; text-align: left;">Period</th>
-              <th style="padding: 10px; text-align: left;">Net Pay</th>
-              <th style="padding: 10px; text-align: left;">Date Saved</th>
-              <th style="padding: 10px; text-align: left;">Action</th>
-            </tr>
-          </thead>
-          <tbody id="historyTableBody" style="background-color: white;"></tbody>
-        </table>
-    
-        <p id="noRecordsMessage" style="color: gray; margin-top: 15px; display: none;">No payroll history available.</p>
-      </div>
-    </div>
-
+                <div style="margin-top: 40px; font-family: 'Poppins', sans-serif;">
+              <button id="toggleHistoryBtn"
+                style="background-color: #1C2AA8; color: white; font-weight: bold; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer;">
+                Show Payroll History
+              </button>
+            
+              <div id="payrollHistoryContainer" style="margin-top: 20px; display: none;">
+                <h2 style="font-size: 24px; font-weight: bold; color: #1C2AA8;">Saved Payroll History</h2>
+            
+                <table id="historyTable" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                  <thead style="background-color: #1C2AA8; color: white;">
+                    <tr>
+                      <th style="padding: 10px; text-align: left;">Name</th>
+                      <th style="padding: 10px; text-align: left;">ID</th>
+                      <th style="padding: 10px; text-align: left;">Period</th>
+                      <th style="padding: 10px; text-align: left;">Net Pay</th>
+                      <th style="padding: 10px; text-align: left;">Date Saved</th>
+                      <th style="padding: 10px; text-align: left;">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="historyTableBody" style="background-color: white;"></tbody>
+                </table>
+            
+                <p id="noRecordsMessage" style="color: gray; margin-top: 15px; display: none;">No payroll history available.</p>
+              </div>
+            </div>
             </main>
             </div>
-        </div>
         
 
 
