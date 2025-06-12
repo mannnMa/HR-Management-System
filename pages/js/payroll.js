@@ -174,7 +174,7 @@ function performCalculations() {
 }
 
 // --- Event Listeners ---
-[basicSalaryEl, daysWorkedEl, overtimeHoursEl, allowancesEl, otherDeductionsInputEl].forEach(el => {
+[basicSalaryEl, overtimeHoursEl, allowancesEl, otherDeductionsInputEl].forEach(el => {
     el.addEventListener('input', () => {
         if (parseFloat(el.value) < 0) {
             el.value = 0;
@@ -211,28 +211,50 @@ workingDaysEl.addEventListener('change', () => {
     }
   }
 });
-// Apply the max value once when the page loads
-workingDaysEl.dispatchEvent(new Event('change'));
+    // Apply the max value once when the page loads
+    workingDaysEl.dispatchEvent(new Event('change'));
+    
+    savePayrollButton.addEventListener('click', () => {
+        const payrollData = performCalculations();
+        if (!payrollData.employeeId || !payrollData.employeeName) {
+            showMessage("Employee Name and ID are required to save.", "warning");
+            alert("⚠ Employee Name and ID are required to save.");
+            return;
+        }
+    
+        const localKey = `payroll_${payrollData.employeeId}_${Date.now()}`;
+        try {
+            localStorage.setItem(localKey, JSON.stringify(payrollData));
+            showMessage(`Payroll for ${payrollData.employeeName} saved locally!`, "success");
+            alert(`Payroll for ${payrollData.employeeName} has been saved!`);
+        } catch (error) {
+            console.error("Error saving payroll data: ", error);
+            showMessage("Error saving payroll data. Check console for details.", "error");
+            alert("Error saving payroll data. Check the console for details.");
+        }
+    });
 
-savePayrollButton.addEventListener('click', () => {
-    const payrollData = performCalculations();
-    if (!payrollData.employeeId || !payrollData.employeeName) {
-        showMessage("Employee Name and ID are required to save.", "warning");
-        alert("⚠ Employee Name and ID are required to save.");
-        return;
-    }
+    // Validate actual days worked every time it's changed
+    daysWorkedEl.addEventListener('input', () => {
+      let value = parseInt(daysWorkedEl.value);
+      const period = workingDaysEl.value;
+    
+      if (value < 0) {
+        daysWorkedEl.value = 0;
+        showMessage("Negative numbers are not allowed.", "warning");
+      }
+    
+      if (period === "15 Days" && value > 15) {
+        daysWorkedEl.value = 15;
+        showMessage("For 15 Days, actual days worked can't exceed 15.", "warning");
+      } else if (period === "1 Month" && value > 30) {
+        daysWorkedEl.value = 30;
+        showMessage("For 1 Month, actual days worked can't exceed 30.", "warning");
+      }
 
-    const localKey = `payroll_${payrollData.employeeId}_${Date.now()}`;
-    try {
-        localStorage.setItem(localKey, JSON.stringify(payrollData));
-        showMessage(`Payroll for ${payrollData.employeeName} saved locally!`, "success");
-        alert(`Payroll for ${payrollData.employeeName} has been saved!`);
-    } catch (error) {
-        console.error("Error saving payroll data: ", error);
-        showMessage("Error saving payroll data. Check console for details.", "error");
-        alert("Error saving payroll data. Check the console for details.");
-    }
+  performCalculations();
 });
+
 
 generatePayslipButton.addEventListener('click', () => {
     const payrollData = performCalculations();
