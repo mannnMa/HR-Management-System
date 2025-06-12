@@ -249,30 +249,17 @@ function validateRequiredFields() {
 
     const payrollData = performCalculations();
 
-    const localKey = `payroll_${payrollData.employeeId}_${Date.now()}`;
-    try {
-        localStorage.setItem(localKey, JSON.stringify(payrollData));
-        showMessage(`Payroll for ${payrollData.employeeName} saved locally!`, "success");
-        alert(`Payroll for ${payrollData.employeeName} has been saved!`);
-    } catch (error) {
-        console.error("Error saving payroll data: ", error);
-        showMessage("Error saving payroll data. Check console for details.", "error");
-        alert("Error saving payroll data. Check the console for details.");
-    }
-});
-
-    
-        const localKey = `payroll_${payrollData.employeeId}_${Date.now()}`;
+     const localKey = `payroll_${payrollData.employeeId}_${Date.now()}`;
         try {
-            localStorage.setItem(localKey, JSON.stringify(payrollData));
-            showMessage(`Payroll for ${payrollData.employeeName} saved locally!`, "success");
-            alert(`Payroll for ${payrollData.employeeName} has been saved!`);
-        } catch (error) {
-            console.error("Error saving payroll data: ", error);
-            showMessage("Error saving payroll data. Check console for details.", "error");
-            alert("Error saving payroll data. Check the console for details.");
-        }
-    });
+          localStorage.setItem(localKey, JSON.stringify(payrollData));
+         showMessage(`Payroll for ${payrollData.employeeName} saved locally!`, "success");
+          alert(`Payroll for ${payrollData.employeeName} has been saved!`);
+            } catch (error) {
+                console.error("Error saving payroll data: ", error);
+                showMessage("Error saving payroll data. Check console for details.", "error");
+                alert("Error saving payroll data. Check the console for details.");
+            }
+        });
 
     // Validate actual days worked every time it's changed
     daysWorkedEl.addEventListener('input', () => {
