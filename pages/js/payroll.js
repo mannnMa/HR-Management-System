@@ -194,6 +194,25 @@ resetButton.addEventListener('click', () => {
     performCalculations();
     showMessage("Form reset.", "info");
 });
+// Update allowed range based on payroll period
+workingDaysEl.addEventListener('change', () => {
+  const period = workingDaysEl.value;
+  if (period === "15 Days") {
+    daysWorkedEl.max = 15;
+    if (parseInt(daysWorkedEl.value) > 15) {
+      daysWorkedEl.value = 15;
+      showMessage("For 15 Days, actual days worked can't exceed 15.", "warning");
+    }
+  } else if (period === "1 Month") {
+    daysWorkedEl.max = 30;
+    if (parseInt(daysWorkedEl.value) > 30) {
+      daysWorkedEl.value = 30;
+      showMessage("For 1 Month, actual days worked can't exceed 30.", "warning");
+    }
+  }
+});
+// Apply the max value once when the page loads
+workingDaysEl.dispatchEvent(new Event('change'));
 
 savePayrollButton.addEventListener('click', () => {
     const payrollData = performCalculations();
