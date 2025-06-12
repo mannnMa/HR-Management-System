@@ -53,13 +53,16 @@ function showMessage(message, type = "info") {
     }, 5000);
 }
 
+
 // --- Calculation Logic ---
-const STANDARD_MONTHLY_WORKING_DAYS = 22;
+const STANDARD_MONTHLY_WORKING_DAYS = 22; 
+
 
 function calculateProratedBasicPay(monthlySalary, daysWorkedInPeriod, standardDaysInMonth) {
     if (!monthlySalary || !daysWorkedInPeriod || !standardDaysInMonth || standardDaysInMonth <= 0) return 0;
     return (monthlySalary / standardDaysInMonth) * daysWorkedInPeriod;
 }
+
 
 function calculateOvertimePay(basicSalary, overtimeHours) {
     if (!basicSalary || !overtimeHours) return 0;
@@ -69,109 +72,174 @@ function calculateOvertimePay(basicSalary, overtimeHours) {
     return otPay;
 }
 
-function calculateSSS(grossPay, isHalfPeriod = false) {
-    if (grossPay <= 0) return 0;
-    let msc = 0;
-    if (grossPay < 3250) msc = 3250;
-    else if (grossPay >= 30000) msc = 30000;
-    else msc = Math.ceil(grossPay / 500) * 500;
+
+function calculateSSS(grossMonthlyPay) {
+    if (grossMonthlyPay <= 0) return 0;
+
+    // Official SSS Contribution Table for 2025 (Employee Share: 4.5%)
+    // This function finds the correct employee contribution for a given monthly gross pay.
+    const brackets = [
+        { ceiling: 4249.99, contribution: 180.00 },
+        { ceiling: 4749.99, contribution: 202.50 },
+        { ceiling: 5249.99, contribution: 225.00 },
+        { ceiling: 5749.99, contribution: 247.50 },
+        { ceiling: 6249.99, contribution: 270.00 },
+        { ceiling: 6749.99, contribution: 292.50 },
+        { ceiling: 7249.99, contribution: 315.00 },
+        { ceiling: 7749.99, contribution: 337.50 },
+        { ceiling: 8249.99, contribution: 360.00 },
+        { ceiling: 8749.99, contribution: 382.50 },
+        { ceiling: 9249.99, contribution: 405.00 },
+        { ceiling: 9749.99, contribution: 427.50 },
+        { ceiling: 10249.99, contribution: 450.00 },
+        { ceiling: 10749.99, contribution: 472.50 },
+        { ceiling: 11249.99, contribution: 495.00 },
+        { ceiling: 11749.99, contribution: 517.50 },
+        { ceiling: 12249.99, contribution: 540.00 },
+        { ceiling: 12749.99, contribution: 562.50 },
+        { ceiling: 13249.99, contribution: 585.00 },
+        { ceiling: 13749.99, contribution: 607.50 },
+        { ceiling: 14249.99, contribution: 630.00 },
+        { ceiling: 14749.99, contribution: 652.50 },
+        { ceiling: 15249.99, contribution: 675.00 },
+        { ceiling: 15749.99, contribution: 697.50 },
+        { ceiling: 16249.99, contribution: 720.00 },
+        { ceiling: 16749.99, contribution: 742.50 },
+        { ceiling: 17249.99, contribution: 765.00 },
+        { ceiling: 17749.99, contribution: 787.50 },
+        { ceiling: 18249.99, contribution: 810.00 },
+        { ceiling: 18749.99, contribution: 832.50 },
+        { ceiling: 19249.99, contribution: 855.00 },
+        { ceiling: 19749.99, contribution: 877.50 },
+        { ceiling: 20249.99, contribution: 900.00 },
+        { ceiling: 20749.99, contribution: 922.50 },
+        { ceiling: 21249.99, contribution: 945.00 },
+        { ceiling: 21749.99, contribution: 967.50 },
+        { ceiling: 22249.99, contribution: 990.00 },
+        { ceiling: 22749.99, contribution: 1012.50 },
+        { ceiling: 23249.99, contribution: 1035.00 },
+        { ceiling: 23749.99, contribution: 1057.50 },
+        { ceiling: 24249.99, contribution: 1080.00 },
+        { ceiling: 24749.99, contribution: 1102.50 },
+        { ceiling: 25249.99, contribution: 1125.00 },
+        { ceiling: 25749.99, contribution: 1147.50 },
+        { ceiling: 26249.99, contribution: 1170.00 },
+        { ceiling: 26749.99, contribution: 1192.50 },
+        { ceiling: 27249.99, contribution: 1215.00 },
+        { ceiling: 27749.99, contribution: 1237.50 },
+        { ceiling: 28249.99, contribution: 1260.00 },
+        { ceiling: 28749.99, contribution: 1282.50 },
+        { ceiling: 29249.99, contribution: 1305.00 },
+        { ceiling: 29749.99, contribution: 1327.50 },
+    ];
+
+    if (grossMonthlyPay < 4250) return 180.00;
+    if (grossMonthlyPay >= 29750) return 1350.00;
+
+    const bracket = brackets.find(b => grossMonthlyPay <= b.ceiling);
+    return bracket ? bracket.contribution : 1350.00; // Default to max if something goes wrong
+}
+
+/**
+ * CONFIRMED: Calculates PhilHealth contribution.
+ * The total premium is 5%. Your calculation of 2.5% (0.025) for the employee's share is CORRECT.
+ * It is based on the full MONTHLY BASIC SALARY.
+ */
+function calculatePhilHealth(monthlyBasicSalary) {
+    if (monthlyBasicSalary <= 0) return 0;
+    // Premium is 5% total, employee share is 2.5%
+    const employeeRate = 0.025;
+    // Salary base is capped between 10,000 and 100,000
+    let premiumBase = Math.max(10000, Math.min(monthlyBasicSalary, 100000));
+    return premiumBase * employeeRate;
+}
+
+/**
+ * FIXED: Calculates Pag-IBIG contribution with updated 2025 rates.
+ * The contribution rate and maximum contribution have increased.
+ * It is based on the full MONTHLY BASIC SALARY.
+ */
+function calculatePagibig(monthlyBasicSalary) {
+    if (monthlyBasicSalary <= 0) return 0;
     
-    const contribution = msc * 0.045;
-    return isHalfPeriod ? contribution / 2 : contribution;
+    // 2025 Updated Rates: Employee share is 2% up to a max of 200
+    // The rate is 2% for salary above 1,500. Below that, it's 1%.
+    let rate = monthlyBasicSalary > 1500 ? 0.02 : 0.01;
+    let contribution = monthlyBasicSalary * rate;
+    
+    // The maximum monthly contribution for the employee is now 200.
+    return Math.min(contribution, 200);
 }
 
-function calculatePhilHealth(basicSalary, isHalfPeriod = false) {
-    if (basicSalary <= 0) return 0;
-    let premiumBase = Math.max(10000, Math.min(basicSalary, 100000));
-    const contribution = premiumBase * 0.025;
-    return isHalfPeriod ? contribution / 2 : contribution;
-}
-
-function calculatePagibig(basicSalary, isHalfPeriod = false) {
-    if (basicSalary <= 0) return 0;
-    let rate = basicSalary < 1500 ? 0.01 : 0.02;
-    let contribution = basicSalary * rate;
-    contribution = Math.min(contribution, 100);
-    return isHalfPeriod ? contribution / 2 : contribution;
-}
-
-function calculateWithholdingTax(grossPay, sss, philhealth, pagibig, isHalfPeriod = false) {
-    const taxableIncome = grossPay - sss - philhealth - pagibig;
+/**
+ * FIXED: Calculates Withholding Tax using the correct method.
+ * This now uses the SEMI-MONTHLY tax table for accuracy on bi-weekly payrolls.
+ * It no longer calculates monthly tax and divides by 2.
+ */
+function calculateWithholdingTax(taxableIncomeForPeriod) {
+    if (taxableIncomeForPeriod <= 0) return 0;
+    
     let tax = 0;
     
-    if (taxableIncome <= 20833) {
+    // BIR Withholding Tax Table for SEMI-MONTHLY payroll (TRAIN Law)
+    if (taxableIncomeForPeriod <= 10417) {
         tax = 0;
-    } else if (taxableIncome <= 33333) {
-        tax = (taxableIncome - 20833) * 0.15;
-    } else if (taxableIncome <= 66667) {
-        tax = 1875 + (taxableIncome - 33333) * 0.20;
-    } else if (taxableIncome <= 166667) {
-        tax = 8541.80 + (taxableIncome - 66667) * 0.25;
-    } else if (taxableIncome <= 666667) {
-        tax = 33541.80 + (taxableIncome - 166667) * 0.30;
+    } else if (taxableIncomeForPeriod <= 16666) {
+        tax = (taxableIncomeForPeriod - 10417) * 0.15;
+    } else if (taxableIncomeForPeriod <= 33333) {
+        tax = 937.50 + (taxableIncomeForPeriod - 16667) * 0.20;
+    } else if (taxableIncomeForPeriod <= 83333) {
+        tax = 4166.67 + (taxableIncomeForPeriod - 33333) * 0.25;
+    } else if (taxableIncomeForPeriod <= 333333) {
+        tax = 16666.67 + (taxableIncomeForPeriod - 83333) * 0.30;
     } else {
-        tax = 183541.80 + (taxableIncome - 666667) * 0.35;
+        tax = 91666.67 + (taxableIncomeForPeriod - 333333) * 0.35;
     }
     
-    return isHalfPeriod ? tax / 2 : tax;
+    return tax;
 }
 
-function performCalculations() {
-    const basicSalary = Math.max(0, parseFloat(basicSalaryEl.value) || 0);
-    const actualDaysWorked = Math.max(0, parseFloat(daysWorkedEl.value) || STANDARD_MONTHLY_WORKING_DAYS);
-    const overtimeHours = Math.max(0, parseFloat(overtimeHoursEl.value) || 0);
-    const allowances = Math.max(0, parseFloat(allowancesEl.value) || 0);
-    const otherDeductions = Math.max(0, parseFloat(otherDeductionsInputEl.value) || 0);
 
+// --- Main Calculation Flow ---
+function performCalculations() {
+    // --- Inputs ---
+    const basicSalary = parseFloat(basicSalaryEl.value) || 0;
+    const actualDaysWorked = parseFloat(daysWorkedEl.value) || STANDARD_MONTHLY_WORKING_DAYS;
+    const overtimeHours = parseFloat(overtimeHoursEl.value) || 0;
+    const allowances = parseFloat(allowancesEl.value) || 0;
+    const otherDeductions = parseFloat(otherDeductionsInputEl.value) || 0;
     const payrollPeriod = workingDaysEl.value;
     const isHalfPeriod = payrollPeriod === "15 Days";
 
+    // --- Earnings Calculation ---
+    // Note: For SSS, we need to estimate the gross for the *entire month*
     const actualBasicPayForPeriod = calculateProratedBasicPay(basicSalary, actualDaysWorked, STANDARD_MONTHLY_WORKING_DAYS);
     const overtimePay = calculateOvertimePay(basicSalary, overtimeHours);
-    const grossPay = actualBasicPayForPeriod + allowances + overtimePay;
+    const grossPayForPeriod = actualBasicPayForPeriod + allowances + overtimePay;
 
-    const sssContribution = calculateSSS(grossPay, isHalfPeriod);
-    const philHealthContribution = calculatePhilHealth(basicSalary, isHalfPeriod);
-    const pagibigContribution = calculatePagibig(basicSalary, isHalfPeriod);
-    const withholdingTax = calculateWithholdingTax(grossPay, sssContribution, philHealthContribution, pagibigContribution, isHalfPeriod);
+    // --- Deductions Calculation ---
+    
+    // Calculate full MONTHLY contributions first
+    // SSS is based on estimated full month gross pay. A simple estimate is doubling the period pay.
+    const estimatedMonthlyGross = isHalfPeriod ? grossPayForPeriod * 2 : grossPayForPeriod;
+    const totalMonthlySSS = calculateSSS(estimatedMonthlyGross);
+    const totalMonthlyPhilHealth = calculatePhilHealth(basicSalary);
+    const totalMonthlyPagibig = calculatePagibig(basicSalary);
 
-    const totalDeductions = sssContribution + philHealthContribution + pagibigContribution + withholdingTax + otherDeductions;
-    const netPay = grossPay - totalDeductions;
+    // Get the deduction for the current pay period (half if semi-monthly)
+    const sssContributionForPeriod = isHalfPeriod ? totalMonthlySSS / 2 : totalMonthlySSS;
+    const philHealthContributionForPeriod = isHalfPeriod ? totalMonthlyPhilHealth / 2 : totalMonthlyPhilHealth;
+    const pagibigContributionForPeriod = isHalfPeriod ? totalMonthlyPagibig / 2 : totalMonthlyPagibig;
 
-    summaryBasicPayEl.textContent = formatCurrency(actualBasicPayForPeriod);
-    summaryTotalAllowancesEl.textContent = formatCurrency(allowances);
-    summaryOvertimePayEl.textContent = formatCurrency(overtimePay);
-    summaryGrossPayEl.textContent = formatCurrency(grossPay);
+    // Calculate Taxable Income for THIS PERIOD
+    const taxableIncomeForPeriod = grossPayForPeriod - sssContributionForPeriod - philHealthContributionForPeriod - pagibigContributionForPeriod;
 
-    summaryWithholdingTaxEl.textContent = formatCurrency(withholdingTax);
-    summarySSSEl.textContent = formatCurrency(sssContribution);
-    summaryPhilHealthEl.textContent = formatCurrency(philHealthContribution);
-    summaryPagibigEl.textContent = formatCurrency(pagibigContribution);
-    summaryOtherDeductionsEl.textContent = formatCurrency(otherDeductions);
-    summaryTotalDeductionsEl.textContent = formatCurrency(totalDeductions);
-    summaryNetPayEl.textContent = formatCurrency(netPay);
-
-    return {
-        employeeName: employeeNameEl.value,
-        employeeId: employeeIdEl.value,
-        payrollPeriod: payrollPeriod,
-        basicSalaryInput: basicSalary,
-        daysWorked: actualDaysWorked,
-        actualBasicPayForPeriod: actualBasicPayForPeriod,
-        overtimeHours: overtimeHours,
-        overtimePay: overtimePay,
-        allowances: allowances,
-        grossPay: grossPay,
-        sssContribution: sssContribution,
-        philHealthContribution: philHealthContribution,
-        pagibigContribution: pagibigContribution,
-        withholdingTax: withholdingTax,
-        otherDeductions: otherDeductions,
-        totalDeductions: totalDeductions,
-        netPay: netPay,
-        calculatedAt: new Date().toISOString()
-    };
-}
+    // Calculate Withholding Tax based on THIS PERIOD's taxable income
+    const withholdingTax = calculateWithholdingTax(taxableIncomeForPeriod);
+    
+    // --- Final Calculation ---
+    const totalDeductions = sssContributionForPeriod + philHealthContributionForPeriod + pagibigContributionForPeriod + withholdingTax + otherDeductions;
+    const netPay = grossPayForPeriod - totalDeductions;
 
 // --- Event Listeners ---
 [basicSalaryEl, overtimeHoursEl, allowancesEl, otherDeductionsInputEl].forEach(el => {
