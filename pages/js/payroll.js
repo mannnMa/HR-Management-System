@@ -210,8 +210,66 @@ generatePayslipButton.addEventListener('click', () => {
     console.log("--- GENERATE PAYSLIP (DATA) ---");
     console.log(payrollData);
     showMessage(`Payslip data for ${payrollData.employeeName} generated.`, "info");
-    alert(`Mock Payslip for: ${payrollData.employeeName}\nNet Pay: ${formatCurrency(payrollData.netPay)}`);
+    alert(`Payslip for: ${payrollData.employeeName}\nNet Pay: ${formatCurrency(payrollData.netPay)}`);
 });
 
 // Initialize calculations
 performCalculations();
+
+
+// --- Payroll History Section ---
+
+function loadPayrollHistory() {
+  const tableBody = document.getElementById("historyTableBody");
+  const noRecords = document.getElementById("noRecordsMessage");
+
+  if (!tableBody || !noRecords) return;
+
+  tableBody.innerHTML = "";
+  const keys = Object.keys(localStorage).filter(key => key.startsWith("payroll_"));
+
+  if (keys.length === 0) {
+    noRecords.style.display = "block";
+    return;
+  } else {
+    noRecords.style.display = "none";
+  }
+
+  keys.forEach(key => {
+    const data = JSON.parse(localStorage.getItem(key));
+    const row = document.createElement("tr");
+    row.style.borderBottom = "1px solid #ccc";
+
+    row.innerHTML = `
+      <td style="padding: 8px;">${data.employeeName}</td>
+      <td style="padding: 8px;">${data.employeeId}</td>
+      <td style="padding: 8px;">${data.payrollPeriod}</td>
+      <td style="padding: 8px; color: green; font-weight: bold;">${formatCurrency(data.netPay)}</td>
+      <td style="padding: 8px;">${new Date(data.calculatedAt).toLocaleString()}</td>
+      <td style="padding: 8px;">
+        <button onclick="deletePayrollRecord('${key}')" style="color: red; font-weight: bold;">Delete</button>
+      </td>
+    `;
+    tableBody.appendChild(row);
+  });
+}
+
+function deletePayrollRecord(key) {
+  localStorage.removeItem(key);
+  loadPayrollHistory();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn = document.getElementById("toggleHistoryBtn");
+  const historyContainer = document.getElementById("payrollHistoryContainer");
+
+  if (toggleBtn && historyContainer) {
+    toggleBtn.addEventListener("click", () => {
+      const isVisible = historyContainer.style.display === "block";
+      historyContainer.style.display = isVisible ? "none" : "block";
+      toggleBtn.textContent = isVisible ? "Show Payroll History" : "Hide Payroll History";
+    });
+  }
+
+  loadPayrollHistory();
+});
