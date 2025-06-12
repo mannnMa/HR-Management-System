@@ -213,14 +213,54 @@ workingDaysEl.addEventListener('change', () => {
 });
     // Apply the max value once when the page loads
     workingDaysEl.dispatchEvent(new Event('change'));
-    
+
+function validateRequiredFields() {
+  let valid = true;
+
+  const requiredFields = [
+    employeeNameEl,
+    employeeIdEl,
+    basicSalaryEl,
+    workingDaysEl,
+    daysWorkedEl,
+    overtimeHoursEl,
+    allowancesEl,
+    otherDeductionsInputEl
+  ];
+
+  requiredFields.forEach(field => {
+    if (field.value.trim() === "") {
+      field.style.border = "2px solid red";
+      valid = false;
+    } else {
+      field.style.border = ""; // Reset if valid
+    }
+  });
+
+  if (!valid) {
+    showMessage("Please fill in all required fields.", "warning");
+  }
+
+  return valid;
+}
+
     savePayrollButton.addEventListener('click', () => {
-        const payrollData = performCalculations();
-        if (!payrollData.employeeId || !payrollData.employeeName) {
-            showMessage("Employee Name and ID are required to save.", "warning");
-            alert("⚠ Employee Name and ID are required to save.");
-            return;
-        }
+    if (!validateRequiredFields()) return;
+
+    const payrollData = performCalculations();
+
+    const localKey = `payroll_${payrollData.employeeId}_${Date.now()}`;
+    try {
+        localStorage.setItem(localKey, JSON.stringify(payrollData));
+        showMessage(`Payroll for ${payrollData.employeeName} saved locally!`, "success");
+        alert(`Payroll for ${payrollData.employeeName} has been saved!`);
+    } catch (error) {
+        console.error("Error saving payroll data: ", error);
+        showMessage("Error saving payroll data. Check console for details.", "error");
+        alert("Error saving payroll data. Check the console for details.");
+    }
+});
+
     
         const localKey = `payroll_${payrollData.employeeId}_${Date.now()}`;
         try {
@@ -257,11 +297,13 @@ workingDaysEl.addEventListener('change', () => {
 
 
 generatePayslipButton.addEventListener('click', () => {
-    const payrollData = performCalculations();
-    console.log("--- GENERATE PAYSLIP (DATA) ---");
-    console.log(payrollData);
-    showMessage(`Payslip data for ${payrollData.employeeName} generated.`, "info");
-    alert(`Payslip for: ${payrollData.employeeName}\nNet Pay: ${formatCurrency(payrollData.netPay)}`);
+  if (!validateRequiredFields()) return;
+
+  const payrollData = performCalculations();
+  console.log("--- GENERATE PAYSLIP (DATA) ---");
+  console.log(payrollData);
+  showMessage(`Payslip data for ${payrollData.employeeName} generated.`, "info");
+  alert(`Payslip for: ${payrollData.employeeName}\nNet Pay: ${formatCurrency(payrollData.netPay)}`);
 });
 
 // Initialize calculations
