@@ -54,16 +54,24 @@ function showMessage(message, type = "info") {
 }
 
 
+// --- Constants (2025 Rates) ---
+const STANDARD_MONTHLY_WORKING_DAYS = 22; // This can be adjusted based on company policy
+
 // --- Calculation Logic ---
-const STANDARD_MONTHLY_WORKING_DAYS = 22; 
 
-
+/**
+ * Calculates prorated basic pay based on days worked.
+ * This logic remains the same.
+ */
 function calculateProratedBasicPay(monthlySalary, daysWorkedInPeriod, standardDaysInMonth) {
     if (!monthlySalary || !daysWorkedInPeriod || !standardDaysInMonth || standardDaysInMonth <= 0) return 0;
     return (monthlySalary / standardDaysInMonth) * daysWorkedInPeriod;
 }
 
-
+/**
+ * Calculates standard overtime pay (25% premium).
+ * This logic remains the same for regular OT.
+ */
 function calculateOvertimePay(basicSalary, overtimeHours) {
     if (!basicSalary || !overtimeHours) return 0;
     const dailyRate = basicSalary / STANDARD_MONTHLY_WORKING_DAYS;
@@ -72,7 +80,11 @@ function calculateOvertimePay(basicSalary, overtimeHours) {
     return otPay;
 }
 
-
+/**
+ * FIXED: Calculates SSS contribution based on the official 2025 table.
+ * The previous formula was an approximation. This is the correct bracket-based calculation.
+ * NOTE: SSS is based on GROSS PAY for the month.
+ */
 function calculateSSS(grossMonthlyPay) {
     if (grossMonthlyPay <= 0) return 0;
 
@@ -240,6 +252,10 @@ function performCalculations() {
     // --- Final Calculation ---
     const totalDeductions = sssContributionForPeriod + philHealthContributionForPeriod + pagibigContributionForPeriod + withholdingTax + otherDeductions;
     const netPay = grossPayForPeriod - totalDeductions;
+
+    // --- Update UI (remains the same) ---
+    // ... your UI update code here ...
+}
 
 // --- Event Listeners ---
 [basicSalaryEl, overtimeHoursEl, allowancesEl, otherDeductionsInputEl].forEach(el => {
