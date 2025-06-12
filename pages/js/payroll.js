@@ -117,11 +117,12 @@ function calculateWithholdingTax(grossPay, sss, philhealth, pagibig, isHalfPerio
 }
 
 function performCalculations() {
-    const basicSalary = parseFloat(basicSalaryEl.value) || 0;
-    const actualDaysWorked = parseFloat(daysWorkedEl.value) || STANDARD_MONTHLY_WORKING_DAYS;
-    const overtimeHours = parseFloat(overtimeHoursEl.value) || 0;
-    const allowances = parseFloat(allowancesEl.value) || 0;
-    const otherDeductions = parseFloat(otherDeductionsInputEl.value) || 0;
+    const basicSalary = Math.max(0, parseFloat(basicSalaryEl.value) || 0);
+    const actualDaysWorked = Math.max(0, parseFloat(daysWorkedEl.value) || STANDARD_MONTHLY_WORKING_DAYS);
+    const overtimeHours = Math.max(0, parseFloat(overtimeHoursEl.value) || 0);
+    const allowances = Math.max(0, parseFloat(allowancesEl.value) || 0);
+    const otherDeductions = Math.max(0, parseFloat(otherDeductionsInputEl.value) || 0);
+
     const payrollPeriod = workingDaysEl.value;
     const isHalfPeriod = payrollPeriod === "15 Days";
 
@@ -173,11 +174,20 @@ function performCalculations() {
 }
 
 // --- Event Listeners ---
-[employeeNameEl, employeeIdEl, basicSalaryEl, daysWorkedEl, overtimeHoursEl, allowancesEl, otherDeductionsInputEl, workingDaysEl].forEach(el => {
+[basicSalaryEl, daysWorkedEl, overtimeHoursEl, allowancesEl, otherDeductionsInputEl].forEach(el => {
     el.addEventListener('input', () => {
+        if (parseFloat(el.value) < 0) {
+            el.value = 0;
+            showMessage("Negative numbers are not allowed.", "warning");
+        }
         performCalculations();
     });
 });
+
+[employeeNameEl, employeeIdEl, workingDaysEl].forEach(el => {
+    el.addEventListener('input', performCalculations);
+});
+
 
 resetButton.addEventListener('click', () => {
     payrollForm.reset();
