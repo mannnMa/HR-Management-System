@@ -288,12 +288,34 @@ function validateRequiredFields() {
 generatePayslipButton.addEventListener('click', () => {
   if (!validateRequiredFields()) return;
 
-  const payrollData = performCalculations();
-  console.log("--- GENERATE PAYSLIP (DATA) ---");
-  console.log(payrollData);
-  showMessage(`Payslip data for ${payrollData.employeeName} generated.`, "info");
-  alert(`Payslip for: ${payrollData.employeeName}\nNet Pay: ${formatCurrency(payrollData.netPay)}`);
+  const data = performCalculations();
+  const modal = document.getElementById("payslipModal");
+  const content = document.getElementById("payslipContent");
+
+  content.innerHTML = `
+    <p><strong>Name:</strong> ${data.employeeName}</p>
+    <p><strong>ID:</strong> ${data.employeeId}</p>
+    <p><strong>Period:</strong> ${data.payrollPeriod}</p>
+    <hr class="my-2">
+    <p><strong>Basic Pay:</strong> ${formatCurrency(data.actualBasicPayForPeriod)}</p>
+    <p><strong>Overtime Pay:</strong> ${formatCurrency(data.overtimePay)}</p>
+    <p><strong>Allowances:</strong> ${formatCurrency(data.allowances)}</p>
+    <p><strong>Gross Pay:</strong> ${formatCurrency(data.grossPay)}</p>
+    <hr class="my-2">
+    <p><strong>SSS:</strong> ${formatCurrency(data.sssContribution)}</p>
+    <p><strong>PhilHealth:</strong> ${formatCurrency(data.philHealthContribution)}</p>
+    <p><strong>Pag-IBIG:</strong> ${formatCurrency(data.pagibigContribution)}</p>
+    <p><strong>Withholding Tax:</strong> ${formatCurrency(data.withholdingTax)}</p>
+    <p><strong>Other Deductions:</strong> ${formatCurrency(data.otherDeductions)}</p>
+    <p><strong>Total Deductions:</strong> ${formatCurrency(data.totalDeductions)}</p>
+    <hr class="my-2">
+    <p class="text-xl font-bold"><strong>Net Pay:</strong> ${formatCurrency(data.netPay)}</p>
+    <p class="text-sm text-gray-500 mt-2"><em>Generated on: ${new Date(data.calculatedAt).toLocaleString()}</em></p>
+  `;
+
+  modal.classList.remove("hidden");
 });
+
 
 // Initialize calculations
 performCalculations();
@@ -340,6 +362,15 @@ function deletePayrollRecord(key) {
   localStorage.removeItem(key);
   loadPayrollHistory();
 }
+document.getElementById("deleteAllBtn").addEventListener("click", () => {
+  if (confirm("Are you sure you want to delete all payroll history?")) {
+    Object.keys(localStorage)
+      .filter(key => key.startsWith("payroll_"))
+      .forEach(key => localStorage.removeItem(key));
+    loadPayrollHistory();
+    showMessage("All payroll history has been deleted.", "success");
+  }
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.getElementById("toggleHistoryBtn");
@@ -355,3 +386,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   loadPayrollHistory();
 });
+
+// Close button for the payslip modal
+document.getElementById("closePayslipBtn").addEventListener("click", () => {
+  document.getElementById("payslipModal").classList.add("hidden");
+});
+
