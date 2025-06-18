@@ -1,0 +1,426 @@
+.sidebar {
+  width: 257px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #1C2AA8;
+  position: fixed;
+}
+
+.sidebar-logo-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  margin-bottom: -25px;
+  height: 70px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.company-logo {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-size: cover;
+  background-position: center;
+  left: 20px;
+}
+
+#company-logo-text {
+  position: absolute;
+  font-family: "Public Sans", sans-serif;
+  font-size: 30px;
+  color: white;
+  left: 70px;
+  top: 5px;
+}
+
+.employee-title {
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 35px 0 15px 38px;
+}
+
+.seach-input {
+  background-image: url(../../assets/search-icon.webp);
+  background-repeat: no-repeat;
+  background-position: left 10px center;
+  background-size: 20px 20px;
+  width: 220px; 
+  margin-left: 12px;
+  padding-left: 40px;
+  box-sizing: border-box;
+  height: 35px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding-left: 40px;
+  font-family: Poppins, sans-serif;
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.seach-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: bold;
+}
+
+.seach-input:focus {
+  outline: none;
+}
+
+.general-title {
+  color: rgba(255, 255, 255, 0.9);
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  padding-left: 12px;
+  padding-top: 20px;
+}
+
+.profile-button,
+.payslip-button,
+.report-button,
+.log-out-button {
+  width: 220px;
+  height: 49px;
+  border: none;
+  background-color: #1C2AA8;
+  font-size: 20px;
+  font-family: Poppins, sans-serif;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  margin-left: 12px;
+  border-radius: 10px;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+button {
+  transition: background-color 0.3s ease;
+}
+
+.profile-button:hover,
+.payslip-button:hover,
+.report-button:hover,
+.log-out-button:hover {
+  background-color: #09104D;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.profile-icon,
+.payslip-icon,
+.report-icon {
+  width: 26px;
+  height: 26px;
+  margin-left: -65px;
+  transition: 0.15s ease;
+}
+
+.profile-button:hover .profile-icon { 
+  content: url(../../assets/employee-icon-hover.webp); 
+}
+.payslip-button:hover .payslip-icon { 
+  content: url(../../assets/payroll-icon-hover.webp); 
+}
+.report-button:hover .report-icon { 
+  content: url(../../assets/report-icon-hover.png); 
+}
+.log-out-button:hover .log-out-icon { 
+  content: url(../../assets/log-out-hover.webp); 
+}
+
+.profile-icon {
+  margin-left: -105px;
+}
+
+.payslip-button, 
+.report-button { 
+  margin-top: 16px;
+}
+.payslip-icon { 
+  margin-left: -100px; 
+}
+.report-icon { 
+  margin-left: -100px; 
+}
+.log-out-icon { 
+  margin-left: -10px; 
+  width: 35px; 
+  height: 35px; 
+}
+
+.log-out-container {
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 15px 0;
+}
+
+.general-buttons { 
+  flex: 1; 
+  overflow-y: auto; 
+}
+
+/* Confirmation overlay */
+.confirm-overlay-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none; /* Hidden by default */
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.confirm-box-sidebar {
+  background: white;
+  padding: 20px 30px;
+  border-radius: 10px;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.confirm-actions-sidebar button {
+  margin: 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#confirmYes {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  font-weight: regular; 
+}
+
+#confirmCancel {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  font-weight: regular; 
+}
+
+.logout-animate {
+  width: 155px;
+  height: 155px;
+}
+
+.profile-nav-link,
+.payslip-nav-link,
+.report-nav-link {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.profile-button.active,
+.payslip-button.active,
+.report-button.active,
+.log-out-button.active {
+  background-color: #09104D;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.profile-button.active .profile-icon { 
+  content: url(../../assets/employee-icon-hover.webp); 
+}
+.payslip-button.active .payslip-icon { 
+  content: url(../../assets/payroll-icon-hover.webp); 
+}
+.report-button.active .report-icon { 
+  content: url(../../assets/report-icon-hover.png); 
+}
+
+.log-out-button.active .log-out-icon { 
+  content: url(../../assets/log-out-hover.webp); 
+}
+
+/* responsiveness */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+  }
+
+  .sidebar-logo-container {
+    flex: 1 1 100%;
+    margin-bottom: 10px;
+    border-bottom: none;
+    height: auto;
+  }
+
+  .company-logo,
+  #company-logo-text {
+    position: static;
+    margin-left: 10px;
+  }
+
+  #company-logo-text {
+    margin-top: 5px;
+    font-size: 24px;
+  }
+
+  .hr-title {
+    padding: 0;
+    margin-top: -10px;
+    margin-bottom: 30px;
+    margin-left: 175px;
+    font-size: 25px;
+    text-align: center;
+  }
+
+  .seach-input {
+    width: 250px;
+    margin: -10px 10px 0 80px;
+    padding-left: 40px;
+    font-size: 16px;
+    height: 40px;
+  }
+
+  .general-buttons {
+    flex: 1 1 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-y: visible;
+  }
+
+  .general-title {
+    flex: 1 1 100%;
+    padding-left: 0;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 18px;
+  }
+
+  .profile-button,
+  .payslip-button,
+  .report-button,
+  .log-out-button {
+    width: 300px;
+    height: 50px;
+    font-size: 20px;
+    margin-right: 10px;
+  }
+
+  .log-out-container {
+    border-top: none;
+    position: relative;
+    top: -510px;
+    right: -200px;
+  }
+
+  .log-out-button {
+    width: 170px;
+    height: 50px;
+    margin-top: 10px;
+  }
+}
+
+/* Mobile (up to 600px) */
+@media (max-width: 600px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    padding: 10px 5px;
+    position: relative;
+  }
+
+  .sidebar-logo-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    height: auto;
+    border-bottom: none;
+  }
+
+  .company-logo {
+    width: 35px;
+    height: 35px;
+    margin-left: 0;
+    margin-bottom: 5px;
+    position: static;
+  }
+
+  #company-logo-text {
+    font-size: 20px;
+    margin-left: 0;
+    text-align: center;
+    margin-bottom: 10px;
+    position: static;
+  }
+
+  .hr-title {
+    font-size: 20px;
+    text-align: center;
+    margin: 10px 0 15px 0;
+    padding: 0;
+  }
+
+  .seach-input {
+    width: 100%;
+    margin: 0 auto 15px auto;
+    font-size: 16px;
+    height: 38px;
+    padding-left: 40px;
+    display: block;
+  }
+
+  .general-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .profile-button,
+  .payslip-button,
+  .report-button,
+  .log-out-button {
+    width: 180px;
+    max-width: 280px;
+    height: 45px;
+    font-size: 18px;
+    margin-left: 0;
+    border-radius: 8px;
+    padding-left: 40px;
+  }
+
+  .log-out-container {
+    position: relative;
+    top: 0;
+    right: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 15px 0 0 0;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: 100px;
+  }
+  .log-out-button {
+    margin-left: 50px;
+    width: 160px;
+  }
+}

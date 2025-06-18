@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="icon" href="../assets/hr-logo-title.webp">
+    
+    <!--FONT LINKS-->
+      <!--POPPINS FONT-->
+      <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
+      <!--INTER FONTS-->
+      <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+
+      <!--PUBLICK SAN-->
+      <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!--CSS LINK-->
+    <link rel="stylesheet" href="./styles/general.css">
+    <link rel="stylesheet" href="./styles/profile.css">
+    
+  </head>
+
+  <body>
+    <!--Side Bar Navigation-->
+    <div class="sidebar">
+      <!--Company Logo-->
+      <div class="sidebar-logo-container">
+        <div>
+          <img class="company-logo" src="../assets/company logo.webp" alt="company-logo">
+        </div>
+        <div>
+          <h1 id="company-logo-text">Connectiv7</h1>
+        </div>
+      </div>
+      <div>
+        <h1 class="employee-title">Employee Portal</h1>
+      </div>
+      <!--Search Button side bar nav-->
+      <div>
+        <input class="seach-input" type="text" placeholder="Search" name="search" id="searchGeneral">
+      </div>
+      <!--General Buttons-->
+      <div class="general-buttons">
+        <h3 class="general-title">General</h3>
+          <div>
+          <!--Profile Nav-->
+          <a class="profile-nav-link">
+            <div class="profile-nav">
+              <button class="profile-button">
+                <img class="profile-icon" src="../assets/employee-icon.webp" alt="profile">
+                <span class="profile-text">Profile</span>
+              </button>
+            </div>
+          </a>
+          <!--Payslip Nav-->
+          <a class="payslip-nav-link">
+            <div>
+              <button class="payslip-button">
+                <img class="payslip-icon" src="../assets/payroll-icon.webp" alt="Payslip">
+                <span class="payslip-text">Payslip</span>
+              </button>
+            </div>
+          </a>
+          <!--Report Nav-->
+          <a class="report-nav-link">
+          <div>
+              <button class="report-button">
+                <img class="report-icon" src="../assets/report-icon.png" alt="report">
+                <span class="report-text">Report</span>
+              </button>
+            </div>
+          </a>
+        </div>
+      </div>
+      <form action="../index.html">
+        <div class="log-out-container">
+          <button class="log-out-button" id="logOutButton">
+            <img class="log-out-icon" src="../assets/log out - icon.webp" alt="log out">
+            <span class="log-out-text">Log Out</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
