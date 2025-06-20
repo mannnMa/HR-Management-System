@@ -123,7 +123,7 @@ button {
 }
 
 .profile-button:hover .profile-icon { 
-  content: url(../../assets/employee-icon-hover.webp); 
+  content: url(../../assets/dashboard-icon-hover.png); 
 }
 .payslip-button:hover .payslip-icon { 
   content: url(../../assets/payroll-icon-hover.webp); 
@@ -136,7 +136,7 @@ button {
 }
 
 .profile-icon {
-  margin-left: -105px;
+  margin-left: -50px;
 }
 
 .payslip-button, 
@@ -235,7 +235,7 @@ button {
 }
 
 .profile-button.active .profile-icon { 
-  content: url(../../assets/employee-icon-hover.webp); 
+  content: url(../../assets/dashboard-icon-hover.png); 
 }
 .payslip-button.active .payslip-icon { 
   content: url(../../assets/payroll-icon-hover.webp); 
