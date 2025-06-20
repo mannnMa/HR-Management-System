@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report</title>
+    <link rel="icon" href="../assets/hr-logo-title.webp">
+    
+    <!--FONT LINKS-->
+      <!--POPPINS FONT-->
+      <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
+      <!--INTER FONTS-->
+      <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+
+      <!--PUBLICK SAN-->
+      <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!--CSS LINK-->
+    <link rel="stylesheet" href="./styles/general.css">
+    <link rel="stylesheet" href="./styles/profile.css">
+    <link rel="stylesheet" href="./styles/emp-RepFeed.css">
+    
+  </head>
+
+  <body>
+    <!--Side Bar Navigation-->
+    <div class="sidebar">
+      <!--Company Logo-->
+      <div class="sidebar-logo-container">
+        <div>
+          <img class="company-logo" src="../assets/company logo.webp" alt="company-logo">
+        </div>
+        <div>
+          <h1 id="company-logo-text">Connectiv7</h1>
+        </div>
+      </div>
+      <div>
+        <h1 class="employee-title">Employee Portal</h1>
+      </div>
+      <!--Search Button side bar nav-->
+      <div>
+        <input class="seach-input" type="text" placeholder="Search" name="search" id="searchGeneral">
+      </div>
+      <!--General Buttons-->
+      <div class="general-buttons">
+        <h3 class="general-title">General</h3>
+          <div>
+          <!--Profile Nav-->
+          <a class="profile-nav-link">
+            <div class="profile-nav">
+              <button class="profile-button">
+                <img class="profile-icon" src="../assets/employee-icon.webp" alt="profile">
+                <span class="profile-text">Profile</span>
+              </button>
+            </div>
+          </a>
+          <!--Payslip Nav-->
+          <a class="payslip-nav-link">
+            <div>
+              <button class="payslip-button">
+                <img class="payslip-icon" src="../assets/payroll-icon.webp" alt="Payslip">
+                <span class="payslip-text">Payslip</span>
+              </button>
+            </div>
+          </a>
+          <!--Report Nav-->
+          <a class="report-nav-link">
+          <div>
+              <button class="report-button">
+                <img class="report-icon" src="../assets/report-icon.png" alt="report">
+                <span class="report-text">Report</span>
+              </button>
+            </div>
+          </a>
+        </div>
+      </div>
+      <form action="../index.html">
+        <div class="log-out-container">
+          <button class="log-out-button" id="logOutButton">
+            <img class="log-out-icon" src="../assets/log out - icon.webp" alt="log out">
+            <span class="log-out-text">Log Out</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
+  
+  <!-- Main Content -->
+  <div class="main">
+    <div class="header">
+      <h1 class="company-department-title">Reports and Feedbacks</h1>  
+    </div>  
+
+    <!-- Department Grid (4 cards max) -->
+    <div class="grid" id="Grid">
+      <div class="card">
+        <h2 class="name">Training Request</h2>
+        <ul class="description">
+          <li>Allows employees to request trainings that supports their 
+            job responsibilities, enhances their skills, and contributes 
+            to their professional growth.</li>
+        </ul>
+        <button class="view-btn" data-dept="admin">View</button>
+      </div>
+
+      <div class="card">
+        <h2 class="name">Sick & Vacation Leave</h2>
+        <ul class="description">
+          <li>Allows employees to request time off for personal reasons, 
+            such as illness, planned vacation, and etc., ensuring proper
+            documentation and approval of their leave.</li>
+        </ul>
+        <button class="view-btn" data-dept="it">View</button>
+      </div>
+
+      <div class="card">
+        <h2 class="name">Feedback</h2>
+        <ul class="description">
+          <li>Allows employees to share their comments, suggestions, or 
+            concerns to help improve services, processes, or the work 
+            environment.</li>
+        </ul>
+        <button class="view-btn" data-dept="hr">View</button>
+      </div>
+
+      <div class="card">
+        <h2 class="name">Report</h2>
+        <ul class="description">
+          <li>Allows employees to submit reports on work activities, 
+            incidents, or observations for documentation, review, and 
+            follow-up.</li>
+        </ul>
+        <button class="view-btn" data-dept="Report">View</button>
+      </div>
+    </div>
+
+    <!-- Jobs -->
+    <div id="jobList" class="job-list hidden">
+      <button id="closeJobListBtn" class="close-btn">CLOSE ✖</button>
+      <h2 id="jobListTitle">Job Listings</h2>
+    <div id="jobCards" class="job-cards-container"></div>
+  </div>
+  </div>
+
+  <!-- Confirmation container Log Out Button -->
+    <div class="confirm-overlay-sidebar" id="confirmOverlay">
+      <div class="confirm-box-sidebar">
+        <video class="logout-animate" src="../assets/animation/logout.mp4" autoplay muted loop playsinline></video>
+        <p>Are you sure you want to log out?</p>
+        <div class="confirm-actions-sidebar">
+          <button id="confirmYes">Confirm</button>
+          <button id="confirmCancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+  <script src="./js/sidebar.js" defer></script>
+  <script src="./js/emp-RepFeed.js" defer></script>
+</body>
+</html>
