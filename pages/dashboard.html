@@ -19,7 +19,7 @@
     <!--CSS LINK-->
     <link rel="stylesheet" href="./styles/general.css">
     <link rel="stylesheet" href="./styles/employee-sidebar.css">
-    
+    <link rel="stylesheet" href="./styles/dashboard.css">
   </head>
 
   <body>
@@ -85,17 +85,122 @@
       </form>
     </div>
 
+
+
     <!--Main Content Profile-->
     <!--Profile Header Notification-->
-    <div>
-      <div>
-
+    <div class="main-content">
+      <div class="profile-container">
+        <!--Profile Uploader-->
+        <div class="profile-pic-wrapper">
+          <img id="profile-pic" src="../assets/tsushikima.jpg" alt="Profile Picture" />
+          <input type="file" id="upload-input" accept="image/*" hidden />
+          <button id="upload-btn" class="upload-button">
+            <img src="../assets/upload-camera.png" id="upload-icon" alt="Upload" />
+          </button>
+        </div>
+        <!--Profile Info-->
+        <div class="profile-details">
+          <h1 class="welcome-text">Welcome to your Dashboard</h1>
+          <h2>
+            <span id="employee-name-display" class="name-profile" contenteditable="true">John Doe</span>
+          </h2>
+          <div class="employee-info">
+            <p>ID: <span id="employee-id-display" class="editable" contenteditable="true">EMP12345</span></p>
+            <p>Position: <span id="employee-position-display" class="editable" contenteditable="true">Web Developer</span></p>
+            <p>Department: <span id="employee-dept-display" class="editable" contenteditable="true">IT</span></p>
+          </div>
+          <img class="notif-icon" src="../assets/notif-icon.png" alt="notification">
+        </div>
+      </div>
+      <!--Services Features-->
+      <div class="dashboard-service">
+        <h1>General</h1>
+        <div class="grid-container">
+          <!--Announcement Container-->
+          <div class="grid-item-announcement">
+            <img class="announcement-icon" src="../assets/employee icons/announcement-icon.png" alt="announcement-icon">
+            <h2>Announcement</h2>
+            <p>
+              Keeps everyone informed with timely updates on events, news, 
+              and policies through clear, organized, and scheduled posts.
+            </p>
+            <div class="view-nav">
+              <h3>View</h3>
+              <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
+            </div>
+          </div>
+          <!--Training History Container-->
+          <div class="grid-item-training">
+            <img src="../assets/employee icons/training-history-icon.png" alt="training-history-icon">
+            <h2>Training History</h2>
+            <p>
+              Tracks completed trainings like webinars, orientations, and bootcamps, 
+              helping employees and HR monitor progress and development.
+            </p>
+            <div class="view-nav">
+              <h3>View</h3>
+              <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
+            </div>
+          </div>
+          <!--Policy Container-->
+          <div class="grid-item-policy">
+            <img src="../assets/employee icons/policy-icon.png" alt="policy-icon">
+            <h2>Policy</h2>
+            <p>
+              Provides access to company policies, guidelines, and procedures 
+              in one organized location for easy reference and compliance.
+            </p>
+            <div class="view-nav">
+              <h3>View</h3>
+              <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
+            </div>
+          </div>
+          <!--Report Container-->
+          <div class="grid-item-report">
+            <img src="../assets/employee icons/report-dashboard-icon.png" alt="report-icon">
+            <h2>Report</h2>
+            <p>
+              Displays a list of compliance records, feedback, and requests 
+              to help monitor and manage internal processes effectively.
+            </p>
+            <div class="view-nav">
+              <h3>View</h3>
+              <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
+            </div>
+          </div>
+          <!--Evaluation Container-->
+          <div class="grid-item-evaluation">
+            <img src="../assets/employee icons/evaluation-icon.png" alt="evaluation-icon">
+            <h2>Evaluation</h2>
+            <p>
+              Enables performance evaluations of employees based on set criteria, 
+              supporting feedback, growth, and improvement tracking.
+            </p>
+            <div class="view-nav">
+              <h3>View</h3>
+              <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
+            </div>
+          </div>
+          <!--Recognition Container-->
+          <div class="grid-item-recognition">
+            <img src="../assets/employee icons/recognition-icom.png" alt="recognition-icom">
+            <h2>Recognition</h2>
+            <p>
+              Highlights employee achievements and contributions to celebrate 
+              excellence and boost morale across the company.
+            </p>
+            <div class="view-nav">
+              <h3>View</h3>
+              <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <!--Profile Account Container-->
-    <div></div>
-    <!--Services Features-->
-    <div></div>
 
+
+    <!--Js link-->
+    <script src="./js/dashboard.js" defer></script>
   </body>
 </html>
