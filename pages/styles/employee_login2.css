@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-    <title>HR Management System - Login</title>
-    <link rel="icon" href="assets/hr-logo-title.svg" type="image/svg+xml">
-  </head>
-  <style>
-        /* Login.css */
-    :root {
+:root {
       --blue: #1C2AA8;
       --gray: #D9D9D9;
       --white: #ffffff;
@@ -223,38 +212,3 @@
         padding-top: 20px;
       }
     }
-  </style>
-
-  <body>
-    <div class="curve-bg"></div>
-    <div class="login-container">
-      <div class="left-panel">
-        
-        <img class="company-logo" src="assets/company logo.png" alt="company logo">
-        <h1 id="company-logo-text">Connectiv7</h1>
-
-        <img src="assets/user icon.png" class="user-icon" alt="User Icon">
-        <h1>Welcome Back!</h1>
-        <p>Access your personalized HR dashboard and manage everything with ease.</p>
-      </div>
-      <div class="right-panel">
-        <h2>Login to Your Account</h2>
-        <form>
-          <div class="form-group">
-            <input type="email" id="email" placeholder=" " required />
-            <label for="email">Employee ID</label>
-          </div>
-          <div class="form-group">
-            <input type="password" id="password" placeholder=" " required />
-            <label for="password">Password</label>
-          </div>
-          <button type="button" class="btn-login" onclick="window.location.href='./pages/management.html'">Sign In</button>
-        </form>
-        <div class="extras">
-          <p><a href="#">Forgot Password?</a></p>
-          <p>Need access? Contact IT Deparment</p>
-        </div>
-      </div>
-    </div>
-  </body>
-</html>
