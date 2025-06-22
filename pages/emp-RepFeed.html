@@ -297,7 +297,67 @@
         </div>
       </div>
 
-      <!-- Other forms section (placeholder for other card forms) -->
+      <!-- Feedback Form -->
+      <div id="feedbackContainer" class="form-container form-hidden">
+        <div class="form-header">
+          <h2 class="form-title">Feedback Form</h2>
+          <button id="closeFeedbackFormBtn" class="form-close-btn">CLOSE ✖</button>
+        </div>
+        
+        <form id="feedbackForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="feedbackEmployeeNameInput">Name of Employee:</label>
+              <input type="text" id="feedbackEmployeeNameInput" name="employeeName" class="form-input" placeholder="Enter your name here..." required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="feedbackDepartmentSelect">Department:</label>
+              <select id="feedbackDepartmentSelect" name="department" class="form-select" required>
+                <option value="">Please Select</option>
+                <option value="admin">Administration</option>
+                <option value="it">Information Technology</option>
+                <option value="hr">Human Resources</option>
+                <option value="marketing">Sales</option>
+                <option value="sales">Marketing</option>
+                <option value="finance">Finance</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="feedbackTypeSelect">Feedback Type:</label>
+              <select id="feedbackTypeSelect" name="feedbackType" class="form-select" required>
+                <option value="">Please Select (Comments, Suggestions, and Questions)</option>
+                <option value="comments">Comments</option>
+                <option value="suggestions">Suggestions</option>
+                <option value="questions">Questions</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="feedbackTextarea">Describe your Feedback:</label>
+              <textarea id="feedbackTextarea" name="feedback" class="form-textarea feedback-textarea" placeholder="Enter text here..." rows="8" required></textarea>
+            </div>
+          </div>
+
+          <div class="form-buttons">
+            <button type="submit" class="submit-btn">Submit</button>
+          </div>
+        </form>
+
+        <div id="feedbackSuccessMessage" class="success-message">
+          ✅ Feedback submitted successfully! Thank you for your valuable insights.
+        </div>
+      </div>
+
+      <!-- Other forms section (placeholder for report form) -->
       <div id="otherFormsContainer" class="form-container form-hidden">
         <div class="form-header">
           <h2 id="otherFormsTitle">Form</h2>

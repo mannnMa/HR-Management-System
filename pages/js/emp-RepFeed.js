@@ -477,3 +477,169 @@ leaveForm.addEventListener('submit', (e) => {
         hideAllForms();
     }, 3000);
 });
+
+// Update the existing JavaScript to include feedback form functionality
+
+// Get feedback form elements
+const feedbackContainer = document.getElementById('feedbackContainer');
+const closeFeedbackBtn = document.getElementById('closeFeedbackFormBtn');
+const feedbackForm = document.getElementById('feedbackForm');
+const feedbackSuccessMessage = document.getElementById('feedbackSuccessMessage');
+
+// Update the hideAllForms function to include feedback container
+function hideAllForms() {
+    trainingContainer.classList.add('form-hidden');
+    leaveContainer.classList.add('form-hidden');
+    feedbackContainer.classList.add('form-hidden');
+    otherFormsContainer.classList.add('form-hidden');
+    
+    // Hide success messages
+    trainingSuccessMessage.style.display = 'none';
+    leaveSuccessMessage.style.display = 'none';
+    feedbackSuccessMessage.style.display = 'none';
+}
+
+// Update the resetAllForms function to include feedback form
+function resetAllForms() {
+    trainingForm.reset();
+    leaveForm.reset();
+    feedbackForm.reset();
+    customTrainingRow.classList.add('form-hidden');
+    
+    // Reset file uploads
+    selectedFiles = [];
+    if (fileList) {
+        fileList.innerHTML = '';
+    }
+    if (fileInput) {
+        fileInput.value = '';
+    }
+}
+
+// Update the view button click handler to show feedback form
+viewButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const formType = button.getAttribute('data-form-type');
+        
+        hideAllForms();
+        resetAllForms();
+        
+        switch(formType) {
+            case 'training':
+                trainingContainer.classList.remove('form-hidden');
+                trainingContainer.scrollIntoView({ behavior: 'smooth' });
+                break;
+            case 'leave':
+                leaveContainer.classList.remove('form-hidden');
+                leaveContainer.scrollIntoView({ behavior: 'smooth' });
+                break;
+            case 'feedback':
+                feedbackContainer.classList.remove('form-hidden');
+                feedbackContainer.scrollIntoView({ behavior: 'smooth' });
+                break;
+            case 'report':
+                otherFormsTitle.textContent = 'Report Form';
+                otherFormsContent.innerHTML = '<p>The report form is coming soon. You will be able to submit reports on work activities, incidents, or observations for documentation and review.</p>';
+                otherFormsContainer.classList.remove('form-hidden');
+                otherFormsContainer.scrollIntoView({ behavior: 'smooth' });
+                break;
+        }
+    });
+});
+
+// Add close feedback form button event listener
+closeFeedbackBtn.addEventListener('click', () => {
+    hideAllForms();
+});
+
+// Feedback form submission handler
+feedbackForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(feedbackForm);
+    const employeeName = formData.get('employeeName');
+    const department = formData.get('department');
+    const feedbackType = formData.get('feedbackType');
+    const feedback = formData.get('feedback');
+    
+    // Basic validation
+    if (!employeeName.trim()) {
+        alert('Please enter your name.');
+        document.getElementById('feedbackEmployeeNameInput').focus();
+        return;
+    }
+    
+    if (!department) {
+        alert('Please select your department.');
+        document.getElementById('feedbackDepartmentSelect').focus();
+        return;
+    }
+    
+    if (!feedbackType) {
+        alert('Please select a feedback type.');
+        document.getElementById('feedbackTypeSelect').focus();
+        return;
+    }
+    
+    if (!feedback.trim()) {
+        alert('Please describe your feedback.');
+        document.getElementById('feedbackTextarea').focus();
+        return;
+    }
+    
+    // Minimum feedback length validation
+    if (feedback.trim().length < 10) {
+        alert('Please provide more detailed feedback (at least 10 characters).');
+        document.getElementById('feedbackTextarea').focus();
+        return;
+    }
+    
+    // Here you would typically send the data to your server
+    console.log('Feedback submitted:', {
+        employeeName: employeeName.trim(),
+        department: department,
+        feedbackType: feedbackType,
+        feedback: feedback.trim()
+    });
+    
+    // Show success message
+    feedbackSuccessMessage.style.display = 'block';
+    feedbackSuccessMessage.scrollIntoView({ behavior: 'smooth' });
+    
+    // Reset form and close after short delay
+    setTimeout(() => {
+        feedbackForm.reset();
+        feedbackSuccessMessage.style.display = 'none';
+        hideAllForms();
+    }, 3000);
+});
+
+// Update the click outside to close forms to include feedback container
+document.addEventListener('click', (e) => {
+    const formContainers = [trainingContainer, leaveContainer, feedbackContainer, otherFormsContainer];
+    
+    formContainers.forEach(container => {
+        if (!container.classList.contains('form-hidden')) {
+            if (!container.contains(e.target) && !e.target.classList.contains('card-view-btn')) {
+                // Don't close if clicking on form elements or buttons
+                if (!e.target.closest('.request-card')) {
+                    hideAllForms();
+                }
+            }
+        }
+    });
+});
+
+// Character counter for feedback textarea (optional enhancement)
+const feedbackTextarea = document.getElementById('feedbackTextarea');
+if (feedbackTextarea) {
+    feedbackTextarea.addEventListener('input', (e) => {
+        const maxLength = 1000; // You can adjust this limit
+        const currentLength = e.target.value.length;
+        
+        // You can add a character counter display if needed
+        if (currentLength > maxLength) {
+            e.target.value = e.target.value.substring(0, maxLength);
+        }
+    });
+}
