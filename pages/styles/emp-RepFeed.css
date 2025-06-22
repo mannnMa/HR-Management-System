@@ -250,7 +250,7 @@ body {
   }
 }
 
-/* Training Request Form Styles */
+/* Training Request Form Styles & Leave Form Styles */
 
 .form-container {
   margin-top: 40px;
@@ -337,6 +337,21 @@ body {
 .form-textarea {
   resize: vertical;
   min-height: 100px;
+}
+
+/* Special styling for date inputs */
+.form-input[type="date"] {
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.form-input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.form-input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
 }
 
 .form-buttons {
@@ -454,5 +469,134 @@ body {
   .cancel-btn {
     font-size: 13px;
     padding: 8px 16px;
+  }
+}
+
+/* File Upload Styles */
+.file-upload-group {
+  display: contents;
+}
+
+.file-upload-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.file-input {
+  display: none;
+}
+
+.file-upload-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Poppins', sans-serif;
+  width: fit-content;
+  text-decoration: none;
+}
+
+.file-upload-btn:hover {
+  background: #218838;
+}
+
+.file-icon {
+  font-size: 16px;
+}
+
+.file-info {
+  margin-top: 4px;
+}
+
+.file-limit {
+  font-size: 12px;
+  color: #6b7280;
+  font-style: italic;
+}
+
+.file-list {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.file-name {
+  color: #495057;
+  flex: 1;
+}
+
+.file-size {
+  color: #6c757d;
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+.file-remove {
+  background: none;
+  border: none;
+  color: #dc3545;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+.file-remove:hover {
+  background: #f8d7da;
+}
+
+.file-error {
+  color: #dc3545;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* Responsive adjustments for file upload */
+@media screen and (max-width: 768px) {
+  .file-upload-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .file-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  .file-size {
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .file-upload-btn {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+  
+  .file-limit {
+    font-size: 11px;
   }
 }

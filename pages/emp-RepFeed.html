@@ -201,6 +201,102 @@
         </div>
       </div>
 
+      <!-- Sick & Vacation Leave Form -->
+      <div id="leaveRequestContainer" class="form-container form-hidden">
+        <div class="form-header">
+          <h2 class="form-title">Sick & Vacation Leave Form</h2>
+          <button id="closeLeaveFormBtn" class="form-close-btn">CLOSE ✖</button>
+        </div>
+        
+        <form id="leaveRequestForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="leaveEmployeeNameInput">Name of Employee:</label>
+              <input type="text" id="leaveEmployeeNameInput" name="employeeName" class="form-input" placeholder="Enter your name here..." required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="leaveDepartmentSelect">Department:</label>
+              <select id="leaveDepartmentSelect" name="department" class="form-select" required>
+                <option value="">Please Select</option>
+                <option value="admin">Administration</option>
+                <option value="it">Information Technology</option>
+                <option value="hr">Human Resources</option>
+                <option value="marketing">Sales</option>
+                <option value="sales">Marketing</option>
+                <option value="finance">Finance</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="leaveTypeSelect">Leave Type:</label>
+              <select id="leaveTypeSelect" name="leaveType" class="form-select" required>
+                <option value="">Please Select</option>
+                <option value="sick-leave">Sick Leave</option>
+                <option value="vacation">Vacation Leave</option>
+                <option value="personal">Personal Leave</option>
+                <option value="emergency">Emergency Leave</option>
+                <option value="maternity">Maternity Leave</option>
+                <option value="paternity">Paternity Leave</option>
+                <option value="bereavement">Bereavement Leave</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="leaveDateStart">Leave Date:</label>
+              <input type="date" id="leaveDateStart" name="leaveDateStart" class="form-input" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="returnDate">Return Date:</label>
+              <input type="date" id="returnDate" name="returnDate" class="form-input" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="reasonTextarea">Reason (Brief):</label>
+              <textarea id="reasonTextarea" name="reason" class="form-textarea" placeholder="Please provide a brief reason for your leave..." rows="4"></textarea>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group file-upload-group">
+              <label class="form-label" for="attachmentFiles">Attach Necessary Files:</label>
+              <div class="file-upload-container">
+                <input type="file" id="attachmentFiles" name="attachmentFiles" class="file-input" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.txt">
+                <label for="attachmentFiles" class="file-upload-btn">
+                  <span class="file-icon">📎</span>
+                  Choose Files
+                </label>
+                <div class="file-info">
+                  <span class="file-limit">Maximum file size: 25 MB</span>
+                  <br>
+                  <span class="file-limit">PDF file only</span>
+                </div>
+                <div id="fileList" class="file-list"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-buttons">
+            <button type="submit" class="submit-btn">Submit</button>
+          </div>
+        </form>
+
+        <div id="leaveSuccessMessage" class="success-message">
+          ✅ Leave request submitted successfully! You will receive a confirmation email shortly.
+        </div>
+      </div>
+
       <!-- Other forms section (placeholder for other card forms) -->
       <div id="otherFormsContainer" class="form-container form-hidden">
         <div class="form-header">

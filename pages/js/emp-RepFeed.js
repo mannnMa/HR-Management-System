@@ -1,157 +1,479 @@
-// Wait for DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // Get all form containers
-    const trainingFormContainer = document.getElementById('trainingRequestContainer');
-    const otherFormsContainer = document.getElementById('otherFormsContainer');
-    const trainingForm = document.getElementById('trainingRequestForm');
-    const trainingSuccessMessage = document.getElementById('trainingSuccessMessage');
-    
-    // Get form elements
-    const trainingTypeSelect = document.getElementById('trainingTypeSelect');
-    const customTrainingRow = document.getElementById('customTrainingRow');
-    const customTrainingInput = document.getElementById('customTrainingInput');
-    
-    // Get close buttons
-    const closeTrainingFormBtn = document.getElementById('closeTrainingFormBtn');
-    const closeOtherFormsBtn = document.getElementById('closeOtherFormsBtn');
-    
-    // Get other form elements
-    const otherFormsTitle = document.getElementById('otherFormsTitle');
-    
-    // Form handling functionality
-    document.querySelectorAll('.card-view-btn').forEach(viewButton => {
-        viewButton.addEventListener('click', () => {
-            const formType = viewButton.getAttribute('data-form-type');
-            
-            // Hide all forms first
-            hideAllForms();
-            
-            if (formType === 'training') {
-                // Show training form
-                showTrainingForm();
-            } else {
-                // Show placeholder for other forms
-                showOtherForm(formType);
-            }
-        });
-    });
+// Get all necessary DOM elements
+const viewButtons = document.querySelectorAll('.card-view-btn');
+const trainingContainer = document.getElementById('trainingRequestContainer');
+const leaveContainer = document.getElementById('leaveRequestContainer');
+const otherFormsContainer = document.getElementById('otherFormsContainer');
+const otherFormsTitle = document.getElementById('otherFormsTitle');
+const otherFormsContent = document.getElementById('otherFormsContent');
 
-    // Function to hide all forms
-    function hideAllForms() {
-        trainingFormContainer.classList.add('form-hidden');
-        otherFormsContainer.classList.add('form-hidden');
-    }
+// Close button elements
+const closeTrainingBtn = document.getElementById('closeTrainingFormBtn');
+const closeLeaveBtn = document.getElementById('closeLeaveFormBtn');
+const closeOtherFormsBtn = document.getElementById('closeOtherFormsBtn');
 
-    // Function to show training form
-    function showTrainingForm() {
-        trainingFormContainer.classList.remove('form-hidden');
-        trainingFormContainer.scrollIntoView({ behavior: 'smooth' });
-    }
+// Form elements
+const trainingForm = document.getElementById('trainingRequestForm');
+const leaveForm = document.getElementById('leaveRequestForm');
+const trainingTypeSelect = document.getElementById('trainingTypeSelect');
+const customTrainingRow = document.getElementById('customTrainingRow');
 
-    // Function to show other forms
-    function showOtherForm(formType) {
-        let formTitle = '';
+// Success message elements
+const trainingSuccessMessage = document.getElementById('trainingSuccessMessage');
+const leaveSuccessMessage = document.getElementById('leaveSuccessMessage');
+
+// Function to hide all forms
+function hideAllForms() {
+    trainingContainer.classList.add('form-hidden');
+    leaveContainer.classList.add('form-hidden');
+    otherFormsContainer.classList.add('form-hidden');
+    
+    // Hide success messages
+    trainingSuccessMessage.style.display = 'none';
+    leaveSuccessMessage.style.display = 'none';
+}
+
+// Function to reset all forms
+function resetAllForms() {
+    trainingForm.reset();
+    leaveForm.reset();
+    customTrainingRow.classList.add('form-hidden');
+}
+
+// Add click event listeners to view buttons
+viewButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const formType = button.getAttribute('data-form-type');
+        
+        hideAllForms();
+        resetAllForms();
+        
         switch(formType) {
+            case 'training':
+                trainingContainer.classList.remove('form-hidden');
+                trainingContainer.scrollIntoView({ behavior: 'smooth' });
+                break;
             case 'leave':
-                formTitle = 'Sick & Vacation Leave Form';
+                leaveContainer.classList.remove('form-hidden');
+                leaveContainer.scrollIntoView({ behavior: 'smooth' });
                 break;
             case 'feedback':
-                formTitle = 'Feedback Form';
+                otherFormsTitle.textContent = 'Feedback Form';
+                otherFormsContent.innerHTML = '<p>The feedback form is coming soon. You will be able to share your comments, suggestions, or concerns to help improve our services and work environment.</p>';
+                otherFormsContainer.classList.remove('form-hidden');
+                otherFormsContainer.scrollIntoView({ behavior: 'smooth' });
                 break;
             case 'report':
-                formTitle = 'Report Form';
+                otherFormsTitle.textContent = 'Report Form';
+                otherFormsContent.innerHTML = '<p>The report form is coming soon. You will be able to submit reports on work activities, incidents, or observations for documentation and review.</p>';
+                otherFormsContainer.classList.remove('form-hidden');
+                otherFormsContainer.scrollIntoView({ behavior: 'smooth' });
                 break;
-            default:
-                formTitle = 'Form';
         }
-        
-        otherFormsTitle.textContent = formTitle;
-        otherFormsContainer.classList.remove('form-hidden');
-        otherFormsContainer.scrollIntoView({ behavior: 'smooth' });
-    }
-
-    // Close form button handlers
-    closeTrainingFormBtn.addEventListener('click', () => {
-        hideTrainingForm();
     });
+});
 
-    closeOtherFormsBtn.addEventListener('click', () => {
-        hideOtherForms();
-    });
+// Close button event listeners
+closeTrainingBtn.addEventListener('click', () => {
+    hideAllForms();
+});
 
-    // Function to hide training form
-    function hideTrainingForm() {
-        trainingFormContainer.classList.add('form-hidden');
-        resetTrainingForm();
+closeLeaveBtn.addEventListener('click', () => {
+    hideAllForms();
+});
+
+closeOtherFormsBtn.addEventListener('click', () => {
+    hideAllForms();
+});
+
+// Training type select change handler
+trainingTypeSelect.addEventListener('change', () => {
+    if (trainingTypeSelect.value === 'other') {
+        customTrainingRow.classList.remove('form-hidden');
+    } else {
+        customTrainingRow.classList.add('form-hidden');
     }
+});
 
-    // Function to hide other forms
-    function hideOtherForms() {
-        otherFormsContainer.classList.add('form-hidden');
+// Training form submission
+trainingForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(trainingForm);
+    const employeeName = formData.get('employeeName');
+    const department = formData.get('department');
+    const trainingType = formData.get('trainingType');
+    const customTraining = formData.get('customTraining');
+    
+    // Basic validation
+    if (!employeeName.trim()) {
+        alert('Please enter your name.');
+        document.getElementById('employeeNameInput').focus();
+        return;
     }
-
-    // Function to reset training form
-    function resetTrainingForm() {
+    
+    if (!department) {
+        alert('Please select your department.');
+        document.getElementById('departmentSelect').focus();
+        return;
+    }
+    
+    if (!trainingType) {
+        alert('Please select a training type.');
+        trainingTypeSelect.focus();
+        return;
+    }
+    
+    if (trainingType === 'other' && !customTraining.trim()) {
+        alert('Please specify the type of training you need.');
+        document.getElementById('customTrainingInput').focus();
+        return;
+    }
+    
+    // Show success message
+    trainingSuccessMessage.style.display = 'block';
+    trainingSuccessMessage.scrollIntoView({ behavior: 'smooth' });
+    
+    // Reset form and close after short delay
+    setTimeout(() => {
         trainingForm.reset();
         customTrainingRow.classList.add('form-hidden');
         trainingSuccessMessage.style.display = 'none';
-        customTrainingInput.removeAttribute('required');
-    }
+        hideAllForms();
+    }, 3000);
+});
 
-    // Show/Hide custom training input based on selection
-    trainingTypeSelect.addEventListener('change', function() {
-        if (this.value === 'other') {
-            customTrainingRow.classList.remove('form-hidden');
-            customTrainingInput.focus();
-            customTrainingInput.setAttribute('required', 'required');
-        } else {
-            customTrainingRow.classList.add('form-hidden');
-            customTrainingInput.value = '';
-            customTrainingInput.removeAttribute('required');
+// Leave form submission
+leaveForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(leaveForm);
+    const employeeName = formData.get('employeeName');
+    const department = formData.get('department');
+    const leaveType = formData.get('leaveType');
+    const leaveDateStart = formData.get('leaveDateStart');
+    const returnDate = formData.get('returnDate');
+    const reason = formData.get('reason');
+    
+    // Basic validation
+    if (!employeeName.trim()) {
+        alert('Please enter your name.');
+        document.getElementById('leaveEmployeeNameInput').focus();
+        return;
+    }
+    
+    if (!department) {
+        alert('Please select your department.');
+        document.getElementById('leaveDepartmentSelect').focus();
+        return;
+    }
+    
+    if (!leaveType) {
+        alert('Please select a leave type.');
+        document.getElementById('leaveTypeSelect').focus();
+        return;
+    }
+    
+    if (!leaveDateStart) {
+        alert('Please select your leave start date.');
+        document.getElementById('leaveDateStart').focus();
+        return;
+    }
+    
+    if (!returnDate) {
+        alert('Please select your return date.');
+        document.getElementById('returnDate').focus();
+        return;
+    }
+    
+    // Date validation - return date should be after leave date
+    const startDate = new Date(leaveDateStart);
+    const endDate = new Date(returnDate);
+    
+    if (endDate <= startDate) {
+        alert('Return date must be after the leave start date.');
+        document.getElementById('returnDate').focus();
+        return;
+    }
+    
+    // Optional reason validation for certain leave types
+    if (['sick-leave', 'emergency', 'bereavement'].includes(leaveType) && !reason.trim()) {
+        const confirmed = confirm('No reason provided. Are you sure you want to submit without a reason?');
+        if (!confirmed) {
+            document.getElementById('reasonTextarea').focus();
+            return;
+        }
+    }
+    
+    // Show success message
+    leaveSuccessMessage.style.display = 'block';
+    leaveSuccessMessage.scrollIntoView({ behavior: 'smooth' });
+    
+    // Reset form and close after short delay
+    setTimeout(() => {
+        leaveForm.reset();
+        leaveSuccessMessage.style.display = 'none';
+        hideAllForms();
+    }, 3000);
+});
+
+// Date input constraints
+document.addEventListener('DOMContentLoaded', () => {
+    const today = new Date().toISOString().split('T')[0];
+    const leaveDateStart = document.getElementById('leaveDateStart');
+    const returnDate = document.getElementById('returnDate');
+    
+    // Set minimum date to today
+    leaveDateStart.min = today;
+    returnDate.min = today;
+    
+    // Update return date minimum when leave start date changes
+    leaveDateStart.addEventListener('change', () => {
+        if (leaveDateStart.value) {
+            const nextDay = new Date(leaveDateStart.value);
+            nextDay.setDate(nextDay.getDate() + 1);
+            returnDate.min = nextDay.toISOString().split('T')[0];
+            
+            // Clear return date if it's before the new minimum
+            if (returnDate.value && new Date(returnDate.value) <= new Date(leaveDateStart.value)) {
+                returnDate.value = '';
+            }
         }
     });
+});
 
-    // Form submission handler
-    trainingForm.addEventListener('submit', (submitEvent) => {
-        submitEvent.preventDefault();
-        
-        // Get form data
-        const formData = new FormData(submitEvent.target);
-        const submissionData = Object.fromEntries(formData.entries());
-        
-        // Simple validation - check if main fields are filled
-        if (!submissionData.employeeName || !submissionData.department || !submissionData.trainingType) {
-            alert('Please fill in all required fields');
+// Optional: Add keyboard navigation support
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        hideAllForms();
+    }
+});
+
+// Optional: Click outside to close forms
+document.addEventListener('click', (e) => {
+    const formContainers = [trainingContainer, leaveContainer, otherFormsContainer];
+    
+    formContainers.forEach(container => {
+        if (!container.classList.contains('form-hidden')) {
+            if (!container.contains(e.target) && !e.target.classList.contains('card-view-btn')) {
+                // Don't close if clicking on form elements or buttons
+                if (!e.target.closest('.request-card')) {
+                    hideAllForms();
+                }
+            }
+        }
+    });
+});
+
+// File upload functionality - Add this to your existing JavaScript
+
+// File upload variables
+const fileInput = document.getElementById('attachmentFiles');
+const fileList = document.getElementById('fileList');
+let selectedFiles = [];
+
+// File upload event listener
+if (fileInput) {
+    fileInput.addEventListener('change', handleFileSelection);
+}
+
+function handleFileSelection(event) {
+    const files = Array.from(event.target.files);
+    const maxSize = 25 * 1024 * 1024; 
+    const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'image/jpeg', 'image/jpg', 'image/png', 'text/plain'];
+    
+    files.forEach(file => {
+        // Check file size
+        if (file.size > maxSize) {
+            showFileError(`File "${file.name}" is too large. Maximum size is 5MB.`);
             return;
         }
         
-        // Additional validation for "Other" option
-        if (submissionData.trainingType === 'other' && !submissionData.customTraining) {
-            alert('Please specify the type of training you need');
+        // Check file type
+        if (!allowedTypes.includes(file.type)) {
+            showFileError(`File "${file.name}" is not a supported format. Please use PDF, DOC, DOCX, JPG, PNG, or TXT files.`);
             return;
         }
         
-        // Simulate form submission
-        console.log('Training Request Submitted:', submissionData);
+        // Check if file already exists
+        if (selectedFiles.some(f => f.name === file.name && f.size === file.size)) {
+            showFileError(`File "${file.name}" is already selected.`);
+            return;
+        }
         
-        // Show success message
-        showSuccessMessage();
-        
-        // Reset form after a delay
-        setTimeout(() => {
-            hideTrainingForm();
-        }, 3000);
+        selectedFiles.push(file);
     });
+    
+    displaySelectedFiles();
+    clearFileError();
+}
 
-    // Function to show success message
-    function showSuccessMessage() {
-        trainingSuccessMessage.style.display = 'block';
+function displaySelectedFiles() {
+    fileList.innerHTML = '';
+    
+    selectedFiles.forEach((file, index) => {
+        const fileItem = document.createElement('div');
+        fileItem.className = 'file-item';
+        
+        const fileName = document.createElement('span');
+        fileName.className = 'file-name';
+        fileName.textContent = file.name;
+        
+        const fileSize = document.createElement('span');
+        fileSize.className = 'file-size';
+        fileSize.textContent = formatFileSize(file.size);
+        
+        const removeBtn = document.createElement('button');
+        removeBtn.className = 'file-remove';
+        removeBtn.textContent = '✕';
+        removeBtn.title = 'Remove file';
+        removeBtn.addEventListener('click', () => removeFile(index));
+        
+        fileItem.appendChild(fileName);
+        fileItem.appendChild(fileSize);
+        fileItem.appendChild(removeBtn);
+        
+        fileList.appendChild(fileItem);
+    });
+}
+
+function removeFile(index) {
+    selectedFiles.splice(index, 1);
+    displaySelectedFiles();
+    
+    // Reset file input to allow re-selection of the same file
+    fileInput.value = '';
+}
+
+function formatFileSize(bytes) {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+}
+
+function showFileError(message) {
+    clearFileError();
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'file-error';
+    errorDiv.textContent = message;
+    fileList.appendChild(errorDiv);
+    
+    // Remove error after 5 seconds
+    setTimeout(() => {
+        if (errorDiv.parentNode) {
+            errorDiv.parentNode.removeChild(errorDiv);
+        }
+    }, 5000);
+}
+
+function clearFileError() {
+    const existingError = fileList.querySelector('.file-error');
+    if (existingError) {
+        existingError.remove();
     }
+}
 
-    // Auto-hide success message on form changes
-    trainingForm.addEventListener('input', () => {
-        trainingSuccessMessage.style.display = 'none';
+// Update the resetAllForms function to include file reset
+function resetAllForms() {
+    trainingForm.reset();
+    leaveForm.reset();
+    customTrainingRow.classList.add('form-hidden');
+    
+    // Reset file uploads
+    selectedFiles = [];
+    if (fileList) {
+        fileList.innerHTML = '';
+    }
+    if (fileInput) {
+        fileInput.value = '';
+    }
+}
+
+// Update the leave form submission to include file handling
+// Replace the existing leave form event listener with this updated version:
+
+leaveForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(leaveForm);
+    const employeeName = formData.get('employeeName');
+    const department = formData.get('department');
+    const leaveType = formData.get('leaveType');
+    const leaveDateStart = formData.get('leaveDateStart');
+    const returnDate = formData.get('returnDate');
+    const reason = formData.get('reason');
+    
+    // Basic validation
+    if (!employeeName.trim()) {
+        alert('Please enter your name.');
+        document.getElementById('leaveEmployeeNameInput').focus();
+        return;
+    }
+    
+    if (!department) {
+        alert('Please select your department.');
+        document.getElementById('leaveDepartmentSelect').focus();
+        return;
+    }
+    
+    if (!leaveType) {
+        alert('Please select a leave type.');
+        document.getElementById('leaveTypeSelect').focus();
+        return;
+    }
+    
+    if (!leaveDateStart) {
+        alert('Please select your leave start date.');
+        document.getElementById('leaveDateStart').focus();
+        return;
+    }
+    
+    if (!returnDate) {
+        alert('Please select your return date.');
+        document.getElementById('returnDate').focus();
+        return;
+    }
+    
+    // Date validation - return date should be after leave date
+    const startDate = new Date(leaveDateStart);
+    const endDate = new Date(returnDate);
+    
+    if (endDate <= startDate) {
+        alert('Return date must be after the leave start date.');
+        document.getElementById('returnDate').focus();
+        return;
+    }
+    
+    // Optional reason validation for certain leave types
+    if (['sick-leave', 'emergency', 'bereavement'].includes(leaveType) && !reason.trim()) {
+        const confirmed = confirm('No reason provided. Are you sure you want to submit without a reason?');
+        if (!confirmed) {
+            document.getElementById('reasonTextarea').focus();
+            return;
+        }
+    }
+    
+    // Add files to form data
+    selectedFiles.forEach((file, index) => {
+        formData.append(`attachment_${index}`, file);
     });
-
+    
+    // Here you would typically send the formData to your server
+    // For now, we'll just show the success message
+    console.log('Form submitted with files:', selectedFiles);
+    
+    // Show success message
+    leaveSuccessMessage.style.display = 'block';
+    leaveSuccessMessage.scrollIntoView({ behavior: 'smooth' });
+    
+    // Reset form and close after short delay
+    setTimeout(() => {
+        leaveForm.reset();
+        selectedFiles = [];
+        fileList.innerHTML = '';
+        fileInput.value = '';
+        leaveSuccessMessage.style.display = 'none';
+        hideAllForms();
+    }, 3000);
 });
