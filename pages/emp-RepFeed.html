@@ -104,7 +104,7 @@
         </div>
 
         <div class="request-card">
-          <h2 class="card-title">Sick & Vacation Leave</h2>
+          <h2 class="card-title">Leave</h2>
           <ul class="card-description">
             <li>Allows employees to request time off for personal reasons, 
               such as illness, planned vacation, and etc., ensuring proper
@@ -197,14 +197,14 @@
         </form>
 
         <div id="trainingSuccessMessage" class="success-message">
-          ✅ Training request submitted successfully! You will receive a confirmation email shortly.
+          ✅ Training request submitted successfully!
         </div>
       </div>
 
       <!-- Sick & Vacation Leave Form -->
       <div id="leaveRequestContainer" class="form-container form-hidden">
         <div class="form-header">
-          <h2 class="form-title">Sick & Vacation Leave Form</h2>
+          <h2 class="form-title">Leave Form</h2>
           <button id="closeLeaveFormBtn" class="form-close-btn">CLOSE ✖</button>
         </div>
         
@@ -293,7 +293,7 @@
         </form>
 
         <div id="leaveSuccessMessage" class="success-message">
-          ✅ Leave request submitted successfully! You will receive a confirmation email shortly.
+          ✅ Leave request submitted successfully!
         </div>
       </div>
 
@@ -331,7 +331,7 @@
             <div class="form-group">
               <label class="form-label" for="feedbackTypeSelect">Feedback Type:</label>
               <select id="feedbackTypeSelect" name="feedbackType" class="form-select" required>
-                <option value="">Please Select (Comments, Suggestions, and Questions)</option>
+                <option value="">Please Select</option>
                 <option value="comments">Comments</option>
                 <option value="suggestions">Suggestions</option>
                 <option value="questions">Questions</option>
@@ -357,7 +357,66 @@
         </div>
       </div>
 
-      <!-- Other forms section (placeholder for report form) -->
+      <!-- Report Form -->
+      <div id="reportContainer" class="form-container form-hidden">
+        <div class="form-header">
+          <h2 class="form-title">Report Form</h2>
+          <button id="closeReportFormBtn" class="form-close-btn">CLOSE ✖</button>
+        </div>
+        
+        <form id="reportForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="reportEmployeeNameInput">Name of Employee:</label>
+              <input type="text" id="reportEmployeeNameInput" name="employeeName" class="form-input" placeholder="Enter your name here..." required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="reportDepartmentSelect">Department:</label>
+              <select id="reportDepartmentSelect" name="department" class="form-select" required>
+                <option value="">Please Select</option>
+                <option value="admin">Administration</option>
+                <option value="it">Information Technology</option>
+                <option value="hr">Human Resources</option>
+                <option value="marketing">Sales</option>
+                <option value="sales">Marketing</option>
+                <option value="finance">Finance</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="reportTypeSelect">Report Type:</label>
+              <select id="reportTypeSelect" name="reportType" class="form-select" required>
+                <option value="">Please Select</option>
+                <option value="comments">Incident</option>
+                <option value="suggestions">Employee Related</option>
+                <option value="questions">Others</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="reportTextarea">Describe your Report:</label>
+              <textarea id="reportTextarea" name="report" class="form-textarea report-textarea" placeholder="Enter text here..." rows="8" required></textarea>
+            </div>
+          </div>
+
+          <div class="form-buttons">
+            <button type="submit" class="submit-btn">Submit</button>
+          </div>
+        </form>
+
+        <div id="reportSuccessMessage" class="success-message">
+          ✅ Report submitted successfully! Thank you for your report.
+        </div>
+      </div>
+
+      <!-- Other forms section (placeholder for other forms) -->
       <div id="otherFormsContainer" class="form-container form-hidden">
         <div class="form-header">
           <h2 id="otherFormsTitle">Form</h2>
