@@ -1,158 +1,157 @@
-const departmentJobs = {
-  admin: [
-    {
-      title: "Admin Manager",
-      description: "Coordinates city office operations, manages administrative staff, and ensures compliance with municipal regulations.",
-      slots: 2
-    },
-    {
-      title: "Office Assistant",
-      description: "Supports daily administrative tasks in city departments including scheduling, document preparation, and correspondence.",
-      slots: 4
-    },
-    {
-      title: "Document Controller",
-      description: "Maintains city records and official documents, ensuring accurate filing and accessibility for public records requests.",
-      slots: 3
-    },
-    {
-      title: "Receptionist",
-      description: "Welcomes visitors to city offices, manages inquiries, and directs citizens to appropriate services.",
-      slots: 2
-    },
-    {
-      title: "Executive Assistant",
-      description: "Provides administrative support to city executives, including scheduling public meetings and managing official communications.",
-      slots: 1
+// Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // Get all form containers
+    const trainingFormContainer = document.getElementById('trainingRequestContainer');
+    const otherFormsContainer = document.getElementById('otherFormsContainer');
+    const trainingForm = document.getElementById('trainingRequestForm');
+    const trainingSuccessMessage = document.getElementById('trainingSuccessMessage');
+    
+    // Get form elements
+    const trainingTypeSelect = document.getElementById('trainingTypeSelect');
+    const customTrainingRow = document.getElementById('customTrainingRow');
+    const customTrainingInput = document.getElementById('customTrainingInput');
+    
+    // Get close buttons
+    const closeTrainingFormBtn = document.getElementById('closeTrainingFormBtn');
+    const closeOtherFormsBtn = document.getElementById('closeOtherFormsBtn');
+    
+    // Get other form elements
+    const otherFormsTitle = document.getElementById('otherFormsTitle');
+    
+    // Form handling functionality
+    document.querySelectorAll('.card-view-btn').forEach(viewButton => {
+        viewButton.addEventListener('click', () => {
+            const formType = viewButton.getAttribute('data-form-type');
+            
+            // Hide all forms first
+            hideAllForms();
+            
+            if (formType === 'training') {
+                // Show training form
+                showTrainingForm();
+            } else {
+                // Show placeholder for other forms
+                showOtherForm(formType);
+            }
+        });
+    });
+
+    // Function to hide all forms
+    function hideAllForms() {
+        trainingFormContainer.classList.add('form-hidden');
+        otherFormsContainer.classList.add('form-hidden');
     }
-  ],
-  it: [
-    {
-      title: "System Analyst",
-      description: "Evaluates city IT systems to improve digital services and ensures secure, reliable infrastructure.",
-      slots: 1
-    },
-    {
-      title: "Junior Developer",
-      description: "Develops and maintains software applications used by city departments to improve citizen services.",
-      slots: 2
-    },
-    {
-      title: "IT Support Specialist",
-      description: "Provides technical assistance to city employees and supports maintenance of city-wide networks.",
-      slots: 3
-    },
-    {
-      title: "Frontend Developer",
-      description: "Designs and develops user-friendly web interfaces for city websites and public portals.",
-      slots: 1
-    },
-    {
-      title: "Network Engineer",
-      description: "Maintains and secures the city’s IT network infrastructure to support all municipal operations.",
-      slots: 2
+
+    // Function to show training form
+    function showTrainingForm() {
+        trainingFormContainer.classList.remove('form-hidden');
+        trainingFormContainer.scrollIntoView({ behavior: 'smooth' });
     }
-  ],
-  hr: [
-    {
-      title: "HR Manager",
-      description: "Manages city employee relations, recruitment for municipal roles, and compliance with civil service regulations.",
-      slots: 1
-    },
-    {
-      title: "Recruiter",
-      description: "Conducts recruitment for city departments, coordinates hiring processes, and manages candidate communications.",
-      slots: 2
-    },
-    {
-      title: "HR Assistant",
-      description: "Supports HR administrative functions, including employee record management and training coordination.",
-      slots: 3
-    },
-    {
-      title: "Training Coordinator",
-      description: "Organizes professional development and mandatory training programs for city staff.",
-      slots: 1
-    },
-    {
-      title: "Compensation Analyst",
-      description: "Analyzes city salary scales and benefits to ensure competitive and equitable compensation.",
-      slots: 1
+
+    // Function to show other forms
+    function showOtherForm(formType) {
+        let formTitle = '';
+        switch(formType) {
+            case 'leave':
+                formTitle = 'Sick & Vacation Leave Form';
+                break;
+            case 'feedback':
+                formTitle = 'Feedback Form';
+                break;
+            case 'report':
+                formTitle = 'Report Form';
+                break;
+            default:
+                formTitle = 'Form';
+        }
+        
+        otherFormsTitle.textContent = formTitle;
+        otherFormsContainer.classList.remove('form-hidden');
+        otherFormsContainer.scrollIntoView({ behavior: 'smooth' });
     }
-  ],
-  Report: [
-    {
-      title: "Sales Executive",
-      description: "Coordinates sales of city-owned properties or services, engaging with potential buyers or partners.",
-      slots: 2
-    },
-    {
-      title: "Account Manager",
-      description: "Manages relationships with businesses and contractors working with city departments.",
-      slots: 2
-    },
-    {
-      title: "Sales Coordinator",
-      description: "Supports city sales operations by managing contracts, documentation, and communications.",
-      slots: 3
-    },
-    {
-      title: "Business Development Officer",
-      description: "Identifies opportunities for city economic development and public-private partnerships.",
-      slots: 1
-    },
-    {
-      title: "Sales Manager",
-      description: "Leads the city’s sales initiatives for municipal programs and property management.",
-      slots: 1
+
+    // Close form button handlers
+    closeTrainingFormBtn.addEventListener('click', () => {
+        hideTrainingForm();
+    });
+
+    closeOtherFormsBtn.addEventListener('click', () => {
+        hideOtherForms();
+    });
+
+    // Function to hide training form
+    function hideTrainingForm() {
+        trainingFormContainer.classList.add('form-hidden');
+        resetTrainingForm();
     }
-  ],
-};
 
-document.querySelectorAll('.view-btn').forEach(button => {
-  button.addEventListener('click', () => {
-    const dept = button.getAttribute('data-dept');
-    const jobList = document.getElementById('jobList');
-    const jobCardsContainer = document.getElementById('jobCards');
-    const jobListTitle = document.getElementById('jobListTitle');
-
-    jobCardsContainer.innerHTML = '';
-
-    if (departmentJobs[dept]) {
-      jobListTitle.textContent = `${dept} Form`;
-
-      departmentJobs[dept].forEach(job => {
-        const card = document.createElement('div');
-        card.className = 'job-card';
-
-        const title = document.createElement('h3');
-        title.textContent = job.title;
-
-        const desc = document.createElement('p');
-        desc.textContent = job.description;
-
-        const slot = document.createElement('p');
-        slot.innerHTML = `<strong>Available Slots: ${job.slots}</strong>`;
-
-        card.appendChild(title);
-        card.appendChild(desc);
-        card.appendChild(slot);
-
-        jobCardsContainer.appendChild(card);
-      });
-
-
-      jobList.classList.remove('hidden');
-      jobList.scrollIntoView({ behavior: 'smooth' });
+    // Function to hide other forms
+    function hideOtherForms() {
+        otherFormsContainer.classList.add('form-hidden');
     }
-  });
+
+    // Function to reset training form
+    function resetTrainingForm() {
+        trainingForm.reset();
+        customTrainingRow.classList.add('form-hidden');
+        trainingSuccessMessage.style.display = 'none';
+        customTrainingInput.removeAttribute('required');
+    }
+
+    // Show/Hide custom training input based on selection
+    trainingTypeSelect.addEventListener('change', function() {
+        if (this.value === 'other') {
+            customTrainingRow.classList.remove('form-hidden');
+            customTrainingInput.focus();
+            customTrainingInput.setAttribute('required', 'required');
+        } else {
+            customTrainingRow.classList.add('form-hidden');
+            customTrainingInput.value = '';
+            customTrainingInput.removeAttribute('required');
+        }
+    });
+
+    // Form submission handler
+    trainingForm.addEventListener('submit', (submitEvent) => {
+        submitEvent.preventDefault();
+        
+        // Get form data
+        const formData = new FormData(submitEvent.target);
+        const submissionData = Object.fromEntries(formData.entries());
+        
+        // Simple validation - check if main fields are filled
+        if (!submissionData.employeeName || !submissionData.department || !submissionData.trainingType) {
+            alert('Please fill in all required fields');
+            return;
+        }
+        
+        // Additional validation for "Other" option
+        if (submissionData.trainingType === 'other' && !submissionData.customTraining) {
+            alert('Please specify the type of training you need');
+            return;
+        }
+        
+        // Simulate form submission
+        console.log('Training Request Submitted:', submissionData);
+        
+        // Show success message
+        showSuccessMessage();
+        
+        // Reset form after a delay
+        setTimeout(() => {
+            hideTrainingForm();
+        }, 3000);
+    });
+
+    // Function to show success message
+    function showSuccessMessage() {
+        trainingSuccessMessage.style.display = 'block';
+    }
+
+    // Auto-hide success message on form changes
+    trainingForm.addEventListener('input', () => {
+        trainingSuccessMessage.style.display = 'none';
+    });
+
 });
-
-const closeBtn = document.getElementById('closeJobListBtn');
-
-if (closeBtn) {
-  closeBtn.addEventListener('click', () => {
-    const jobList = document.getElementById('jobList');
-    jobList.classList.add('hidden');
-  });
-}

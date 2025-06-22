@@ -18,7 +18,7 @@
 
     <!--CSS LINK-->
     <link rel="stylesheet" href="./styles/general.css">
-    <link rel="stylesheet" href="./styles/profile.css">
+    <link rel="stylesheet" href="./styles/employee-sidebar.css">
     <link rel="stylesheet" href="./styles/emp-RepFeed.css">
     
   </head>
@@ -84,79 +84,135 @@
         </div>
       </form>
     </div>
-  </body>
-</html>
-  
-  <!-- Main Content -->
-  <div class="main">
-    <div class="header">
-      <h1 class="company-department-title">Reports and Feedbacks</h1>  
-    </div>  
 
-    <!-- Department Grid (4 cards max) -->
-    <div class="grid" id="Grid">
-      <div class="card">
-        <h2 class="name">Training Request</h2>
-        <ul class="description">
-          <li>Allows employees to request trainings that supports their 
-            job responsibilities, enhances their skills, and contributes 
-            to their professional growth.</li>
-        </ul>
-        <button class="view-btn" data-dept="admin">View</button>
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="page-header">
+        <h1 class="page-title">Reports and Feedbacks</h1>  
+      </div>  
+
+      <!-- Department Grid (4 cards max) -->
+      <div class="cards-grid" id="cardsGrid">
+        <div class="request-card">
+          <h2 class="card-title">Training Request</h2>
+          <ul class="card-description">
+            <li>Allows employees to request trainings that supports their 
+              job responsibilities, enhances their skills, and contributes 
+              to their professional growth.</li>
+          </ul>
+          <button class="card-view-btn" data-form-type="training">View</button>
+        </div>
+
+        <div class="request-card">
+          <h2 class="card-title">Sick & Vacation Leave</h2>
+          <ul class="card-description">
+            <li>Allows employees to request time off for personal reasons, 
+              such as illness, planned vacation, and etc., ensuring proper
+              documentation and approval of their leave.</li>
+          </ul>
+          <button class="card-view-btn" data-form-type="leave">View</button>
+        </div>
+
+        <div class="request-card">
+          <h2 class="card-title">Feedback</h2>
+          <ul class="card-description">
+            <li>Allows employees to share their comments, suggestions, or 
+              concerns to help improve services, processes, or the work 
+              environment.</li>
+          </ul>
+          <button class="card-view-btn" data-form-type="feedback">View</button>
+        </div>
+
+        <div class="request-card">
+          <h2 class="card-title">Report</h2>
+          <ul class="card-description">
+            <li>Allows employees to submit reports on work activities, 
+              incidents, or observations for documentation, review, and 
+              follow-up.</li>
+          </ul>
+          <button class="card-view-btn" data-form-type="report">View</button>
+        </div>
       </div>
 
-      <div class="card">
-        <h2 class="name">Sick & Vacation Leave</h2>
-        <ul class="description">
-          <li>Allows employees to request time off for personal reasons, 
-            such as illness, planned vacation, and etc., ensuring proper
-            documentation and approval of their leave.</li>
-        </ul>
-        <button class="view-btn" data-dept="it">View</button>
+      <!-- Training Request Form -->
+      <div id="trainingRequestContainer" class="form-container form-hidden">
+        <div class="form-header">
+          <h2 class="form-title">Training Request Form</h2>
+          <button id="closeTrainingFormBtn" class="form-close-btn">CLOSE ✖</button>
+        </div>
+        
+        <form id="trainingRequestForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="employeeNameInput">Name of Employee:</label>
+              <input type="text" id="employeeNameInput" name="employeeName" class="form-input" placeholder="Enter your name here...">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="departmentSelect">Department:</label>
+              <select id="departmentSelect" name="department" class="form-select">
+                <option value="">Please Select</option>
+                <option value="admin">Administration</option>
+                <option value="it">Information Technology</option>
+                <option value="hr">Human Resources</option>
+                <option value="finance">Finance</option>
+                <option value="operations">Operations</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="trainingTypeSelect">List of available trainings:</label>
+              <select id="trainingTypeSelect" name="trainingType" class="form-select">
+                <option value="">Please Select</option>
+                <option value="technical-skills">Technical Skills Development</option>
+                <option value="leadership">Leadership Training</option>
+                <option value="communication">Communication Skills</option>
+                <option value="project-management">Project Management</option>
+                <option value="data-analysis">Data Analysis</option>
+                <option value="customer-service">Customer Service Excellence</option>
+                <option value="safety-training">Safety and Compliance</option>
+                <option value="digital-literacy">Digital Literacy</option>
+                <option value="team-building">Team Building</option>
+                <option value="other">Other (Please specify below)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Custom Training Input - Hidden by default -->
+          <div id="customTrainingRow" class="form-row form-hidden">
+            <div class="form-group">
+              <label class="form-label" for="customTrainingInput">Specify training type:</label>
+              <input type="text" id="customTrainingInput" name="customTraining" class="form-input" placeholder="Please specify the type of training you need...">
+            </div>
+          </div>
+
+          <div class="form-buttons">
+            <button type="submit" class="submit-btn">Submit</button>
+          </div>
+        </form>
+
+        <div id="trainingSuccessMessage" class="success-message">
+          ✅ Training request submitted successfully! You will receive a confirmation email shortly.
+        </div>
       </div>
 
-      <div class="card">
-        <h2 class="name">Feedback</h2>
-        <ul class="description">
-          <li>Allows employees to share their comments, suggestions, or 
-            concerns to help improve services, processes, or the work 
-            environment.</li>
-        </ul>
-        <button class="view-btn" data-dept="hr">View</button>
-      </div>
-
-      <div class="card">
-        <h2 class="name">Report</h2>
-        <ul class="description">
-          <li>Allows employees to submit reports on work activities, 
-            incidents, or observations for documentation, review, and 
-            follow-up.</li>
-        </ul>
-        <button class="view-btn" data-dept="Report">View</button>
-      </div>
-    </div>
-
-    <!-- Jobs -->
-    <div id="jobList" class="job-list hidden">
-      <button id="closeJobListBtn" class="close-btn">CLOSE ✖</button>
-      <h2 id="jobListTitle">Job Listings</h2>
-    <div id="jobCards" class="job-cards-container"></div>
-  </div>
-  </div>
-
-  <!-- Confirmation container Log Out Button -->
-    <div class="confirm-overlay-sidebar" id="confirmOverlay">
-      <div class="confirm-box-sidebar">
-        <video class="logout-animate" src="../assets/animation/logout.mp4" autoplay muted loop playsinline></video>
-        <p>Are you sure you want to log out?</p>
-        <div class="confirm-actions-sidebar">
-          <button id="confirmYes">Confirm</button>
-          <button id="confirmCancel">Cancel</button>
+      <!-- Other forms section (placeholder for other card forms) -->
+      <div id="otherFormsContainer" class="form-container form-hidden">
+        <div class="form-header">
+          <h2 id="otherFormsTitle">Form</h2>
+          <button id="closeOtherFormsBtn" class="form-close-btn">CLOSE ✖</button>
+        </div>
+        <div id="otherFormsContent" class="form-content">
+          <p>This form is coming soon...</p>
         </div>
       </div>
     </div>
 
-  <script src="./js/sidebar.js" defer></script>
-  <script src="./js/emp-RepFeed.js" defer></script>
-</body>
+    <!-- JavaScript should be included at the end of body -->
+    <script src="./js/emp-RepFeed.js" defer></script>
+  </body>
 </html>
