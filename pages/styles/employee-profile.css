@@ -4,11 +4,12 @@
   flex-wrap: wrap;
   width: 100%;
   height: 90px;
-  background-color: #dfe7ff80;
+  background-color: #dfe7ff;
   margin-left: 257px;
   display: flex;
   flex-direction: row;
   align-items: center;
+  z-index: 999;
 }
 
 .manage-employee-title {
@@ -19,9 +20,16 @@
   padding-left: 25px;
 }
 
+.header-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  align-items: center;
+}
+
 .add-employee-button {
   position: absolute;
-  right: 300px;
+  right: 530px;
   width: 220px;
   height: 45px;
   border: none;
@@ -51,7 +59,39 @@
 
 .add-text {
   font-family: "Inter", sans-serif;
-  font-weight: bold;
+  font-weight: regular;
+  font-size: 15px;
+  color: white;
+}
+
+.deleted-employee-data {
+  position: absolute;
+  background-color: #DC3210;
+  right: 280px;
+  border-radius: 5px;
+  border: none;
+  width: 220px;
+  height: 45px;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  cursor: pointer;
+}
+
+.deleted-employee-data:hover {
+  background-color: #89200b;
+}
+
+.deleted-employee-data img {
+  width: 30px;
+  height: 30px;
+  padding-left: 8px;
+}
+
+.deleted-employee-data span {
+  font-family: "Inter", sans-serif;
+  font-weight: regular;
   font-size: 15px;
   color: white;
 }
@@ -346,9 +386,128 @@
 
 .trash-bin-vid,
 .save-check-vid,
-.new-employee-vid {
+.new-employee-vid,
+.restore-vid {
   width: 155px;
   height: 155px;
+}
+
+/*Deleted Employee*/
+.deleted-employee-table-container {
+  position: absolute; 
+  margin-top: 730px;
+  margin-left: 270px;
+  width: 100%; 
+  max-width: 1225px; 
+  background-color: white;
+  border: 1px solid #D9D9D9;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 
+    rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  max-height: 0;
+  overflow: hidden;
+  padding: 0;
+  transition: max-height 0.5s ease;
+}
+
+.deleted-employee-table-container.active {
+  max-height: 100%; 
+  padding: 13px;
+}
+
+.deleted-employee-table-container h2 {
+  font-family: "Poppins", sans-serif;
+  padding-left: 20px;
+}
+
+.deleted-employee-table {
+  border-collapse: collapse;
+}
+
+.deleted-employee-table-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgb(240, 238, 238);
+  white-space: nowrap;
+  height: 55px;
+  border-radius: 20px;
+  font-family: "Inter", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  color: #1C2AA8;
+}
+
+.deleted-employee-table th,
+.deleted-employee-table td {
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.deleted-table-scroll {
+  flex: 1;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.status-text {
+  width: 120px;
+}
+
+.deleted-name-text {
+  width: 200px;
+}
+
+.deleted-position-text {
+  width: 200px;
+}
+
+.deleted-department-text {
+  width: 150px;
+}
+
+.deleted-address-text {
+  width: 250px;
+}
+
+.deleted-contact-text {
+  width: 150px;
+}
+
+.deleted-action-text {
+  width: 150px;
+}
+
+.deleted-employee-table td {
+  height: 45px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-family: "Inter", sans-serif;
+  font-weight: regular;
+  font-size: 13px;
+  border-bottom: 1px solid #D9D9D9;
+}
+
+.close-deleted-table {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  margin: 5px;
+  padding: 5px 10px;
+  border: none;
+  background-color: transparent;
+  font-size: 18px;
+  font-weight: bold;
+  color: #888;
+  cursor: pointer;
+}
+.close-deleted-table:hover {
+  color: #c0392b;
 }
 
 /*Responsiveness*/

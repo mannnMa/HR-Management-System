@@ -1,6 +1,10 @@
 const addEmployeeBtn = document.getElementById('add-employee-button-js');
 const employeeTableBody = document.getElementById('employee-table-body-js');
+const deletedEmployeeTableBody = document.getElementById('deleted-employee-table-body-js');
 const searchInput = document.getElementById('employeeSearch');
+const deletedButton = document.querySelector('.deleted-employee-data');
+const deletedTableContainer = document.querySelector('.deleted-employee-table-container');
+
 
 // Load saved data from localStorage on page load
 window.addEventListener('load', () => {
@@ -11,11 +15,28 @@ window.addEventListener('load', () => {
     }
   });
 
+  const deletedData = JSON.parse(localStorage.getItem('deletedEmployees')) || [];
+  deletedData.forEach(values => {
+    if (values.some(v => v.trim() !== '')) {
+      addDeletedEmployeeRow(values);
+    }
+  });
+
   sortTableRows(); // Sort the table after loading data
 
   const addRowExists = localStorage.getItem('addRowInProgress');
   if (addRowExists === 'true') {
     addInputRow();
+  }
+
+  // Restore deleted table visibility state
+  const isDeletedStoredVisible = localStorage.getItem('deletedTableVisible') === 'true';
+  if (isDeletedStoredVisible) {
+    deletedTableContainer.classList.add('active');
+    isDeletedVisible = true;
+  } else {
+    deletedTableContainer.classList.remove('active');
+    isDeletedVisible = false;
   }
 });
 
@@ -30,7 +51,7 @@ function addInputRow() {
   const row = document.createElement('tr');
   row.classList.add('add-row');
   row.innerHTML = `
-    <td><input class="id-input" type="text" placeholder="ID" minlength="1" maxlength="6"></td>
+    <td><input class="id-input" type="text" placeholder="ID" minlength="1" maxlength="10"></td>
     <td><input class="name-input" type="text" placeholder="Name"></td>
     <td><input class="position-input" type="text" placeholder="Position"></td>
     <td><input class="dept-input" type="text" placeholder="Department"></td>
@@ -201,16 +222,25 @@ function addEmployeeRow(values) {
   // Initial listener for edit button
   editBtn.addEventListener('click', handleEdit);
 
-  // Delete button logic unchanged
+  employeeTableBody.insertBefore(newRow, employeeTableBody.firstChild);
+
+  // Add to deleted table when employee is deleted
   deleteBtn.addEventListener('click', () => {
     showPrompt('Are you sure you want to delete this employee?', () => {
+      const rowData = Array.from(cells).slice(0, 6).map(cell => cell.textContent.trim());
       newRow.remove();
+      
+      // Save updated main table
       const updatedRows = getAllEmployeeData();
       localStorage.setItem('employees', JSON.stringify(updatedRows));
+
+      // Add to deleted data
+      const deletedData = JSON.parse(localStorage.getItem('deletedEmployees')) || [];
+      deletedData.push(rowData);
+      localStorage.setItem('deletedEmployees', JSON.stringify(deletedData));
+      addDeletedEmployeeRow(rowData);
     }, null, 'delete');
   });
-
-  employeeTableBody.insertBefore(newRow, employeeTableBody.firstChild);
 }
 
 
@@ -277,7 +307,9 @@ function showPrompt(message, onConfirm, onCancel, type = 'default') {
   } else if (type === 'save') {
     animationHTML = `<video class="save-check-vid" src="../../assets/animation/missing-fill.mp4" autoplay muted loop></video>`;
   } else if (type === 'newEmployee') {
-    animationHTML = `<video class="new-employee-vid" src="../../assets/animation/employee.mp4" autoplay muted loop></video>`;
+    animationHTML = `<video class="new-employee-vid" src="../../assets/animation/employee.mp4" autoplay muted loop></video>`; 
+  } else if (type === 'restore') {
+    animationHTML = `<video class="restore-vid" src="../../assets/animation/restore.mp4" autoplay muted loop></video>`;
   } else {
     animationHTML = `<div class="default-icon"></div>`;
   }
@@ -307,3 +339,95 @@ function showPrompt(message, onConfirm, onCancel, type = 'default') {
     document.body.removeChild(promptDiv);
   });
 }
+
+//Function to add row to deleted employee table
+function addDeletedEmployeeRow(values) {
+  const row = document.createElement('tr');
+  row.innerHTML = `
+    <td>Inactive</td>
+    <td>${values[1]}</td>
+    <td>${values[2]}</td>
+    <td>${values[3]}</td>
+    <td>${values[4]}</td>
+    <td>${values[5]}</td>
+    <td class="action-cell">
+      <div class="action-row-buttons">
+        <button class="restore-button action-button">Restore</button>
+        <button class="delete-permanent-button action-button" style="background-color: red">Delete</button>
+      </div>
+    </td>
+  `;
+
+  //Restore button data
+  row.querySelector('.restore-button').addEventListener('click', () => {
+    showPrompt('Restore this employee to active list?', () => {
+      // Add back to employee table
+      addEmployeeRow(values);
+      const existingData = getAllEmployeeData();
+      localStorage.setItem('employees', JSON.stringify(existingData));
+
+      // Remove from deleted list
+      row.remove();
+      let deletedData = JSON.parse(localStorage.getItem('deletedEmployees')) || [];
+      deletedData = deletedData.filter(item => JSON.stringify(item) !== JSON.stringify(values));
+      localStorage.setItem('deletedEmployees', JSON.stringify(deletedData));
+    }, null, 'restore');
+  });
+
+  //Permanent delete data
+  row.querySelector('.delete-permanent-button').addEventListener('click', () => {
+    showPrompt('Permanently delete this record?', () => {
+      row.remove();
+      let deletedData = JSON.parse(localStorage.getItem('deletedEmployees')) || [];
+      deletedData = deletedData.filter(item => JSON.stringify(item) !== JSON.stringify(values));
+      localStorage.setItem('deletedEmployees', JSON.stringify(deletedData));
+    }, null, 'delete');
+  });
+
+  deletedEmployeeTableBody.insertBefore(row, deletedEmployeeTableBody.firstChild);
+}
+
+const closeBtn = document.createElement('button');
+closeBtn.textContent = '✖ Close';
+closeBtn.className = 'close-deleted-table';
+deletedTableContainer.insertBefore(closeBtn, deletedTableContainer.firstChild);
+
+closeBtn.addEventListener('click', () => {
+  deletedTableContainer.style.maxHeight = null;
+  deletedTableContainer.style.padding = '0';
+  isDeletedVisible = false;
+});
+
+let isDeletedVisible = false;
+
+deletedButton.addEventListener('click', () => {
+  if (isDeletedVisible) {
+    deletedTableContainer.classList.remove('active');
+    isDeletedVisible = false;
+    localStorage.setItem('deletedTableVisible', 'false');
+  } else {
+    deletedTableContainer.classList.add('active');
+    isDeletedVisible = true;
+    localStorage.setItem('deletedTableVisible', 'true');
+  }
+
+  //transition to the deleted table 
+  setTimeout(() => {
+      deletedTableContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 350); 
+});
+
+closeBtn.addEventListener('click', () => {
+  deletedTableContainer.classList.remove('active');
+  isDeletedVisible = false;
+  localStorage.setItem('deletedTableVisible', 'false');
+});
+
+
+
+
+
+
+
+
+

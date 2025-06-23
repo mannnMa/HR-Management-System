@@ -97,10 +97,16 @@
     <!--MANAGE EMPLOYEE HEADER-->
     <div class="manage-employee-header">
       <h1 class="manage-employee-title">Manage Employee</h1>
-      <button id="add-employee-button-js" class="add-employee-button">
-        <img class="add-icon" src="../assets/add-employee-icon.webp" alt="Add Employee">
-        <span class="add-text">Add New Employee</span>
-      </button>
+      <div class="header-buttons">
+        <button id="add-employee-button-js" class="add-employee-button">
+          <img class="add-icon" src="../assets/add-employee-icon.webp" alt="Add Employee">
+          <span class="add-text">Add New Employee</span>
+        </button>
+        <button class="deleted-employee-data">
+          <img src="../assets/deleted-employee-icon.png" alt="deleted employee">
+          <span>Deleted Employee</span>
+        </button>
+      </div>
     </div>
 
     <!--Employee search header-->
@@ -142,6 +148,28 @@
         </div>
       </div>
     </div>
+
+    <!-- Deleted Employees Section -->
+    <div class="deleted-employee-table-container">
+      <div class="deleted-table-scroll">
+        <h2>Soft Deleted Employee Data</h2>
+        <table class="deleted-employee-table">
+          <thead class="deleted-employee-table-header">
+            <tr>
+              <th class="status-text">Status</th>          
+              <th class="deleted-name-text">Name</th>
+              <th class="deleted-position-text">Position</th>
+              <th class="deleted-department-text">Department</th>
+              <th class="deleted-address-text">Address</th>
+              <th class="deleted-contact-text">Contact</th>
+              <th class="deleted-action-text">Action</th>
+            </tr>
+          </thead>
+          <tbody id="deleted-employee-table-body-js"></tbody>
+        </table>
+      </div>
+    </div>
+
 
     <!--JS link-->
     <script src="./js/management.js" defer></script>
