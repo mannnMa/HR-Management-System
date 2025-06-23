@@ -1,0 +1,136 @@
+.announcement-container {
+  margin-top: 30px;
+  margin-left: 315px;
+  margin-bottom: 60px;
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 1100px;
+  display: none;
+  transition: opacity 0.3s ease;
+}
+
+.announcement-container h1 {
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+#announcement-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+#announcement-form input,
+#announcement-form textarea {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-family: "Inter", sans-serif;
+}
+
+.announcement-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.announcement-img {
+  max-width: 250px;
+  max-height: 250px;
+  height: auto;
+  border-radius: 5px;
+  gap: 10px;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+
+#announcement-form button {
+  font-family: "Inter", sans-serif;
+  background-color: #F25F5F;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+#announcement-form button:hover {
+  background-color: #7c2727;
+}
+
+.announcement-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.announcement-item {
+  border-left: 4px solid #F25F5F;
+  background-color: #f5f7fa;
+  padding: 1rem;
+  border-radius: 5px;
+  position: relative;
+}
+
+.announcement-item h3 {
+  margin: 0 0 0.5rem 0;
+  font-family: "Inter", sans-serif;
+}
+
+.announcement-item p {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background-color: transparent;
+  border: none;
+  color: #cc0000;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.announcement-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.close-announcement-btn {
+  top: 15px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: #555;
+  cursor: pointer;
+  z-index: 10;
+  transition: color 0.2s ease;
+}
+
+.close-announcement-btn:hover {
+  color: #cc0000;
+}
+
+.announcement-timestamp {
+  display: block;
+  font-family: "Inter", sans-serif;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #777;
+  font-style: italic;
+}
