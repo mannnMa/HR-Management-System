@@ -163,12 +163,12 @@
             <!--Policy Container-->
             <div class="grid-item-policy">
               <img src="../assets/employee icons/policy-icon.png" alt="policy-icon">
-              <h2>Policy</h2>
+              <h2>Policy and Compliance</h2>
               <p>
                   Allows HR Admin to provide access to company policies, guidelines, and 
                   procedures in one organized location for easy reference and compliance.
               </p>
-              <div class="view-nav">
+              <div class="view-nav" id="open-policy-button">
                 <h3>View</h3>
                 <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
               </div>
@@ -229,14 +229,41 @@
           <input type="file" id="announcement-image" name="images[]" accept="image/*" multiple>
           <button type="submit">Post Announcement</button>
         </form>
-
         <!-- Announcement List -->
         <div id="announcement-list" class="announcement-list"></div>
       </div>
     </div>
 
+    <!--Training Request Section-->
+
+
+    <!--Policy Section-->
+    <!-- Policy Container -->
+    <div class="policy-container" id="policy-container" style="display:none;">
+      <div class="policy-header">
+        <h1>Policy & Compliance Upload</h1>
+        <button class="close-policy-btn" id="close-policy-btn">X close</button>
+      </div>
+      <form id="policy-form" class="policy-form">
+        <input type="text" id="policy-title" placeholder="Policy & Compliance Title" required>
+        <textarea id="policy-description" placeholder="Description" required></textarea>
+        <!-- Custom File Upload -->
+        <div class="custom-file-upload">
+          <label for="policy-file">
+            <span>Select Policy & Compliance File</span>
+          </label>
+          <input type="file" id="policy-file" name="policyFile" accept=".pdf,.doc,.docx,.jpg,.png" multiple required />
+          <span id="file-name-display">No file chosen</span>
+        </div>
+        <!--SUBMIT BUTTON-->
+        <button type="submit">Upload Policy & Compliance</button>
+      </form>
+      <div id="policy-list" class="policy-list"></div>
+    </div>
+
     <!--Js link-->
     <script src="./js/dashboard-admin.js" defer></script>
-    <script src="./js/dashboard-general.js" defer></script>
+    <script src="./js/announcement-admin.js" defer></script>
+    <script src="./js/policy-admin.js" defer></script>
   </body>
 </html>
