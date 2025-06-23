@@ -1,54 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Connectiv7 HR</title>
+  <link href="https://fonts.googleapis.com/css2?family=Arial&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="pages/styles/index.css">
 
-    <link rel="stylesheet" href="pages/styles/Login.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="logo">
+        <img src="assets/company logo.webp" class="company logo" alt="Company logo">
+        <span class="logo-text">Connectiv7</span> 
+      </div> <br>
+      <h2>Welcome to Connectiv7 HR</h2>
+      <p class="subtitle">Select your role to continue</p>
 
-    <title>HR Management System - Login</title>
-    <link rel="icon" href="assets/hr-logo-title.webp">
+      <!-- Connected buttons -->
+       <a href="pages/employee_login.html">
+        <button class="role-btn">Employee</button>
+       </a>
+       <a href="pages/admin_login.html">
+        <button class="role-btn">HR/Admin</button>
+       </a>
+      
 
-    <!--FONT LINKS-->
-        <!--POPPINS FONT-->
-        <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-
-        <!--INTER FONTS-->
-        <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
-
-        <!--PUBLICK SAN-->
-        <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div class="curve-bg"></div>
-    <div class="login-container">
-      <div class="left-panel">
-        <!--Company Logo-->
-        <img class="company-logo" src="assets/company logo.webp" alt="company logo">
-        <h1 id="company-logo-text">Connectiv7</h1>
-
-        <img src="assets/user-icon.webp" class="user-icon" alt="User Icon">
-        <h1>Welcome Back!</h1>
-        <p>Access your personalized HR dashboard and manage everything with ease.</p>
-      </div>
-      <div class="right-panel">
-        <h2>Login to Your Account</h2>
-        <form>
-          <div class="form-group">
-            <input type="email" id="email" placeholder=" " required />
-            <label for="email">Email</label>
-          </div>
-          <div class="form-group">
-            <input type="password" id="password" placeholder=" " required />
-            <label for="password">Password</label>
-          </div>
-          <button type="button" class="btn-login" onclick="window.location.href='./pages/management.html'">Sign In</button>
-        </form>
-        <div class="extras">
-          <p><a href="#">Forgot Password?</a></p>
-          <p>Need access? Contact IT Department</p>
-        </div>
-      </div>
+      <p class="footer-text">
+        By using this service, you agree to our
+        <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.
+      </p>
     </div>
-  </body>
+  </div>
+</body>
 </html>
+
