@@ -1,0 +1,317 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f9fc;
+  overflow-x: hidden;
+}
+
+.main-content {
+  margin-left: 257px;
+  padding: 30px;
+}
+
+.applicant-section h2 {
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding-bottom: 20px;
+}
+
+.summary input {
+  padding: 8px 12px;
+  height: 23px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  flex: 1;
+  min-width: 200px;
+  max-width: 300px;
+}
+
+.summary input#searchInput {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  flex: 1;
+  min-width: 150px;
+  max-width: 250px;
+}
+
+.reset-filter-btn {
+  height: 40px;
+  padding: 0 16px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.reset-filter-btn:hover {
+  background-color: #c0392b;
+}
+
+.advanced-filters {
+  display: flex;
+  gap: 12px;
+  flex: 1;
+  flex-wrap: wrap;
+  min-width: 300px;
+}
+
+.advanced-filters select {
+  padding: 8px 12px;
+  height: 40px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+thead th {
+  text-align: left;
+  padding: 14px;
+  background-color: #eef1f8;
+  color: #1C2AA8;
+}
+
+tbody td {
+  padding: 14px;
+  border-top: 1px solid #eee;
+}
+
+.status {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+}
+
+.status.pending {
+  background-color: #f1c40f;
+}
+
+.status.shortlisted {
+  background-color: #3498db;
+}
+
+.status.hired {
+  background-color: #2ecc71;
+}
+
+.action-btn {
+  background-color: #1C2AA8;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.action-btn:hover {
+  background-color: #152091;
+}
+
+.status-options {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
+  margin-bottom: 20px;
+}
+
+.status-box {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+  transition: 0.2s ease;
+}
+
+.status-box:hover {
+  background-color: #f1f1f1;
+}
+
+.status-box.selected {
+  border-color: #1C2AA8;
+  background-color: #1C2AA8;
+  color: white;
+}
+
+.status.rejected {
+  background-color: #e74c3c;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 999;
+}
+
+.modal.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px 25px;
+  border-radius: 12px;
+  width: 320px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  animation: popup 0.3s ease;
+  text-align: center;
+}
+
+.modal-content h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #1C2AA8;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-actions button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.status-box.pending.selected {
+  background-color: #f1c40f;
+  border-color: #f1c40f;
+  color: white;
+}
+
+.status-box.shortlisted.selected {
+  background-color: #3498db;
+  border-color: #3498db;
+  color: white;
+}
+
+.status-box.hired.selected {
+  background-color: #2ecc71;
+  border-color: #2ecc71;
+  color: white;
+}
+
+.status-box.rejected.selected {
+  background-color: #e74c3c;
+  border-color: #e74c3c;
+  color: white;
+}
+
+#saveStatusBtn {
+  background-color: #1C2AA8;
+  color: white;
+}
+
+#saveStatusBtn:hover {
+  background-color: #152091;
+}
+
+#cancelUpdateBtn {
+  background-color: #ccc;
+  color: #333;
+}
+
+#cancelUpdateBtn:hover {
+  background-color: #bbb;
+}
+
+/* Animation */
+@keyframes popup {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Responsiveness */
+@media screen and (max-width: 768px) {
+  .main-content {
+    padding: 20px;
+    margin-left: 0;
+  }
+
+  .summary {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .summary input,
+  .advanced-filters select,
+  .reset-filter-btn {
+    width: 100%;
+    max-width: none;
+  }
+
+  .advanced-filters {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+
+  table {
+    font-size: 14px;
+  }
+
+  thead th,
+  tbody td {
+    padding: 10px;
+  }
+
+  .modal-content {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .status-options {
+    grid-template-columns: 1fr;
+  }
+}
