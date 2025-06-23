@@ -18,7 +18,8 @@
   margin-bottom: 1rem;
 }
 
-#announcement-form {
+#announcement-form,
+.policy-form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -103,14 +104,16 @@
   cursor: pointer;
 }
 
-.announcement-header {
+.announcement-header,
+.policy-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
 }
 
-.close-announcement-btn {
+.close-announcement-btn,
+.close-policy-btn {
   top: 15px;
   right: 20px;
   background: transparent;
@@ -122,7 +125,8 @@
   transition: color 0.2s ease;
 }
 
-.close-announcement-btn:hover {
+.close-announcement-btn:hover,
+.close-policy-btn:hover {
   color: #cc0000;
 }
 
@@ -134,3 +138,112 @@
   color: #777;
   font-style: italic;
 }
+
+/*Policy Container*/
+.policy-container {
+  margin-top: 30px;
+  margin-left: 315px;
+  margin-bottom: 60px;
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 1100px;
+  display: none;
+  transition: opacity 0.3s ease;
+}
+
+.download-link {
+  display: inline-block;
+  margin-top: 8px;
+  color: #3674B5;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.policy-header h1 {
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.policy-form button {
+  font-family: "Inter", sans-serif;
+  background-color: #3674B5;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.policy-form button:hover {
+  background-color: #133d6a;
+}
+
+.policy-form input,
+.policy-form textarea {
+  font-family: "Inter", sans-serif;
+}
+
+.policy-item {
+  border-left: 4px solid #3674B5;
+  background-color: #f5f7fa;
+  padding: 1rem;
+  border-radius: 5px;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.policy-item h3 {
+  margin: 0 0 0.5rem 0;
+  font-family: "Inter", sans-serif;
+}
+
+.policy-item p {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+}
+
+.policy-files {
+  font-family: "Inter", sans-serif; 
+}
+
+.custom-file-upload {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 1rem;
+}
+
+.custom-file-upload input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #3674B5;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.custom-file-upload label:hover {
+  background-color: #133d6a;
+}
+
+#file-name-display {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+
+

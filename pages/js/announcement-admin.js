@@ -9,13 +9,13 @@ const announcementList = document.getElementById('announcement-list');
 const imageInput = document.getElementById('announcement-image');
 
 // Announcement functionality
-//close announcement button functionality
-closeAnnouncementBtn.addEventListener("click", () => {
-  announcementContainer.style.display = "none";
-});
 
-// Load announcements on page load
-document.addEventListener('DOMContentLoaded', loadAnnouncements);
+// Show announcement container on page load
+document.addEventListener('DOMContentLoaded', () => {
+  const isAnnouncementOpen = localStorage.getItem("isAnnouncementOpen");
+  announcementContainer.style.display = isAnnouncementOpen === "true" ? "block" : "none";
+  loadAnnouncements();
+});
 
 // Get announcements from localStorage
 function getAnnouncements() {
@@ -124,13 +124,14 @@ function deleteAnnouncement(id) {
 // Hide container on "Close"
 closeAnnouncementBtn.addEventListener("click", () => {
   announcementContainer.style.display = "none";
+  localStorage.setItem("isAnnouncementOpen", "false");
 });
 
 // Show container on "View"
 openAnnouncementBtn.addEventListener("click", () => {
   // Show the container
   announcementContainer.style.display = "block";
-
+  localStorage.setItem("isAnnouncementOpen", "true");
   // Scroll smoothly to the container
   announcementContainer.scrollIntoView({ behavior: "smooth", block: "start" });
 });
