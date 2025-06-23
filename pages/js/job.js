@@ -185,16 +185,29 @@ document.querySelectorAll('.view-info-btn').forEach(button => {
         const desc = document.createElement('p');
         desc.textContent = job.description;
 
+        const bottomRow = document.createElement('div');
+        bottomRow.className = 'job-card-bottom';
+
         const slot = document.createElement('p');
-        slot.innerHTML = `<strong>Available Slots: ${job.slots}</strong>`;
+        slot.className = 'job-slot';
+        slot.innerHTML = `<strong>Available Slot: ${job.slots}</strong>`;
+
+        const manageBtn = document.createElement('button');
+        manageBtn.className = 'manage-btn';
+        manageBtn.textContent = 'Manage';
+        manageBtn.addEventListener('click', () => {
+          window.location.href = `managejob.html?job=${encodeURIComponent(job.title)}&dept=${dept}`;
+        });
+
+        bottomRow.appendChild(slot);
+        bottomRow.appendChild(manageBtn);
 
         card.appendChild(title);
         card.appendChild(desc);
-        card.appendChild(slot);
+        card.appendChild(bottomRow);
 
         jobCardsContainer.appendChild(card);
       });
-
 
       jobList.classList.remove('hidden');
       jobList.scrollIntoView({ behavior: 'smooth' });
@@ -203,10 +216,10 @@ document.querySelectorAll('.view-info-btn').forEach(button => {
 });
 
 const closeBtn = document.getElementById('closeJobListBtn');
-
 if (closeBtn) {
   closeBtn.addEventListener('click', () => {
     const jobList = document.getElementById('jobList');
     jobList.classList.add('hidden');
   });
 }
+
