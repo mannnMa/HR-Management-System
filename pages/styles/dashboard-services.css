@@ -1,7 +1,6 @@
-.announcement-container {
-  margin-top: 30px;
-  margin-left: 315px;
-  margin-bottom: 60px;
+/* Common Container Styles */
+.announcement-container, .policy-container, .evaluation-container, .training-requests-container {
+  margin: 30px 60px 60px 315px;
   background-color: #fff;
   padding: 1.5rem;
   border-radius: 8px;
@@ -11,23 +10,50 @@
   transition: opacity 0.3s ease;
 }
 
-.announcement-container h1 {
-  font-family: "Poppins", sans-serif;
-  font-size: 24px;
-  font-weight: bold;
+/* Common Header Styles */
+.announcement-header, .policy-header, .evaluation-header, .training-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 1rem;
 }
 
-#announcement-form,
-.policy-form {
+/* Common Title Styles */
+.announcement-container h1, .policy-header h1, .evaluation-header h1, .training-header .page-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.announcement-container h1 { margin-bottom: 1rem; }
+
+/* Common Close Button Styles */
+.close-announcement-btn, .close-training-btn, .close-policy-btn, .close-evaluation-btn {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: #555;
+  cursor: pointer;
+  z-index: 10;
+  transition: color 0.2s ease;
+}
+
+.close-announcement-btn:hover, .close-training-btn:hover, .close-policy-btn:hover, .close-evaluation-btn:hover {
+  color: #cc0000;
+}
+
+/* Form Styles */
+#announcement-form, .policy-form, #evaluation-assignment-form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   margin-bottom: 1.5rem;
+  font-family: "Inter", sans-serif;
 }
 
-#announcement-form input,
-#announcement-form textarea {
+#announcement-form input, #announcement-form textarea, .policy-form input, .policy-form textarea,
+#evaluation-assignment-form select, #evaluation-assignment-form input {
   padding: 0.75rem;
   font-size: 1rem;
   border-radius: 5px;
@@ -35,6 +61,86 @@
   font-family: "Inter", sans-serif;
 }
 
+#evaluation-assignment-form select, #evaluation-assignment-form input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Button Styles */
+#announcement-form button,
+#announcement-file span {
+  background-color: #F25F5F;
+  color: white;
+  transition: background 0.3s ease;
+}
+
+#announcement-form button:hover { background-color: #7c2727; }
+
+#announcement-form .custom-file-upload label {
+  background-color: #F25F5F;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+  transition: background 0.3s ease;
+}
+
+#announcement-form .custom-file-upload label:hover {
+  background-color: #7c2727;
+}
+
+.policy-form button {
+  background-color: #3674B5;
+  color: white;
+  transition: background 0.3s ease;
+}
+
+.policy-form button:hover { background-color: #133d6a; }
+
+#evaluation-assignment-form button {
+  background-color: #FFCC00;
+  color: white;
+  width: fit-content;
+  transition: background 0.3s ease;
+}
+
+#evaluation-assignment-form button:hover { background-color: #d5ac09; }
+
+#announcement-form button, .policy-form button, #evaluation-assignment-form button {
+  font-family: "Inter", sans-serif;
+  border: none;
+  padding: 0.75rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* List and Item Styles */
+.announcement-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.announcement-item, .policy-item {
+  background-color: #f5f7fa;
+  padding: 1rem;
+  border-radius: 5px;
+  position: relative;
+}
+
+.announcement-item { border-left: 4px solid #F25F5F; }
+.policy-item { border-left: 4px solid #3674B5; margin-bottom: 20px; }
+
+.announcement-item h3, .announcement-item p, .policy-item h3, .policy-item p {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+}
+
+.announcement-item h3, .policy-item h3 { margin-bottom: 0.5rem; }
+
+/* Image and Media Styles */
 .announcement-images {
   display: flex;
   flex-wrap: wrap;
@@ -46,53 +152,10 @@
   max-height: 250px;
   height: auto;
   border-radius: 5px;
-  gap: 10px;
-  height: auto;
   margin-bottom: 10px;
-  border-radius: 5px;
 }
 
-
-#announcement-form button {
-  font-family: "Inter", sans-serif;
-  background-color: #F25F5F;
-  color: white;
-  border: none;
-  padding: 0.75rem;
-  font-size: 1rem;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background 0.3s ease;
-}
-
-#announcement-form button:hover {
-  background-color: #7c2727;
-}
-
-.announcement-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.announcement-item {
-  border-left: 4px solid #F25F5F;
-  background-color: #f5f7fa;
-  padding: 1rem;
-  border-radius: 5px;
-  position: relative;
-}
-
-.announcement-item h3 {
-  margin: 0 0 0.5rem 0;
-  font-family: "Inter", sans-serif;
-}
-
-.announcement-item p {
-  font-family: "Inter", sans-serif;
-  margin: 0;
-}
-
+/* Utility Styles */
 .delete-btn {
   position: absolute;
   top: 10px;
@@ -104,33 +167,6 @@
   cursor: pointer;
 }
 
-.announcement-header,
-.policy-header,
-.evaluation-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.close-announcement-btn,
-.close-policy-btn {
-  top: 15px;
-  right: 20px;
-  background: transparent;
-  border: none;
-  font-size: 24px;
-  color: #555;
-  cursor: pointer;
-  z-index: 10;
-  transition: color 0.2s ease;
-}
-
-.close-announcement-btn:hover,
-.close-policy-btn:hover {
-  color: #cc0000;
-}
-
 .announcement-timestamp {
   display: block;
   font-family: "Inter", sans-serif;
@@ -138,20 +174,6 @@
   font-size: 0.85rem;
   color: #777;
   font-style: italic;
-}
-
-/*Policy Container*/
-.policy-container {
-  margin-top: 30px;
-  margin-left: 315px;
-  margin-bottom: 60px;
-  background-color: #fff;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  width: 1100px;
-  display: none;
-  transition: opacity 0.3s ease;
 }
 
 .download-link {
@@ -162,57 +184,18 @@
   cursor: pointer;
 }
 
-.policy-header h1 {
-  font-family: "Poppins", sans-serif;
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-.policy-form button {
-  font-family: "Inter", sans-serif;
-  background-color: #3674B5;
-  color: white;
-  border: none;
-  padding: 0.75rem;
-  font-size: 1rem;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background 0.3s ease;
-}
-
-.policy-form button:hover {
-  background-color: #133d6a;
-}
-
-.policy-form input,
-.policy-form textarea {
+.policy-files, .evaluation-result, #evaluation-results {
   font-family: "Inter", sans-serif;
 }
 
-.policy-item {
-  border-left: 4px solid #3674B5;
-  background-color: #f5f7fa;
-  padding: 1rem;
-  border-radius: 5px;
-  position: relative;
-  margin-bottom: 20px;
+#evaluation-results {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.policy-item h3 {
-  margin: 0 0 0.5rem 0;
-  font-family: "Inter", sans-serif;
-}
-
-.policy-item p {
-  font-family: "Inter", sans-serif;
-  margin: 0;
-}
-
-.policy-files {
-  font-family: "Inter", sans-serif; 
-}
-
+/* File Upload Styles */
 .custom-file-upload {
   display: flex;
   align-items: center;
@@ -221,9 +204,7 @@
   margin-bottom: 1rem;
 }
 
-.custom-file-upload input[type="file"] {
-  display: none;
-}
+.custom-file-upload input[type="file"] { display: none; }
 
 .custom-file-upload label {
   display: flex;
@@ -237,113 +218,22 @@
   transition: background 0.3s ease;
 }
 
-.custom-file-upload label:hover {
-  background-color: #133d6a;
-}
+.custom-file-upload label:hover { background-color: #133d6a; }
 
 #file-name-display {
   font-size: 0.9rem;
   color: #555;
 }
 
-/* Evaluation Container */
-.evaluation-container {
-  margin-top: 30px;
-  margin-left: 315px;
-  margin-bottom: 60px;
-  background-color: #fff;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  width: 1100px;
-  display: none;
-  transition: opacity 0.3s ease;
-}
-
-.evaluation-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.evaluation-header h1 {
-  font-family: "Poppins", sans-serif;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.close-evaluation-btn {
-  background: transparent;
-  border: none;
-  font-size: 24px;
-  color: #555;
-  cursor: pointer;
-  z-index: 10;
-  transition: color 0.2s ease;
-}
-
-.close-evaluation-btn:hover {
-  color: #cc0000;
-}
-
-/*Evaluation Section*/
-#evaluation-assignment-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  font-family: "Inter", sans-serif;
-}
-
+/* Form Field Styles */
 #evaluation-assignment-form label {
   font-weight: 600;
   font-size: 1rem;
   color: #333;
 }
 
-#evaluation-assignment-form select,
-#evaluation-assignment-form input {
-  padding: 0.75rem;
-  font-size: 1rem;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-family: "Inter", sans-serif;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-#evaluation-assignment-form input::placeholder {
-  color: #999;
-}
-
-#evaluation-assignment-form button {
-  font-family: "Inter", sans-serif;
-  background-color: #FFCC00;
-  color: white;
-  border: none;
-  padding: 0.75rem;
-  font-size: 1rem;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background 0.3s ease;
-  width: fit-content;
-}
-
-#evaluation-assignment-form button:hover {
-  background-color: #d5ac09;
-}
-
-.evaluation-result {
-  font-family: "Inter", sans-serif;
-}
-
-#evaluation-results {
-  margin-top: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  font-family: "Inter", sans-serif;
+#evaluation-assignment-form input::placeholder { 
+  color: #999; 
 }
 
 .save-eval-btn,
@@ -374,3 +264,18 @@
 .delete-eval-btn:hover {
   background-color: #d32f2f;
 }
+
+/* Section Styles */
+.section-title {
+  font-family: "Inter", sans-serif;
+<<<<<<< HEAD
+}
+
+
+=======
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #333;
+}
+>>>>>>> 9a289d7407f3fee208b0c03f3fb74a0f85c4e579

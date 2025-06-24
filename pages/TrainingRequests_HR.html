@@ -1,174 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard HR Admin</title>
-    <link rel="icon" href="../assets/hr-logo-title.webp">
-    
-    <!--FONT LINKS-->
-      <!--POPPINS FONT-->
-      <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 
-      <!--INTER FONTS-->
-      <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard HR Admin</title>
+  <link rel="icon" href="../assets/hr-logo-title.webp">
 
-      <!--PUBLICK SAN-->
-      <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <!--FONT LINKS-->
+  <!--POPPINS FONT-->
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 
-    <!--CSS LINK-->
-    <link rel="stylesheet" href="./styles/general.css">
-    <link rel="stylesheet" href="./styles/sidebar.css">
-    <link rel="stylesheet" href="./styles/TrainingRequests_HR.css">
-  </head>
+  <!--INTER FONTS-->
+  <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 
-  <body>
-    <!--Side Bar Navigation-->
-    <div class="sidebar">
-      <!--Company Logo-->
-      <div class="sidebar-logo-container">
-        <div>
-          <img class="company-logo" src="../assets/company logo.webp" alt="company-logo">
-        </div>
-        <div>
-          <h1 id="company-logo-text">Connectiv7</h1>
-        </div>
+  <!--PUBLICK SAN-->
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  <!--CSS LINK-->
+  <link rel="stylesheet" href="./styles/general.css">
+  <link rel="stylesheet" href="./styles/sidebar.css">
+  <link rel="stylesheet" href="./styles/TrainingRequests_HR.css">
+</head>
+
+<body>
+  <!--Side Bar Navigation-->
+  <div class="sidebar">
+    <!--Company Logo-->
+    <div class="sidebar-logo-container">
+      <div>
+        <img class="company-logo" src="../assets/company logo.webp" alt="company-logo">
       </div>
       <div>
-        <h1 class="hr-title">HR ADMIN</h1>
+        <h1 id="company-logo-text">Connectiv7</h1>
       </div>
-      <!--Search Button side bar nav-->
-      <div>
-        <input class="seach-input" type="text" placeholder="Search" name="search" id="searchGeneral">
-      </div>
-      <!--General Buttons-->
-      <div class="general-buttons">
-        <h3 class="general-title">General</h3>
-          <div>
-          <!--Dashboard Nav-->
-          <a class="profile-nav-link">
-            <div class="profile-nav">
-              <button class="profile-button">
-                <img class="profile-icon" src="../assets/dashboard-icon.png" alt="profile">
-                <span class="profile-text">Dashboard</span>
-              </button>
-            </div>
-          </a>
-          <!--Employee Nav-->
-          <a href="./management.html" class="employee-nav-link">
-            <div class="employee-nav">
-              <button class="employee-button">
-                <img class="employee-icon" src="../assets/employee-icon.webp" alt="employee">
-                <span class="employee-text">Employee</span>
-              </button>
-            </div>
-          </a>
-          <!--Payroll Nav-->
-          <a href="./payroll.html" class="payroll-nav-link">
-            <div>
-              <button class="payroll-button">
-                <img class="payroll-icon" src="../assets/payroll-icon.webp" alt="Payroll">
-                <span class="payroll-text">Payroll</span>
-              </button>
-            </div>
-          </a>
-          <!--Job Nav-->
-          <a href="./job.html" class="job-nav-link">
-          <div>
-              <button class="job-button">
-                <img class="job-icon" src="../assets/job-icon.webp" alt="job">
-                <span class="job-text">Job</span>
-              </button>
-            </div>
-          </a>
-          <!--Calendar Nav-->
-          <a href="./calendar.html" class="calendar-nav-link">
-            <div>
-              <button class="calendar-button">
-                <img class="calendar-icon" src="../assets/calendar-icon.webp" alt="calendar">
-                <span class="calendar-text">Calendar</span>
-              </button>
-            </div>
-          </a>
-        </div>
-      </div>
-      <form action="../index.html">
-        <div class="log-out-container">
-          <button class="log-out-button" id="logOutButton">
-            <img class="log-out-icon" src="../assets/log out - icon.webp" alt="log out">
-            <span class="log-out-text">Log Out</span>
-          </button>
-        </div>
-      </form>
     </div>
-
-    <!--Main Content-->
-    <div class="main-content">
-      <div class="training-requests-container">
-        <h1 class="page-title">Training Requests</h1>
-        
-        <div class="request-information-section">
-          <h2 class="section-title">Request Information</h2>
-          
-          <div class="table-container">
-            <table class="training-requests-table">
-              <thead>
-                <tr class="table-header">
-                  <th class="header-name">Name</th>
-                  <th class="header-department">Department</th>
-                  <th class="header-training">Selected Training</th>
-                  <th class="header-other">Other Information</th>
-                  <th class="header-progress">Progress</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="table-row">
-                  <td class="cell-name">John Smith</td>
-                  <td class="cell-department">IT</td>
-                  <td class="cell-training">Data Analysis</td>
-                  <td class="cell-other"></td>
-                  <td class="cell-progress">
-                    <select class="progress-dropdown" data-current="ongoing">
-                      <option value="not-yet">Not yet</option>
-                      <option value="ongoing" selected>Ongoing</option>
-                      <option value="completed">Completed</option>
-                    </select>
-                  </td>
-                </tr>
-                <tr class="table-row">
-                  <td class="cell-name">Lea Princess</td>
-                  <td class="cell-department">Sales</td>
-                  <td class="cell-training">Digital Literacy</td>
-                  <td class="cell-other"></td>
-                  <td class="cell-progress">
-                    <select class="progress-dropdown" data-current="completed">
-                      <option value="not-yet">Not yet</option>
-                      <option value="ongoing">Ongoing</option>
-                      <option value="completed" selected>Completed</option>
-                    </select>
-                  </td>
-                </tr>
-                <tr class="table-row">
-                  <td class="cell-name">Sky Mason</td>
-                  <td class="cell-department">Finance</td>
-                  <td class="cell-training">Other</td>
-                  <td class="cell-other">Short leave, chocolate, vanilla...</td>
-                  <td class="cell-progress">
-                    <select class="progress-dropdown" data-current="not-yet">
-                      <option value="not-yet" selected>Not yet</option>
-                      <option value="ongoing">Ongoing</option>
-                      <option value="completed">Completed</option>
-                    </select>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+    <div>
+      <h1 class="hr-title">HR ADMIN</h1>
+    </div>
+    <!--Search Button side bar nav-->
+    <div>
+      <input class="seach-input" type="text" placeholder="Search" name="search" id="searchGeneral">
+    </div>
+    <!--General Buttons-->
+    <div class="general-buttons">
+      <h3 class="general-title">General</h3>
+      <div>
+        <!--Dashboard Nav-->
+        <a class="profile-nav-link">
+          <div class="profile-nav">
+            <button class="profile-button">
+              <img class="profile-icon" src="../assets/dashboard-icon.png" alt="profile">
+              <span class="profile-text">Dashboard</span>
+            </button>
           </div>
+        </a>
+        <!--Employee Nav-->
+        <a href="./management.html" class="employee-nav-link">
+          <div class="employee-nav">
+            <button class="employee-button">
+              <img class="employee-icon" src="../assets/employee-icon.webp" alt="employee">
+              <span class="employee-text">Employee</span>
+            </button>
+          </div>
+        </a>
+        <!--Payroll Nav-->
+        <a href="./payroll.html" class="payroll-nav-link">
+          <div>
+            <button class="payroll-button">
+              <img class="payroll-icon" src="../assets/payroll-icon.webp" alt="Payroll">
+              <span class="payroll-text">Payroll</span>
+            </button>
+          </div>
+        </a>
+        <!--Job Nav-->
+        <a href="./job.html" class="job-nav-link">
+          <div>
+            <button class="job-button">
+              <img class="job-icon" src="../assets/job-icon.webp" alt="job">
+              <span class="job-text">Job</span>
+            </button>
+          </div>
+        </a>
+        <!--Calendar Nav-->
+        <a href="./calendar.html" class="calendar-nav-link">
+          <div>
+            <button class="calendar-button">
+              <img class="calendar-icon" src="../assets/calendar-icon.webp" alt="calendar">
+              <span class="calendar-text">Calendar</span>
+            </button>
+          </div>
+        </a>
+      </div>
+    </div>
+    <form action="../index.html">
+      <div class="log-out-container">
+        <button class="log-out-button" id="logOutButton">
+          <img class="log-out-icon" src="../assets/log out - icon.webp" alt="log out">
+          <span class="log-out-text">Log Out</span>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!--Main Content-->
+  <div class="main-content">
+    <div class="training-requests-container">
+      <h1 class="page-title">Training Requests</h1>
+
+      <div class="request-information-section">
+        <h2 class="section-title">Request Information</h2>
+
+        <div class="table-container">
+          <table class="training-requests-table">
+            <thead>
+              <tr class="table-header">
+                <th class="header-name">Name</th>
+                <th class="header-department">Department</th>
+                <th class="header-training">Selected Training</th>
+                <th class="header-other">Other Information</th>
+                <th class="header-progress">Progress</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="table-row">
+                <td class="cell-name">John Smith</td>
+                <td class="cell-department">IT</td>
+                <td class="cell-training">Data Analysis</td>
+                <td class="cell-other"></td>
+                <td class="cell-progress">
+                  <select class="progress-dropdown" data-current="ongoing">
+                    <option value="not-yet">Not yet</option>
+                    <option value="ongoing" selected>Ongoing</option>
+                    <option value="completed">Completed</option>
+                  </select>
+                </td>
+              </tr>
+              <tr class="table-row">
+                <td class="cell-name">Lea Princess</td>
+                <td class="cell-department">Sales</td>
+                <td class="cell-training">Digital Literacy</td>
+                <td class="cell-other"></td>
+                <td class="cell-progress">
+                  <select class="progress-dropdown" data-current="completed">
+                    <option value="not-yet">Not yet</option>
+                    <option value="ongoing">Ongoing</option>
+                    <option value="completed" selected>Completed</option>
+                  </select>
+                </td>
+              </tr>
+              <tr class="table-row">
+                <td class="cell-name">Sky Mason</td>
+                <td class="cell-department">Finance</td>
+                <td class="cell-training">Other</td>
+                <td class="cell-other">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+                <td class="cell-progress">
+                  <select class="progress-dropdown" data-current="not-yet">
+                    <option value="not-yet" selected>Not yet</option>
+                    <option value="ongoing">Ongoing</option>
+                    <option value="completed">Completed</option>
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
+  </div>
 
-    <!--Js link-->
-    <script src="./js/TrainingRequests_HR.js" defer></script>
-  </body>
+  <!--Js link-->
+  <script src="./js/TrainingRequests_HR.js" defer></script>
+</body>
 </html>

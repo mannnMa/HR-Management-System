@@ -263,3 +263,270 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* Training container positioning - appears below cards as dropdown */
+.training-requests-container {
+    display: none;
+    position: relative;
+    margin-left: 320px;
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border: 2px solid #e5e7eb;
+    width: calc(1155px - 60px);
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Show animation */
+.training-requests-container.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Hide animation */
+.training-requests-container.hide {
+    transform: translateY(-20px);
+    opacity: 0;
+}
+
+/* Page Title */
+.page-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 30px;
+    font-family: 'Poppins', sans-serif;
+    margin: 0 0 30px 0;
+}
+
+/* Section Title */
+.section-title {
+    font-size: 20px;
+    font-weight: 500;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+}
+
+/* Table Container */
+.table-container {
+    overflow-x: auto;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+}
+
+/* Training requests table */
+.training-requests-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Table Header */
+.table-header {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.table-header th {
+    padding: 16px 20px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 14px;
+    color: #1C2AA8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Header specific widths */
+.header-name {
+    width: 20%;
+}
+
+.header-department {
+    width: 15%;
+}
+
+.header-training {
+    width: 20%;
+}
+
+.header-other {
+    width: 30%;
+}
+
+.header-progress {
+    width: 15%;
+}
+
+/* Table Rows */
+.table-row {
+    border-bottom: 1px solid #f1f3f4;
+    transition: background-color 0.2s ease;
+}
+
+.table-row:hover {
+    background-color: #f8f9fa;
+}
+
+.table-row:last-child {
+    border-bottom: none;
+}
+
+/* Table Cells */
+.table-row td {
+    padding: 16px 20px;
+    font-size: 14px;
+    color: #374151;
+    vertical-align: middle;
+}
+
+.cell-name {
+    font-weight: 500;
+    color: #1f2937;
+}
+
+.cell-department {
+    color: #6b7280;
+}
+
+.cell-training {
+    color: #1f2937;
+}
+
+.cell-other {
+    color: #6b7280;
+    font-style: italic;
+}
+
+/* Progress Dropdown */
+.progress-dropdown {
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    background-color: white;
+    cursor: pointer;
+    min-width: 100px;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s ease;
+}
+
+.progress-dropdown:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.progress-dropdown:hover {
+    border-color: #9ca3af;
+}
+
+/* Progress color styles - Updated to match your design */
+.progress-dropdown.progress-done {
+    background-color: #d1fae5;
+    color: #065f46;
+    border-color: #10b981;
+}
+
+.progress-dropdown.progress-ongoing {
+    background-color: #fef3c7;
+    color: #d97706;
+    border-color: #f59e0b;
+}
+
+.progress-dropdown.progress-not-yet {
+    background-color: #fee2e2;
+    color: #dc2626;
+    border-color: #ef4444;
+}
+
+/* Grid container adjustments to work with dropdown */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px;
+    margin-bottom: 20px; /* Reduced to make space for dropdown */
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+    .training-requests-container {
+        margin-left: 320px;
+        width: calc(100vw - 380px);
+        max-width: 1095px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .training-requests-container {
+        margin-left: 20px;
+        width: calc(100vw - 40px);
+        padding: 20px;
+    }
+    
+    .page-title {
+        font-size: 24px;
+    }
+    
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .training-requests-container {
+        margin-left: 10px;
+        width: calc(100vw - 20px);
+        padding: 15px;
+    }
+    
+    .table-container {
+        font-size: 12px;
+    }
+    
+    .table-header th,
+    .table-row td {
+        padding: 12px 16px;
+    }
+    
+    .progress-dropdown {
+        padding: 6px 8px;
+        font-size: 10px;
+        min-width: 80px;
+    }
+    
+    .page-title {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .training-requests-table {
+        font-size: 11px;
+    }
+    
+    .table-header th,
+    .table-row td {
+        padding: 8px 12px;
+    }
+    
+    .header-other,
+    .cell-other {
+        display: none; /* Hide "Other Information" column on small screens */
+    }
+}
