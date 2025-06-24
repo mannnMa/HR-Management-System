@@ -1,307 +1,383 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard HR Admin</title>
-    <link rel="icon" href="../assets/hr-logo-title.webp">
-    
-    <!--FONT LINKS-->
-      <!--POPPINS FONT-->
-      <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 
-      <!--INTER FONTS-->
-      <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard HR Admin</title>
+  <link rel="icon" href="../assets/hr-logo-title.webp">
 
-      <!--PUBLICK SAN-->
-      <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <!--FONT LINKS-->
+  <!--POPPINS FONT-->
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 
-    <!--CSS LINK-->
-    <link rel="stylesheet" href="./styles/general.css">
-    <link rel="stylesheet" href="./styles/sidebar.css">
-    <link rel="stylesheet" href="./styles/dashboard-admin.css">
-    <link rel="stylesheet" href="./styles/dashboard-services.css">
-  </head>
+  <!--INTER FONTS-->
+  <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 
-  <body>
-    <!--Side Bar Navigation-->
-    <div class="sidebar">
-      <!--Company Logo-->
-      <div class="sidebar-logo-container">
-        <div>
-          <img class="company-logo" src="../assets/company logo.webp" alt="company-logo">
-        </div>
-        <div>
-          <h1 id="company-logo-text">Connectiv7</h1>
-        </div>
+  <!--PUBLICK SAN-->
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+
+  <!--CSS LINK-->
+  <link rel="stylesheet" href="./styles/general.css">
+  <link rel="stylesheet" href="./styles/sidebar.css">
+  <link rel="stylesheet" href="./styles/dashboard-admin.css">
+  <link rel="stylesheet" href="./styles/dashboard-services.css">
+</head>
+
+<body>
+  <!--Side Bar Navigation-->
+  <div class="sidebar">
+    <!--Company Logo-->
+    <div class="sidebar-logo-container">
+      <div>
+        <img class="company-logo" src="../assets/company logo.webp" alt="company-logo">
       </div>
       <div>
-        <h1 class="hr-title">HR ADMIN</h1>
+        <h1 id="company-logo-text">Connectiv7</h1>
       </div>
-      <!--Search Button side bar nav-->
-      <div>
-        <input class="seach-input" type="text" placeholder="Search" name="search" id="searchGeneral">
-      </div>
-      <!--General Buttons-->
-      <div class="general-buttons">
-        <h3 class="general-title">General</h3>
-          <div>
-          <!--Dashboard Nav-->
-          <a class="profile-nav-link">
-            <div class="profile-nav">
-              <button class="profile-button">
-                <img class="profile-icon" src="../assets/dashboard-icon.png" alt="profile">
-                <span class="profile-text">Dashboard</span>
-              </button>
-            </div>
-          </a>
-          <!--Employee Nav-->
-          <a href="./management.html" class="employee-nav-link">
-            <div class="employee-nav">
-              <button class="employee-button">
-                <img class="employee-icon" src="../assets/employee-icon.webp" alt="employee">
-                <span class="employee-text">Employee</span>
-              </button>
-            </div>
-          </a>
-          <!--Payroll Nav-->
-          <a href="./payroll.html" class="payroll-nav-link">
-            <div>
-              <button class="payroll-button">
-                <img class="payroll-icon" src="../assets/payroll-icon.webp" alt="Payroll">
-                <span class="payroll-text">Payroll</span>
-              </button>
-            </div>
-          </a>
-          <!--Job Nav-->
-          <a href="./job.html" class="job-nav-link">
-          <div>
-              <button class="job-button">
-                <img class="job-icon" src="../assets/job-icon.webp" alt="job">
-                <span class="job-text">Job</span>
-              </button>
-            </div>
-          </a>
-          <!--Calendar Nav-->
-          <a href="./calendar.html" class="calendar-nav-link">
-            <div>
-              <button class="calendar-button">
-                <img class="calendar-icon" src="../assets/calendar-icon.webp" alt="calendar">
-                <span class="calendar-text">Calendar</span>
-              </button>
-            </div>
-          </a>
-        </div>
-      </div>
-      <form action="../index.html">
-        <div class="log-out-container">
-          <button class="log-out-button" id="logOutButton">
-            <img class="log-out-icon" src="../assets/log out - icon.webp" alt="log out">
-            <span class="log-out-text">Log Out</span>
-          </button>
-        </div>
-      </form>
     </div>
-
-    <!--Main Content Profile-->
-    <div class="main-content-container">
-      <!--Profile Header Notification-->
-      <div class="main-content">
-        <div class="profile-container">
-          <!--Profile Uploader-->
-          <div class="profile-pic-wrapper">
-            <img id="profile-pic" src="../assets/tsushikima.jpg" alt="Profile Picture" />
-            <input type="file" id="upload-input" accept="image/*" hidden />
-            <button id="upload-btn" class="upload-button">
-              <img src="../assets/upload-camera.png" id="upload-icon" alt="Upload" />
+    <div>
+      <h1 class="hr-title">HR ADMIN</h1>
+    </div>
+    <!--Search Button side bar nav-->
+    <div>
+      <input class="seach-input" type="text" placeholder="Search" name="search" id="searchGeneral">
+    </div>
+    <!--General Buttons-->
+    <div class="general-buttons">
+      <h3 class="general-title">General</h3>
+      <div>
+        <!--Dashboard Nav-->
+        <a class="profile-nav-link">
+          <div class="profile-nav">
+            <button class="profile-button">
+              <img class="profile-icon" src="../assets/dashboard-icon.png" alt="profile">
+              <span class="profile-text">Dashboard</span>
             </button>
           </div>
-          <!--Profile Info-->
-          <div class="profile-details">
-            <h1 class="welcome-text">Welcome HR Admin Dashboard</h1>
-            <h2>
-              <span id="employee-name-display" class="name-profile" contenteditable="true">John Doe</span>
-            </h2>
-            <div class="employee-info">
-              <p>ID: <span id="employee-id-display" class="editable" contenteditable="true">EMP12345</span></p>
-              <p>Position: <span id="employee-position-display" class="editable" contenteditable="true">Human Resources</span></p>
-              <p>Department: <span id="employee-dept-display" class="editable" contenteditable="true">IT</span></p>
-            </div>
-            <img class="notif-icon" src="../assets/notif-icon.png" alt="notification">
+        </a>
+        <!--Employee Nav-->
+        <a href="./management.html" class="employee-nav-link">
+          <div class="employee-nav">
+            <button class="employee-button">
+              <img class="employee-icon" src="../assets/employee-icon.webp" alt="employee">
+              <span class="employee-text">Employee</span>
+            </button>
           </div>
+        </a>
+        <!--Payroll Nav-->
+        <a href="./payroll.html" class="payroll-nav-link">
+          <div>
+            <button class="payroll-button">
+              <img class="payroll-icon" src="../assets/payroll-icon.webp" alt="Payroll">
+              <span class="payroll-text">Payroll</span>
+            </button>
+          </div>
+        </a>
+        <!--Job Nav-->
+        <a href="./job.html" class="job-nav-link">
+          <div>
+            <button class="job-button">
+              <img class="job-icon" src="../assets/job-icon.webp" alt="job">
+              <span class="job-text">Job</span>
+            </button>
+          </div>
+        </a>
+        <!--Calendar Nav-->
+        <a href="./calendar.html" class="calendar-nav-link">
+          <div>
+            <button class="calendar-button">
+              <img class="calendar-icon" src="../assets/calendar-icon.webp" alt="calendar">
+              <span class="calendar-text">Calendar</span>
+            </button>
+          </div>
+        </a>
+      </div>
+    </div>
+    <form action="../index.html">
+      <div class="log-out-container">
+        <button class="log-out-button" id="logOutButton">
+          <img class="log-out-icon" src="../assets/log out - icon.webp" alt="log out">
+          <span class="log-out-text">Log Out</span>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!--Main Content Profile-->
+  <div class="main-content-container">
+    <!--Profile Header Notification-->
+    <div class="main-content">
+      <div class="profile-container">
+        <!--Profile Uploader-->
+        <div class="profile-pic-wrapper">
+          <img id="profile-pic" src="../assets/tsushikima.jpg" alt="Profile Picture" />
+          <input type="file" id="upload-input" accept="image/*" hidden />
+          <button id="upload-btn" class="upload-button">
+            <img src="../assets/upload-camera.png" id="upload-icon" alt="Upload" />
+          </button>
         </div>
-        <!--Services Features-->
-        <div class="dashboard-service">
-          <h1>General</h1>
-          <div class="grid-container">
-            <!--Announcement Container-->
-            <div class="grid-item-announcement">
-              <img class="announcement-icon" src="../assets/employee icons/announcement-icon.png" alt="announcement-icon">
-              <h2>Announcement</h2>
-              <p>
-                Enables HR Admin to keep everyone informed with timely updates on events, news, 
-                and policies through clear, organized, and scheduled posts.
-              </p>
-              <div class="view-nav" id="open-announcement-button">
-                <h3>View</h3>
-                <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
-              </div>
-            </div>
-            <!--Training History Container-->
-            <div class="grid-item-training">
-              <img src="../assets/employee icons/training-history-icon.png" alt="training-history-icon">
-              <h2>Training Request</h2>
-              <p>
-                Allows HR Admin to track completed trainings like webinars, orientations, 
-                and bootcamps, helping monitor employee progress and development.
-              </p>
-              <div class="view-nav">
-                <h3>View</h3>
-                <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
-              </div>
-            </div>
-            <!--Policy Container-->
-            <div class="grid-item-policy">
-              <img src="../assets/employee icons/policy-icon.png" alt="policy-icon">
-              <h2>Policy and Compliance</h2>
-              <p>
-                  Allows HR Admin to provide access to company policies, guidelines, and 
-                  procedures in one organized location for easy reference and compliance.
-              </p>
-              <div class="view-nav" id="open-policy-button">
-                <h3>View</h3>
-                <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
-              </div>
-            </div>
-            <!--Report Container-->
-            <div class="grid-item-report">
-              <img src="../assets/employee icons/report-dashboard-icon.png" alt="report-icon">
-              <h2>Report</h2>
-              <p>
-                Allows HR Admin to display and manage a list of compliance records, feedback, 
-                and requests to effectively monitor internal processes.
-              </p>
-              <div class="view-nav">
-                <h3>View</h3>
-                <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
-              </div>
-            </div>
-            <!--Evaluation Container-->
-            <div class="grid-item-evaluation" id="open-evaluation-button">
-              <img src="../assets/employee icons/evaluation-icon.png" alt="evaluation-icon">
-              <h2>Evaluation</h2>
-              <p>
-                Enables HR Admin to conduct performance evaluations of employees based on 
-                set criteria, supporting feedback, growth, and improvement tracking.
-              </p>
-              <div class="view-nav">
-                <h3>View</h3>
-                <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
-              </div>
-            </div>
-            <!--Recognition Container-->
-            <div class="grid-item-recognition">
-              <img src="../assets/employee icons/recognition-icom.png" alt="recognition-icom">
-              <h2>Recognition</h2>
-              <p>
-                Allows HR Admin to highlight employee achievements and contributions to 
-                celebrate excellence and boost company-wide morale.
-              </p>
-              <div class="view-nav">
-                <h3>View</h3>
-                <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
-              </div>
-            </div>
+        <!--Profile Info-->
+        <div class="profile-details">
+          <h1 class="welcome-text">Welcome HR Admin Dashboard</h1>
+          <h2>
+            <span id="employee-name-display" class="name-profile" contenteditable="true">John Doe</span>
+          </h2>
+          <div class="employee-info">
+            <p>ID: <span id="employee-id-display" class="editable" contenteditable="true">EMP12345</span></p>
+            <p>Position: <span id="employee-position-display" class="editable" contenteditable="true">Human
+                Resources</span></p>
+            <p>Department: <span id="employee-dept-display" class="editable" contenteditable="true">IT</span></p>
           </div>
+          <img class="notif-icon" src="../assets/notif-icon.png" alt="notification">
         </div>
       </div>
-
-      <!-- Announcement Section -->
-      <div class="announcement-container" id="announcement-container">
-        <div class="announcement-header">
-          <h1>Announcements</h1>
-          <button class="close-announcement-btn" id="close-announcement-btn">X close</button>
+      <!--Services Features-->
+      <div class="dashboard-service">
+        <h1>General</h1>
+        <div class="grid-container">
+          <!--Announcement Container-->
+          <div class="grid-item-announcement">
+            <img class="announcement-icon" src="../assets/employee icons/announcement-icon.png" alt="announcement-icon">
+            <h2>Announcement</h2>
+            <p>
+              Enables HR Admin to keep everyone informed with timely updates on events, news,
+              and policies through clear, organized, and scheduled posts.
+            </p>
+            <div class="view-nav" id="open-announcement-button">
+              <h3>View</h3>
+              <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
+            </div>
+          </div>
+          <!--Training History Container-->
+          <div class="grid-item-training">
+            <img src="../assets/employee icons/training-history-icon.png" alt="training-history-icon">
+            <h2>Training Request</h2>
+            <p>
+              Allows HR Admin to track completed trainings like webinars, orientations,
+              and bootcamps, helping monitor employee progress and development.
+            </p>
+            <div class="view-nav">
+              <h3>View</h3>
+              <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
+            </div>
+          </div>
+          <!--Policy Container-->
+          <div class="grid-item-policy">
+            <img src="../assets/employee icons/policy-icon.png" alt="policy-icon">
+            <h2>Policy and Compliance</h2>
+            <p>
+              Allows HR Admin to provide access to company policies, guidelines, and
+              procedures in one organized location for easy reference and compliance.
+            </p>
+            <div class="view-nav" id="open-policy-button">
+              <h3>View</h3>
+              <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
+            </div>
+          </div>
+          <!--Report Container-->
+          <div class="grid-item-report">
+            <img src="../assets/employee icons/report-dashboard-icon.png" alt="report-icon">
+            <h2>Report</h2>
+            <p>
+              Allows HR Admin to display and manage a list of compliance records, feedback,
+              and requests to effectively monitor internal processes.
+            </p>
+            <div class="view-nav">
+              <h3>View</h3>
+              <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
+            </div>
+          </div>
+          <!--Evaluation Container-->
+          <div class="grid-item-evaluation" id="open-evaluation-button">
+            <img src="../assets/employee icons/evaluation-icon.png" alt="evaluation-icon">
+            <h2>Evaluation</h2>
+            <p>
+              Enables HR Admin to conduct performance evaluations of employees based on
+              set criteria, supporting feedback, growth, and improvement tracking.
+            </p>
+            <div class="view-nav">
+              <h3>View</h3>
+              <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
+            </div>
+          </div>
+          <!--Recognition Container-->
+          <div class="grid-item-recognition">
+            <img src="../assets/employee icons/recognition-icom.png" alt="recognition-icom">
+            <h2>Recognition</h2>
+            <p>
+              Allows HR Admin to highlight employee achievements and contributions to
+              celebrate excellence and boost company-wide morale.
+            </p>
+            <div class="view-nav">
+              <h3>View</h3>
+              <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
+            </div>
+          </div>
         </div>
-        <!-- Add Announcement Form -->
-        <form id="announcement-form">
-          <input type="text" id="announcement-title" placeholder="Title" required>
-          <textarea id="announcement-message" placeholder="Message" required></textarea>
-          <input type="file" id="announcement-image" name="images[]" accept="image/*" multiple>
-          <button type="submit">Post Announcement</button>
-        </form>
-        <!-- Announcement List -->
-        <div id="announcement-list" class="announcement-list"></div>
       </div>
     </div>
 
-    <!--Training Request Section-->
-
-
-    <!--Policy Section-->
-    <!-- Policy Container -->
-    <div class="policy-container" id="policy-container" style="display:none;">
-      <div class="policy-header">
-        <h1>Policy & Compliance Upload</h1>
-        <button class="close-policy-btn" id="close-policy-btn">X close</button>
+    <!-- Announcement Section -->
+    <div class="announcement-container" id="announcement-container">
+      <div class="announcement-header">
+        <h1>Announcements</h1>
+        <button class="close-announcement-btn" id="close-announcement-btn">✕</button>
       </div>
-      <form id="policy-form" class="policy-form">
-        <input type="text" id="policy-title" placeholder="Policy & Compliance Title" required>
-        <textarea id="policy-description" placeholder="Description" required></textarea>
-        <!-- Custom File Upload -->
+      <!-- Add Announcement Form -->
+      <form id="announcement-form">
+        <input type="text" id="announcement-title" placeholder="Title" required>
+        <textarea id="announcement-message" placeholder="Message" required></textarea>
+
         <div class="custom-file-upload">
-          <label for="policy-file">
-            <span>Select Policy & Compliance File</span>
+          <label for="announcement-file">
+            <span>Select Announcement Files</span>
           </label>
-          <input type="file" id="policy-file" name="policyFile" accept=".pdf,.doc,.docx,.jpg,.png" multiple required />
+          <input type="file" id="announcement-file" name="images[]" accept="image/*" multiple>
           <span id="file-name-display">No file chosen</span>
         </div>
-        <!--SUBMIT BUTTON-->
-        <button type="submit">Upload Policy & Compliance</button>
+        <button type="submit">Post Announcement</button>
       </form>
-      <div id="policy-list" class="policy-list"></div>
+      <!-- Announcement List -->
+      <div id="announcement-list" class="announcement-list"></div>
+    </div>
+  </div>
+
+  <!--Training Request Section-->
+  <div class="training-requests-container">
+    <!-- Updated header structure to match other sections -->
+    <div class="training-header">
+      <h1 class="page-title">Training Requests</h1>
+      <button class="close-training-btn" id="close-training-btn">✕</button>
     </div>
 
+    <div class="section-container">
+      <h2 class="section-title">Request Information</h2>
 
-    <!--Report Section-->
-
-    <!--Evaluation Section-->
-    <div class="evaluation-container" id="evaluation-container" style="display: none;">
-      <div class="evaluation-header">
-        <h1>Assign Employee Evaluation</h1>
-        <button class="close-evaluation-btn" id="close-evaluation-btn">X close</button>
+      <div class="table-container">
+        <table class="training-requests-table">
+          <thead class="table-header">
+            <tr>
+              <th class="header-name">Name</th>
+              <th class="header-department">Department</th>
+              <th class="header-training">Selected Training</th>
+              <th class="header-other">Other Information</th>
+              <th class="header-progress">Progress</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-row">
+              <td class="cell-name">John Smith</td>
+              <td class="cell-department">IT</td>
+              <td class="cell-training">Data Analysis</td>
+              <td class="cell-other">-</td>
+              <td>
+                <select class="progress-dropdown">
+                  <option value="ongoing" selected>Ongoing</option>
+                  <option value="completed">Completed</option>
+                  <option value="not yet">Not yet</option>
+                </select>
+              </td>
+            </tr>
+            <tr class="table-row">
+              <td class="cell-name">Lea Princess</td>
+              <td class="cell-department">Sales</td>
+              <td class="cell-training">Digital Literacy</td>
+              <td class="cell-other">-</td>
+              <td>
+                <select class="progress-dropdown">
+                  <option value="completed" selected>Completed</option>
+                  <option value="ongoing">Ongoing</option>
+                  <option value="not yet">Not yet</option>
+                </select>
+              </td>
+            </tr>
+            <tr class="table-row">
+              <td class="cell-name">Sky Mason</td>
+              <td class="cell-department">Finance</td>
+              <td class="cell-training">Other</td>
+              <td class="cell-other">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+              <td>
+                <select class="progress-dropdown">
+                  <option value="not yet" selected>Not yet</option>
+                  <option value="ongoing">Ongoing</option>
+                  <option value="completed">Completed</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+    </div>
+  </div>
 
-      <form id="evaluation-assignment-form">
-        <label for="admin-name">Employee Name:</label>
-        <input type="text" id="admin-name" required placeholder="Enter Full Name" />
+  <!--Policy Section-->
+  <!-- Policy Container -->
+  <div class="policy-container" id="policy-container" style="display:none;">
+    <div class="policy-header">
+      <h1>Policy & Compliance Upload</h1>
+      <button class="close-policy-btn" id="close-policy-btn">✕</button>
+    </div>
+    <form id="policy-form" class="policy-form">
+      <input type="text" id="policy-title" placeholder="Policy & Compliance Title" required>
+      <textarea id="policy-description" placeholder="Description" required></textarea>
+      <!-- Custom File Upload -->
+      <div class="custom-file-upload">
+        <label for="policy-file">
+          <span>Select Policy & Compliance File</span>
+        </label>
+        <input type="file" id="policy-file" name="policyFile" accept=".pdf,.doc,.docx,.jpg,.png" multiple required />
+        <span id="file-name-display">No file chosen</span>
+      </div>
+      <!--SUBMIT BUTTON-->
+      <button type="submit">Upload Policy & Compliance</button>
+    </form>
+    <div id="policy-list" class="policy-list"></div>
+  </div>
 
-        <label for="admin-department">Department:</label>
-        <select id="admin-department" required>
-          <option value="">-- Select Department --</option>
-          <option value="Admin">Admin</option>
-          <option value="IT">IT</option>
-          <option value="HR">HR</option>
-          <option value="Sales">Sales</option>
-          <option value="Marketing">Marketing</option>
-          <option value="Finance">Finance</option>
-        </select>
 
-        <label for="admin-position">Position:</label>
-        <input type="text" id="admin-position" required placeholder="Enter Position" />
+  <!--Report Section-->
 
-        <button type="submit">Send Evaluation</button>
-      </form>
-
-      <h2 class="evaluation-result">Evaluation Results</h2>
-      <div id="evaluation-results"></div>
+  <!--Evaluation Section-->
+  <div class="evaluation-container" id="evaluation-container" style="display: none;">
+    <div class="evaluation-header">
+      <h1>Assign Employee Evaluation</h1>
+      <button class="close-evaluation-btn" id="close-evaluation-btn">✕</button>
     </div>
 
-    
-    <!--Js link-->
-    <script src="./js/dashboard-admin.js" defer></script>
-    <script src="./js/announcement-admin.js" defer></script>
-    <script src="./js/policy-admin.js" defer></script>
-    <script src="./js/evaluation-admin.js" defer></script>
-    <script src="./js/employee-dashboard-js/evaluation-employee.js"></script>
-  </body>
+    <form id="evaluation-assignment-form">
+      <label for="admin-name">Employee Name:</label>
+      <input type="text" id="admin-name" required placeholder="Enter Full Name" />
+
+      <label for="admin-department">Department:</label>
+      <select id="admin-department" required>
+        <option value="">-- Select Department --</option>
+        <option value="Admin">Admin</option>
+        <option value="IT">IT</option>
+        <option value="HR">HR</option>
+        <option value="Sales">Sales</option>
+        <option value="Marketing">Marketing</option>
+        <option value="Finance">Finance</option>
+      </select>
+
+      <label for="admin-position">Position:</label>
+      <input type="text" id="admin-position" required placeholder="Enter Position" />
+
+      <button type="submit">Send Evaluation</button>
+    </form>
+
+    <h2 class="evaluation-result">Evaluation Results</h2>
+    <div id="evaluation-results"></div>
+  </div>
+
+
+  <!--Js link-->
+  <script src="./js/dashboard-admin.js" defer></script>
+  <script src="./js/announcement-admin.js" defer></script>
+  <script src="./js/policy-admin.js" defer></script>
+  <script src="./js/evaluation-admin.js" defer></script>
+  <script src="./js/employee-dashboard-js/evaluation-employee.js"></script>
+</body>
+
 </html>
