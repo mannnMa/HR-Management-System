@@ -6,16 +6,39 @@ const announcementForm = document.getElementById('announcement-form');
 const titleInput = document.getElementById('announcement-title');
 const messageInput = document.getElementById('announcement-message');
 const announcementList = document.getElementById('announcement-list');
-const imageInput = document.getElementById('announcement-image');
+const imageInput = document.getElementById('announcement-file');
+
+imageInput.addEventListener("change", () => {
+  const fileNameDisplay = document.getElementById("file-name-display");
+  const files = imageInput.files;
+  fileNameDisplay.textContent = files.length > 0
+    ? Array.from(files).map(f => f.name).join(", ")
+    : "No file chosen";
+});
 
 // Announcement functionality
 
 // Show announcement container on page load
-document.addEventListener('DOMContentLoaded', () => {
-  const isAnnouncementOpen = localStorage.getItem("isAnnouncementOpen");
-  announcementContainer.style.display = isAnnouncementOpen === "true" ? "block" : "none";
+document.addEventListener("DOMContentLoaded", () => {
+  const announcements = getAnnouncements();
+  let updated = false;
+
+  const patched = announcements.map(a => {
+    if (!a.id) {
+      updated = true;
+      return { ...a, id: Date.now() + Math.floor(Math.random() * 10000) };
+    }
+    return a;
+  });
+
+  if (updated) {
+    localStorage.setItem("announcements", JSON.stringify(patched));
+  }
+
+  announcementContainer.style.display = localStorage.getItem("isAnnouncementOpen") === "true" ? "block" : "none";
   loadAnnouncements();
 });
+
 
 // Get announcements from localStorage
 function getAnnouncements() {
