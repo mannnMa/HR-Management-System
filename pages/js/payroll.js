@@ -27,10 +27,11 @@ const savePayrollButton = document.getElementById('savePayrollButton');
 const generatePayslipButton = document.getElementById('generatePayslipButton');
 const payrollForm = document.getElementById('payrollForm');
 const messageArea = document.getElementById('messageArea');
+const payrollDateRangeEl = document.getElementById('payrollDateRange');
 
 // --- Helper Functions ---
 function formatCurrency(amount) {
-    return `₱${parseFloat(amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`;
+    return parseFloat(amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 }
 
 function showMessage(message, type = "info") {
@@ -326,7 +327,9 @@ generatePayslipButton.addEventListener('click', () => {
   const modal = document.getElementById("payslipModal");
   const content = document.getElementById("payslipContent");
 
+  // Add close button inside modal content and re-attach event
   content.innerHTML = `
+    <button id="closePayslipBtn" class="float-right text-red-500 font-bold text-lg mb-2">×</button>
     <p><strong>Name:</strong> ${data.employeeName}</p>
     <p><strong>ID:</strong> ${data.employeeId}</p>
     <p><strong>Period:</strong> ${data.payrollPeriod}</p>
@@ -347,10 +350,139 @@ generatePayslipButton.addEventListener('click', () => {
     <p class="text-sm text-gray-500 mt-2"><em>Generated on: ${new Date(data.calculatedAt).toLocaleString()}</em></p>
   `;
 
+  // Attach close event to the new button
+  document.getElementById("closePayslipBtn").addEventListener("click", () => {
+    modal.classList.add("hidden");
+  });
+
   modal.classList.remove("hidden");
+
+  // --- jsPDF generation and upload ---
+  const doc = new jsPDF({
+    orientation: "portrait",
+    unit: "mm",
+    format: "A4"
+  });
+
+  // --- Header ---
+  doc.setFont("times", "bold");
+  doc.setFontSize(22);
+  doc.text("Connectiv7", 105, 20, { align: "center" });
+
+  doc.setFontSize(13);
+  doc.setFont("times", "normal");
+  doc.text("Official Payslip", 105, 28, { align: "center" });
+
+  doc.setDrawColor(0);
+  doc.setLineWidth(0.5);
+  doc.line(20, 32, 190, 32); // horizontal line
+
+  // --- Employee Info ---
+  doc.setFont("times", "bold");
+  doc.setFontSize(12);
+  doc.text("Employee Information", 20, 40);
+  doc.setFont("times", "normal");
+  doc.setFontSize(11);
+  doc.text(`Name: ${data.employeeName}`, 20, 47);
+  doc.text(`Employee ID: ${data.employeeId}`, 20, 54);
+  doc.text(`Payroll Period: ${data.payrollPeriod}`, 20, 61);
+
+  // --- Earnings and Deductions Columns ---
+  const leftX = 25, rightX = 110, valueXLeft = 75, valueXRight = 170;
+  let y = 72;
+
+  doc.setFont("times", "bold");
+  doc.text("Earnings", leftX, y);
+  doc.text("Deductions", rightX, y);
+
+  y += 7;
+  doc.setFont("times", "normal");
+  doc.text("Basic Pay:", leftX, y);
+  doc.text(formatCurrency(data.actualBasicPayForPeriod), valueXLeft, y, { align: "right" });
+  doc.text("SSS:", rightX, y);
+  doc.text(formatCurrency(data.sssContribution), valueXRight, y, { align: "right" });
+
+  y += 7;
+  doc.text("Overtime Pay:", leftX, y);
+  doc.text(formatCurrency(data.overtimePay), valueXLeft, y, { align: "right" });
+  doc.text("PhilHealth:", rightX, y);
+  doc.text(formatCurrency(data.philHealthContribution), valueXRight, y, { align: "right" });
+
+  y += 7;
+  doc.text("Allowances:", leftX, y);
+  doc.text(formatCurrency(data.allowances), valueXLeft, y, { align: "right" });
+  doc.text("Pag-IBIG:", rightX, y);
+  doc.text(formatCurrency(data.pagibigContribution), valueXRight, y, { align: "right" });
+
+  y += 7;
+  doc.setFont("times", "bold");
+  doc.text("Gross Pay:", leftX, y);
+  doc.text(formatCurrency(data.grossPay), valueXLeft, y, { align: "right" });
+  doc.setFont("times", "normal");
+  doc.text("Withholding Tax:", rightX, y);
+  doc.text(formatCurrency(data.withholdingTax), valueXRight, y, { align: "right" });
+
+  y += 7;
+  doc.text("", leftX, y); // empty left
+  doc.text("Other Deductions:", rightX, y);
+  doc.text(formatCurrency(data.otherDeductions), valueXRight, y, { align: "right" });
+
+  y += 7;
+  doc.setFont("times", "bold");
+  doc.text("", leftX, y); // empty left
+  doc.text("Total Deductions:", rightX, y);
+  doc.text(formatCurrency(data.totalDeductions), valueXRight, y, { align: "right" });
+
+  // --- Net Pay Section ---
+  y += 15;
+  doc.setDrawColor(0, 128, 0);
+  doc.setLineWidth(1);
+  doc.rect(20, y, 170, 15); // full width box
+
+  doc.setFont("times", "bold");
+  doc.setFontSize(16);
+  doc.setTextColor(0, 128, 0);
+  doc.text(`Net Pay: ${formatCurrency(data.netPay)}`, 105, y + 10, { align: "center" });
+  doc.setTextColor(0, 0, 0);
+
+  // --- Footer ---
+  doc.setFontSize(10);
+  doc.setFont("times", "italic");
+  doc.text(`Generated on: ${new Date(data.calculatedAt).toLocaleString()}`, 20, y + 25);
+
+  doc.setFont("times", "normal");
+  doc.setFontSize(12);
+
+  // --- Upload as before ---
+  const pdfBlob = doc.output('blob');
+  const formData = new FormData();
+  const cleanName = data.employeeName.trim().replace(/\s+/g, '');
+  formData.append("pdfFile", pdfBlob, `payslip_${data.employeeId}_${cleanName}.pdf`);
+
+  // --- Add this block to generate and upload JSON metadata ---
+  const payslipMeta = {
+  period: payrollDateRangeEl.value, // Use the textbox value
+  payDate: new Date(data.calculatedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+  netPay: data.netPay
+};
+  const metaBlob = new Blob([JSON.stringify(payslipMeta)], { type: "application/json" });
+  formData.append("metaFile", metaBlob, `payslip_${data.employeeId}_${cleanName}.json`);
+  // --- end block ---
+
+  fetch("./php/upload_payslip.php", {
+    method: "POST",
+    body: formData,
+  })
+    .then(response => response.text())
+    .then(result => {
+      console.log("Upload response:", result);
+      showMessage("Payslip uploaded to server!", "success");
+    })
+    .catch(error => {
+      console.error("Upload error:", error);
+      showMessage("Upload failed. Check connection or permissions.", "error");
+    });
 });
-
-
 // Initialize calculations
 performCalculations();
 
