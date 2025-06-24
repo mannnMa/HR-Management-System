@@ -108,9 +108,7 @@
   <script src="./js/employee_payslips.js"></script>
   <script src="./js/sidebar-employee.js" defer></script>
   <script>
-    const employeeId = 'EMP001';
-    document.getElementById('employeeId').textContent = employeeId;
-    fetch(`php/list_payslips.php?employeeId=${employeeId}`)
-  </script>
+  window.employeeId = "<?php echo $_SESSION['employee_id']; ?>";
+</script>
 </body>
 </html>
