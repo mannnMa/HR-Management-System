@@ -1,5 +1,5 @@
 // Reports and Others Section JavaScript
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Get elements - Updated selectors
     const reportsViewButton = document.querySelector('.grid-item-report .view-nav');
     const reportsContainer = document.querySelector('.reports-container');
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const viewButtons = document.querySelectorAll('.view-btn');
     const approveButtons = document.querySelectorAll('.approve-btn');
     const declineButtons = document.querySelectorAll('.decline-btn');
-    
+
     // Create detailed view container if it doesn't exist
     let detailViewContainer = document.querySelector('.detail-view-container');
     if (!detailViewContainer && reportsContainer) {
@@ -25,11 +25,11 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         reportsContainer.appendChild(detailViewContainer);
     }
-    
+
     // Get all other view-nav buttons (other cards)
     const allViewButtons = document.querySelectorAll('.view-nav');
     const otherViewButtons = Array.from(allViewButtons).filter(btn => btn !== reportsViewButton);
-    
+
     // Function to hide reports container instantly (no animation)
     function hideReportsContainer() {
         if (reportsContainer && reportsContainer.style.display !== 'none') {
@@ -37,22 +37,22 @@ document.addEventListener('DOMContentLoaded', function() {
             hideDetailView();
         }
     }
-    
+
     // Function to show reports container
     function showReportsContainer() {
         if (reportsContainer) {
             reportsContainer.style.display = 'block';
-            
+
             // Smooth scroll to show the expanded section
             setTimeout(() => {
-                reportsContainer.scrollIntoView({ 
-                    behavior: 'smooth', 
-                    block: 'nearest' 
+                reportsContainer.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest'
                 });
             }, 100);
         }
     }
-    
+
     // Function to hide detail view
     function hideDetailView() {
         if (detailViewContainer) {
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 300);
         }
     }
-    
+
     // Function to show detail view with content
     function showDetailView(content) {
         if (detailViewContainer) {
@@ -73,24 +73,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 detailViewContainer.style.opacity = '1';
                 detailViewContainer.style.transform = 'translateY(0)';
                 // Scroll to detail view
-                detailViewContainer.scrollIntoView({ 
-                    behavior: 'smooth', 
-                    block: 'nearest' 
+                detailViewContainer.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest'
                 });
             }, 10);
         }
     }
-    
+
     // Function to hide other sections
     function hideOtherSections() {
         const otherSections = [
             '.announcement-container',
-            '.policy-container', 
+            '.policy-container',
             '.evaluation-container',
             '.training-requests-container',
             '.recognition-container'
         ];
-        
+
         otherSections.forEach(selector => {
             const section = document.querySelector(selector);
             if (section) {
@@ -98,9 +98,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    
-   function createDetailedReportView(rowData) {
-    return `
+
+    function createDetailedReportView(rowData) {
+        return `
         <div class="detailed-report-view">
             <div class="detail-header">
                 <h3 class="detail-title">Details</h3>
@@ -117,8 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </section>
 
-                ${
-                    rowData.type.toLowerCase().includes('leave') ? `
+                ${rowData.type.toLowerCase().includes('leave') ? `
                     <section class="detail-section">
                         <h4>Leave Request Details</h4>
                         <div class="detail-grid">
@@ -149,28 +148,28 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                     </section>
                     `
-                }
+            }
 
-                ${
-                    !rowData.type.toLowerCase().includes('report') ? `
+               ${rowData.type.toLowerCase().includes('leave') ? `
                     <div class="detail-actions">
                         <button class="action-btn approve-btn" data-employee="${rowData.name}">Approve</button>
                         <button class="action-btn decline-btn" data-employee="${rowData.name}">Decline</button>
                     </div>
-                    ` : ''
+                ` : ''
                 }
+
             </div>
         </div>
     `;
-}
-    
+    }
+
     // Function to update button states
     function updateButtonState(button, state) {
         // Remove existing state classes
         button.classList.remove('btn-approved', 'btn-declined', 'btn-pending');
-        
+
         // Add appropriate state class
-        switch(state) {
+        switch (state) {
             case 'approved':
                 button.classList.add('btn-approved');
                 button.textContent = 'Approved';
@@ -185,15 +184,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 button.classList.add('btn-pending');
         }
     }
-    
+
     // Open reports section when clicking the reports view button
     if (reportsViewButton) {
-        reportsViewButton.addEventListener('click', function(e) {
+        reportsViewButton.addEventListener('click', function (e) {
             e.preventDefault();
-            
+
             // Hide other sections first
             hideOtherSections();
-            
+
             if (reportsContainer) {
                 // Toggle visibility
                 if (reportsContainer.style.display === 'block') {
@@ -204,19 +203,19 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    
+
     // Close reports section when clicking close button
     if (closeReportsBtn) {
-        closeReportsBtn.addEventListener('click', function(e) {
+        closeReportsBtn.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
             hideReportsContainer();
         });
     }
-    
+
     // Close leave form section when clicking close section button
     if (closeSectionBtn) {
-        closeSectionBtn.addEventListener('click', function(e) {
+        closeSectionBtn.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
             const leaveFormSection = document.querySelector('.leave-form-section');
@@ -225,31 +224,31 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    
+
     // Hide reports section when clicking other view-nav buttons (other cards)
     otherViewButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
+        button.addEventListener('click', function (e) {
             hideReportsContainer();
         });
     });
-    
+
     // Handle view button clicks in reports table
     function attachViewButtonListeners() {
         const currentViewButtons = document.querySelectorAll('.reports-table .view-btn');
-        
+
         currentViewButtons.forEach(button => {
             // Remove existing listeners to prevent duplicates
             button.replaceWith(button.cloneNode(true));
         });
-        
+
         // Re-select buttons after cloning
         const refreshedViewButtons = document.querySelectorAll('.reports-table .view-btn');
-        
+
         refreshedViewButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
+            button.addEventListener('click', function (e) {
                 e.preventDefault();
                 const row = this.closest('.table-row');
-                
+
                 // Extract data from the row
                 const rowData = {
                     name: row.querySelector('.cell-name')?.textContent || 'Unknown',
@@ -269,137 +268,144 @@ document.addEventListener('DOMContentLoaded', function() {
                     feedbackContent: row.dataset.feedbackContent || 'Suggestions for improving workplace efficiency.',
                     priority: row.dataset.priority || 'Medium'
                 };
-                
+
                 console.log(`Viewing ${rowData.type} for ${rowData.name}`);
-                
+
                 // Create and show detailed view
                 const detailContent = createDetailedReportView(rowData);
                 showDetailView(detailContent);
-                
+
                 // Re-attach event listeners to the new buttons in detail view
                 attachDetailViewListeners();
             });
         });
     }
-    
+
     // Function to attach event listeners to detail view buttons
     function attachDetailViewListeners() {
         const detailApproveButtons = detailViewContainer.querySelectorAll('.approve-btn');
         const detailDeclineButtons = detailViewContainer.querySelectorAll('.decline-btn');
-        
+
         detailApproveButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
+            button.addEventListener('click', function (e) {
                 e.preventDefault();
                 const employeeName = this.dataset.employee;
-                
+
                 if (confirm(`Are you sure you want to approve the request for ${employeeName}?`)) {
                     updateButtonState(this, 'approved');
-                    
-                    // Disable decline button
+
                     const declineBtn = detailViewContainer.querySelector('.decline-btn');
                     if (declineBtn) {
                         declineBtn.disabled = true;
                         declineBtn.classList.add('btn-disabled');
                     }
-                    
-                    console.log(`Request approved for ${employeeName}`);
+
+                    // Remove row from table
+                    const row = document.querySelector(`.reports-table .table-row[data-name="${employeeName}"]`);
+                    if (row) row.remove();
+
+                    hideDetailView();
                     showNotification('Request approved successfully!', 'success');
                 }
             });
         });
-        
+
         detailDeclineButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
+            button.addEventListener('click', function (e) {
                 e.preventDefault();
                 const employeeName = this.dataset.employee;
-                
+
                 if (confirm(`Are you sure you want to decline the request for ${employeeName}?`)) {
                     updateButtonState(this, 'declined');
-                    
-                    // Disable approve button
+
                     const approveBtn = detailViewContainer.querySelector('.approve-btn');
                     if (approveBtn) {
                         approveBtn.disabled = true;
                         approveBtn.classList.add('btn-disabled');
                     }
-                    
-                    console.log(`Request declined for ${employeeName}`);
+
+                    // Remove row from table
+                    const row = document.querySelector(`.reports-table .table-row[data-name="${employeeName}"]`);
+                    if (row) row.remove();
+
+                    hideDetailView();
                     showNotification('Request declined.', 'warning');
                 }
             });
         });
     }
-    
+
+
     // Handle approve button clicks (original form)
     approveButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
+        button.addEventListener('click', function (e) {
             e.preventDefault();
             const row = this.closest('.form-container');
             const employeeName = row.querySelector('.form-value').textContent;
-            
+
             // Confirm approval
             if (confirm(`Are you sure you want to approve the leave request for ${employeeName}?`)) {
                 updateButtonState(this, 'approved');
-                
+
                 // Disable decline button
                 const declineBtn = row.querySelector('.decline-btn');
                 if (declineBtn) {
                     declineBtn.disabled = true;
                     declineBtn.classList.add('btn-disabled');
                 }
-                
+
                 console.log(`Leave request approved for ${employeeName}`);
                 showNotification('Leave request approved successfully!', 'success');
             }
         });
     });
-    
+
     // Handle decline button clicks (original form)
     declineButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
+        button.addEventListener('click', function (e) {
             e.preventDefault();
             const row = this.closest('.form-container');
             const employeeName = row.querySelector('.form-value').textContent;
-            
+
             // Confirm decline
             if (confirm(`Are you sure you want to decline the leave request for ${employeeName}?`)) {
                 updateButtonState(this, 'declined');
-                
+
                 // Disable approve button
                 const approveBtn = row.querySelector('.approve-btn');
                 if (approveBtn) {
                     approveBtn.disabled = true;
                     approveBtn.classList.add('btn-disabled');
                 }
-                
+
                 console.log(`Leave request declined for ${employeeName}`);
                 showNotification('Leave request declined.', 'warning');
             }
         });
     });
-    
+
     // Make functions globally accessible
     window.hideDetailView = hideDetailView;
     window.attachViewButtonListeners = attachViewButtonListeners;
-    
+
     // Initial attachment of view button listeners
     attachViewButtonListeners();
-    
+
     // Close with Escape key
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') {
             hideReportsContainer();
             hideDetailView();
         }
     });
-    
+
     // Function to show notifications
     function showNotification(message, type = 'info') {
         // Create notification element
         const notification = document.createElement('div');
         notification.className = `notification notification-${type}`;
         notification.textContent = message;
-        
+
         // Style the notification
         notification.style.cssText = `
             position: fixed;
@@ -414,9 +420,9 @@ document.addEventListener('DOMContentLoaded', function() {
             transform: translateX(100%);
             transition: transform 0.3s ease;
         `;
-        
+
         // Set background color based on type
-        switch(type) {
+        switch (type) {
             case 'success':
                 notification.style.backgroundColor = '#4CAF50';
                 break;
@@ -427,15 +433,15 @@ document.addEventListener('DOMContentLoaded', function() {
             default:
                 notification.style.backgroundColor = '#007bff';
         }
-        
+
         // Add to document
         document.body.appendChild(notification);
-        
+
         // Animate in
         setTimeout(() => {
             notification.style.transform = 'translateX(0)';
         }, 100);
-        
+
         // Remove after 3 seconds
         setTimeout(() => {
             notification.style.transform = 'translateX(100%)';
