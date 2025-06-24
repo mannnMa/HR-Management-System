@@ -396,8 +396,7 @@
 .deleted-employee-table-container {
   position: absolute; 
   margin-top: 730px;
-  margin-left: 270px;
-  width: 100%; 
+  margin-left: 270px; 
   max-width: 1225px; 
   background-color: white;
   border: 1px solid #D9D9D9;

@@ -527,6 +527,7 @@ body {
     
     .header-other,
     .cell-other {
-        display: none; /* Hide "Other Information" column on small screens */
+        display: none; 
     }
 }
+

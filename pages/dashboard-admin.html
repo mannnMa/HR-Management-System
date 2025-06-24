@@ -499,8 +499,21 @@
     <div id="recognition-list" class="recognition-list"></div>
   </div>
 
+  <!-- Confirmation container Log Out Button -->
+  <div class="confirm-overlay-sidebar" id="confirmOverlay">
+    <div class="confirm-box-sidebar">
+      <video class="logout-animate" src="../assets/animation/logout.mp4" autoplay muted loop playsinline></video>
+      <p>Are you sure you want to log out?</p>
+      <div class="confirm-actions-sidebar">
+        <button id="confirmYes">Confirm</button>
+        <button id="confirmCancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
 
   <!--Js link-->
+  <script src="./js/sidebar.js" defer></script>
   <script src="./js/dashboard-admin.js" defer></script>
   <script src="./js/announcement-admin.js" defer></script>
   <script src="./js/employee-dashboard-js/evaluation-employee.js"></script>
