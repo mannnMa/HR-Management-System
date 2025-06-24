@@ -4,7 +4,6 @@ const allPayslips = [
   // ...more payslips
 ];
 
-// Always use EMP001
 const payslips = allPayslips.filter(p => p.employeeId === 'EMP001');
 
 const container = document.getElementById("payslipCards");
