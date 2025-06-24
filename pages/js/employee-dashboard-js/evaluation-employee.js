@@ -1,65 +1,96 @@
 document.addEventListener("DOMContentLoaded", () => {
   const wrapper = document.getElementById("employee-evaluation-container");
   const content = document.getElementById("evaluation-content");
-  const form = document.getElementById("evaluation-answer-form");
   const openBtn = document.getElementById("open-evaluation-btn");
   const closeBtn = document.getElementById("close-employee-eval-btn");
-
-  const nameDisplay = document.getElementById("eval-name");
-  const posDisplay = document.getElementById("eval-position");
-  const deptDisplay = document.getElementById("eval-department");
-
-  let currentEval = null;
 
   openBtn?.addEventListener("click", () => {
     const pending = JSON.parse(localStorage.getItem("pendingEvaluations")) || [];
 
-    // Take the most recent or first evaluation regardless of name
-    currentEval = pending[pending.length - 1];
+    content.innerHTML = ""; // Clear previous content
 
-    if (currentEval) {
-      nameDisplay.textContent = currentEval.employee;
-      posDisplay.textContent = currentEval.position;
-      deptDisplay.textContent = currentEval.department;
+    if (pending.length === 0) {
+      content.innerHTML = `<p style="color: red;">No evaluations assigned yet.</p>`;
     } else {
-      nameDisplay.textContent = "N/A";
-      posDisplay.textContent = "N/A";
-      deptDisplay.textContent = "N/A";
+      pending.forEach(evalData => {
+        const form = createEvaluationForm(evalData);
+        content.appendChild(form);
+      });
     }
 
     wrapper.style.display = "block";
     content.style.display = "block";
+    wrapper.scrollIntoView({ behavior: "smooth" });
   });
 
   closeBtn?.addEventListener("click", () => {
     wrapper.style.display = "none";
   });
 
-  form?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (!currentEval) return;
+  function createEvaluationForm(data) {
+    const container = document.createElement("div");
+    container.className = "evaluation-item";
+    container.innerHTML = `
+      <p><strong>Employee:</strong> ${data.employee}</p>
+      <p><strong>Department:</strong> ${data.department}</p>
+      <p><strong>Position:</strong> ${data.position}</p>
+      <form class="evaluation-answer-form" data-id="${data.id}">
+        <div class="evaluation-questions">
+          <h4>Answer Evaluation</h4>
+          ${[1, 2, 3, 4, 5].map(n => `
+            <div class="question">
+              <p>${getQuestionText(n)}</p>
+              <div class="choices">
+                ${["Outstanding", "Very Good", "Good", "Fair", "Poor"].map(val => `
+                  <label><input type="radio" name="q${n}" value="${val}" required> ${val}</label>
+                `).join("")}
+              </div>
+            </div>
+          `).join("")}
+        </div>
+        <button class="submit-evaluation" type="submit">Submit Evaluation</button>
+      </form>
+      <hr>
+    `;
 
-    const answers = [1, 2, 3, 4, 5].map(n =>
-      document.querySelector(`input[name="q${n}"]:checked`)?.value || ""
-    );
+    const form = container.querySelector("form");
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
 
-    const completed = {
-      ...currentEval,
-      answers,
-      timestamp: new Date().toLocaleString()
+      const answers = [1, 2, 3, 4, 5].map(n =>
+        form.querySelector(`input[name="q${n}"]:checked`)?.value || ""
+      );
+
+      const completedEval = {
+        ...data,
+        answers,
+        timestamp: new Date().toLocaleString()
+      };
+
+      const completed = JSON.parse(localStorage.getItem("completedEvaluations")) || [];
+      completed.push(completedEval);
+      localStorage.setItem("completedEvaluations", JSON.stringify(completed));
+
+      // Remove from pending
+      let pending = JSON.parse(localStorage.getItem("pendingEvaluations")) || [];
+      pending = pending.filter(e => e.id !== data.id);
+      localStorage.setItem("pendingEvaluations", JSON.stringify(pending));
+
+      alert(`Evaluation for ${data.employee} submitted.`);
+      container.remove(); // Remove the submitted form
+    });
+
+    return container;
+  }
+
+  function getQuestionText(n) {
+    const questions = {
+      1: "1. Work Quality",
+      2: "2. Communication Skills",
+      3: "3. Attendance & Punctuality",
+      4: "4. Teamwork",
+      5: "5. Problem Solving"
     };
-
-    const allCompleted = JSON.parse(localStorage.getItem("completedEvaluations")) || [];
-    allCompleted.push(completed);
-    localStorage.setItem("completedEvaluations", JSON.stringify(allCompleted));
-
-    // Remove from pending
-    const pending = JSON.parse(localStorage.getItem("pendingEvaluations")) || [];
-    const updatedPending = pending.filter(e => e.id !== currentEval.id);
-    localStorage.setItem("pendingEvaluations", JSON.stringify(updatedPending));
-
-    form.reset();
-    alert("Evaluation submitted!");
-    wrapper.style.display = "none";
-  });
+    return questions[n] || `Question ${n}`;
+  }
 });
