@@ -268,14 +268,10 @@
 /* Section Styles */
 .section-title {
   font-family: "Inter", sans-serif;
-<<<<<<< HEAD
-}
-
-
-=======
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 1rem;
   color: #333;
 }
->>>>>>> 9a289d7407f3fee208b0c03f3fb74a0f85c4e579
+
+
