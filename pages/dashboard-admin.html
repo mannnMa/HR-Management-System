@@ -337,6 +337,107 @@
 
 
   <!--Report Section-->
+  <!--Report Section - Updated to match Training Section design-->
+  <div class="reports-container" id="reports-container" style="display:none;">
+    <!-- Updated header structure to match training section -->
+    <div class="reports-header">
+      <h1 class="page-title">Reports and Others</h1>
+      <button class="close-reports-btn" id="close-reports-btn">✕</button>
+    </div>
+
+    <div class="section-container">
+      <h2 class="section-title">Report Information</h2>
+
+      <div class="table-container">
+        <table class="reports-table">
+          <thead class="table-header">
+            <tr>
+              <th class="header-name">Name</th>
+              <th class="header-department">Department</th>
+              <th class="header-type">Type</th>
+              <th class="header-actions">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-row">
+              <td class="cell-name">John Smith</td>
+              <td class="cell-department">IT</td>
+              <td class="cell-type">Report</td>
+              <td class="cell-actions">
+                <button class="action-btn view-btn">View</button>
+              </td>
+            </tr>
+            <tr class="table-row">
+              <td class="cell-name">Lea Princess</td>
+              <td class="cell-department">Sales</td>
+              <td class="cell-type">Feedback</td>
+              <td class="cell-actions">
+                <button class="action-btn view-btn">View</button>
+              </td>
+            </tr>
+            <tr class="table-row">
+              <td class="cell-name">Sky Mason</td>
+              <td class="cell-department">Finance</td>
+              <td class="cell-type">Leave Request</td>
+              <td class="cell-actions">
+                <button class="action-btn view-btn">View</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Sick & Vacation Leave Form section -->
+    <div class="section-container leave-form-section">
+      <div class="section-header-with-close">
+        <h2 class="section-title">Sick & Vacation Leave Form</h2>
+        <button class="close-section-btn" id="close-leave-form-btn">✕</button>
+      </div>
+
+      <div class="form-container">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Name of Employee:</label>
+            <span class="form-value">Sky Mason</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Leave Type:</label>
+            <span class="form-value">Sick Leave</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Leave Dates:</label>
+            <span class="form-value">6/24/2024</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Return Date:</label>
+            <span class="form-value">6/26/2024</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Attach Files:</label>
+            <span class="form-value">Medical.pdf</span>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="action-btn decline-btn">Decline</button>
+          <button class="action-btn approve-btn">Approve</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!--Evaluation Section-->
   <div class="evaluation-container" id="evaluation-container" style="display: none;">
@@ -409,6 +510,8 @@
   <script src="./js/employee-dashboard-js/evaluation-employee.js" defer></script>
   <script src="./js/recognition-admin.js" defer></script>
   <script src="./js/employee-dashboard-js/recognition-employee.js" defer></script>
+  <script src="./js/employee-dashboard-js/training-employee.js" defer></script>
+  <script src="./js/employee-dashboard-js/reports-employee.js" defer></script>
 </body>
 
 </html>
