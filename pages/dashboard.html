@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="./styles/general.css">
     <link rel="stylesheet" href="./styles/employee-sidebar.css">
     <link rel="stylesheet" href="./styles/dashboard.css">
+    <link rel="stylesheet" href="./styles/employee-dashboard/employee-evaluation.css">
   </head>
 
   <body>
@@ -177,7 +178,7 @@
               Enables performance evaluations of employees based on set criteria, 
               supporting feedback, growth, and improvement tracking.
             </p>
-            <div class="view-nav">
+            <div class="view-nav" id="open-evaluation-btn">
               <h3>View</h3>
               <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
             </div>
@@ -200,7 +201,86 @@
     </div>
 
 
+    <!-- EMPLOYEE EVALUATION SECTION -->
+    <div id="employee-evaluation-container" style="display: none;">
+      <div class="evaluation-header">
+        <h1>Evaluate Your Workmates</h1>
+        <button class="close-evaluation-btn" id="close-employee-eval-btn">&times;</button>
+      </div>
+
+      <div id="evaluation-content" style="display: none;">
+        <p>Employee Name: <span id="eval-name"></span></p>
+        <p>Department: <span id="eval-department"></span></p>
+        <p>Position: <span id="eval-position"></span></p>
+
+        <form id="evaluation-answer-form">
+          <div class="evaluation-questions">
+            <h3>Evaluation Questions</h3>
+
+            <div class="question">
+              <p>1. Work Quality</p>
+              <div class="choices">
+                <label><input type="radio" name="q1" value="Outstanding" required> Outstanding</label>
+                <label><input type="radio" name="q1" value="Very Good"> Very Good</label>
+                <label><input type="radio" name="q1" value="Good"> Good</label>
+                <label><input type="radio" name="q1" value="Fair"> Fair</label>
+                <label><input type="radio" name="q1" value="Poor"> Poor</label>
+              </div>
+            </div>
+
+            <div class="question">
+              <p>2. Communication Skills</p>
+              <div class="choices">
+                <label><input type="radio" name="q2" value="Outstanding" required> Outstanding</label>
+                <label><input type="radio" name="q2" value="Very Good"> Very Good</label>
+                <label><input type="radio" name="q2" value="Good"> Good</label>
+                <label><input type="radio" name="q2" value="Fair"> Fair</label>
+                <label><input type="radio" name="q2" value="Poor"> Poor</label>
+              </div>
+            </div>
+
+            <div class="question">
+              <p>3. Attendance & Punctuality</p>
+              <div class="choices">
+                <label><input type="radio" name="q3" value="Outstanding" required> Outstanding</label>
+                <label><input type="radio" name="q3" value="Very Good"> Very Good</label>
+                <label><input type="radio" name="q3" value="Good"> Good</label>
+                <label><input type="radio" name="q3" value="Fair"> Fair</label>
+                <label><input type="radio" name="q3" value="Poor"> Poor</label>
+              </div>
+            </div>
+
+            <div class="question">
+              <p>4. Teamwork</p>
+              <div class="choices">
+                <label><input type="radio" name="q4" value="Outstanding" required> Outstanding</label>
+                <label><input type="radio" name="q4" value="Very Good"> Very Good</label>
+                <label><input type="radio" name="q4" value="Good"> Good</label>
+                <label><input type="radio" name="q4" value="Fair"> Fair</label>
+                <label><input type="radio" name="q4" value="Poor"> Poor</label>
+              </div>
+            </div>
+
+            <div class="question">
+              <p>5. Problem Solving</p>
+              <div class="choices">
+                <label><input type="radio" name="q5" value="Outstanding" required> Outstanding</label>
+                <label><input type="radio" name="q5" value="Very Good"> Very Good</label>
+                <label><input type="radio" name="q5" value="Good"> Good</label>
+                <label><input type="radio" name="q5" value="Fair"> Fair</label>
+                <label><input type="radio" name="q5" value="Poor"> Poor</label>
+              </div>
+            </div>
+          </div>
+          <button type="submit">Submit Evaluation</button>
+        </form>
+      </div>
+    </div>
+
+
     <!--Js link-->
     <script src="./js/dashboard.js" defer></script>
+    <script src="./js/evaluation-admin.js"></script>
+    <script src="./js/employee-dashboard-js/evaluation-employee.js"></script>
   </body>
 </html>

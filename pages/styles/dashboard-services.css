@@ -105,7 +105,8 @@
 }
 
 .announcement-header,
-.policy-header {
+.policy-header,
+.evaluation-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -245,5 +246,102 @@
   color: #555;
 }
 
+/* Evaluation Container */
+.evaluation-container {
+  margin-top: 30px;
+  margin-left: 315px;
+  margin-bottom: 60px;
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 1100px;
+  display: none;
+  transition: opacity 0.3s ease;
+}
 
+.evaluation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
 
+.evaluation-header h1 {
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.close-evaluation-btn {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: #555;
+  cursor: pointer;
+  z-index: 10;
+  transition: color 0.2s ease;
+}
+
+.close-evaluation-btn:hover {
+  color: #cc0000;
+}
+
+/*Evaluation Section*/
+#evaluation-assignment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  font-family: "Inter", sans-serif;
+}
+
+#evaluation-assignment-form label {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #333;
+}
+
+#evaluation-assignment-form select,
+#evaluation-assignment-form input {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-family: "Inter", sans-serif;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#evaluation-assignment-form input::placeholder {
+  color: #999;
+}
+
+#evaluation-assignment-form button {
+  font-family: "Inter", sans-serif;
+  background-color: #FFCC00;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+  width: fit-content;
+}
+
+#evaluation-assignment-form button:hover {
+  background-color: #d5ac09;
+}
+
+.evaluation-result {
+  font-family: "Inter", sans-serif;
+}
+
+#evaluation-results {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-family: "Inter", sans-serif;
+}
