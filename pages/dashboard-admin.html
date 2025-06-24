@@ -130,7 +130,6 @@
                 Resources</span></p>
             <p>Department: <span id="employee-dept-display" class="editable" contenteditable="true">IT</span></p>
           </div>
-          <img class="notif-icon" src="../assets/notif-icon.png" alt="notification">
         </div>
       </div>
       <!--Services Features-->
@@ -166,7 +165,7 @@
           <!--Policy Container-->
           <div class="grid-item-policy">
             <img src="../assets/employee icons/policy-icon.png" alt="policy-icon">
-            <h2>Policy and Compliance</h2>
+            <h2>Policy & Compliance</h2>
             <p>
               Allows HR Admin to provide access to company policies, guidelines, and
               procedures in one organized location for easy reference and compliance.
@@ -327,8 +326,8 @@
         <label for="policy-file">
           <span>Select Policy & Compliance File</span>
         </label>
-        <input type="file" id="policy-file" name="policyFile" accept=".pdf,.doc,.docx,.jpg,.png" multiple required />
-        <span id="file-name-display">No file chosen</span>
+        <input type="file" id="policy-file" name="policyFile" multiple />
+        <span id="policy-file-name-display">No file chosen</span>
       </div>
       <!--SUBMIT BUTTON-->
       <button type="submit">Upload Policy & Compliance</button>
@@ -371,13 +370,45 @@
     <div id="evaluation-results"></div>
   </div>
 
+  <!--Recognition section-->
+  <div class="recognition-container" id="recognition-container" style="display: none;">
+    <div class="recognition-header">
+      <h1>Employee Recognition</h1>
+      <button class="close-recognition-btn" id="close-recognition-btn">✕</button>
+    </div>
+
+    <!-- Add Recognition Form -->
+    <form id="recognition-form">
+      <input type="text" id="recognition-title" placeholder="Title" required>
+      <input type="text" id="recognized-employee" placeholder="Employee Name" required>
+      <textarea id="recognition-message" placeholder="Reason / Achievement" required></textarea>
+
+      <div class="custom-file-upload">
+        <label for="recognition-file" class="upload-label">
+          <span>Upload Image</span>
+        </label>
+        <input type="file" id="recognition-file" name="images[]" accept="image/*" hidden>
+        <span class="upload-recognition" id="recognition-file-name-display">No file chosen</span>
+      </div>
+
+      <button id="recognition-post-button" type="submit">Post Recognition</button>
+    </form>
+
+    <!-- Recognition List -->
+    <div id="recognition-list" class="recognition-list"></div>
+  </div>
+
 
   <!--Js link-->
   <script src="./js/dashboard-admin.js" defer></script>
   <script src="./js/announcement-admin.js" defer></script>
-  <script src="./js/policy-admin.js" defer></script>
-  <script src="./js/evaluation-admin.js" defer></script>
   <script src="./js/employee-dashboard-js/evaluation-employee.js"></script>
+  <script src="./js/policy-admin.js" defer></script>
+  <script src="./js/employee-dashboard-js/policy-employee.js" defer></script>
+  <script src="./js/evaluation-admin.js" defer></script>
+  <script src="./js/employee-dashboard-js/evaluation-employee.js" defer></script>
+  <script src="./js/recognition-admin.js" defer></script>
+  <script src="./js/employee-dashboard-js/recognition-employee.js" defer></script>
 </body>
 
 </html>

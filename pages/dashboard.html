@@ -1,286 +1,316 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="icon" href="../assets/hr-logo-title.webp">
-    
-    <!--FONT LINKS-->
-      <!--POPPINS FONT-->
-      <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Dashboard</title>
+      <link rel="icon" href="../assets/hr-logo-title.webp">
+      
+      <!--FONT LINKS-->
+        <!--POPPINS FONT-->
+        <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 
-      <!--INTER FONTS-->
-      <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+        <!--INTER FONTS-->
+        <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 
-      <!--PUBLICK SAN-->
-      <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <!--PUBLICK SAN-->
+        <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-    <!--CSS LINK-->
-    <link rel="stylesheet" href="./styles/general.css">
-    <link rel="stylesheet" href="./styles/employee-sidebar.css">
-    <link rel="stylesheet" href="./styles/dashboard.css">
-    <link rel="stylesheet" href="./styles/employee-dashboard/employee-evaluation.css">
-  </head>
+      <!--CSS LINK-->
+      <link rel="stylesheet" href="./styles/general.css">
+      <link rel="stylesheet" href="./styles/employee-sidebar.css">
+      <link rel="stylesheet" href="./styles/dashboard.css">
+      <link rel="stylesheet" href="./styles/employee-dashboard/announcement-employee.css">
+      <link rel="stylesheet" href="./styles/employee-dashboard/policy-employee.css">
+      <link rel="stylesheet" href="./styles/employee-dashboard/employee-evaluation.css">
+      <link rel="stylesheet" href="./styles/employee-dashboard/recognition-employee.css">
+    </head>
 
-  <body>
-    <!--Side Bar Navigation-->
-    <div class="sidebar">
-      <!--Company Logo-->
-      <div class="sidebar-logo-container">
-        <div>
-          <img class="company-logo" src="../assets/company logo.webp" alt="company-logo">
-        </div>
-        <div>
-          <h1 id="company-logo-text">Connectiv7</h1>
-        </div>
-      </div>
-      <div>
-        <h1 class="employee-title">Employee Portal</h1>
-      </div>
-      <!--Search Button side bar nav-->
-      <div>
-        <input class="seach-input" type="text" placeholder="Search" name="search" id="searchGeneral">
-      </div>
-      <!--General Buttons-->
-      <div class="general-buttons">
-        <h3 class="general-title">General</h3>
+    <body>
+      <!--Side Bar Navigation-->
+      <div class="sidebar">
+        <!--Company Logo-->
+        <div class="sidebar-logo-container">
           <div>
-          <!--Profile Nav-->
-          <a class="profile-nav-link">
-            <div class="profile-nav">
-              <button class="profile-button">
-                <img class="profile-icon" src="../assets/dashboard-icon.png" alt="profile">
-                <span class="profile-text">Dashboard</span>
-              </button>
-            </div>
-          </a>
-          <!--Payslip Nav-->
-          <a class="payslip-nav-link">
+            <img class="company-logo" src="../assets/company logo.webp" alt="company-logo">
+          </div>
+          <div>
+            <h1 id="company-logo-text">Connectiv7</h1>
+          </div>
+        </div>
+        <div>
+          <h1 class="employee-title">Employee Portal</h1>
+        </div>
+        <!--Search Button side bar nav-->
+        <div>
+          <input class="seach-input" type="text" placeholder="Search" name="search" id="searchGeneral">
+        </div>
+        <!--General Buttons-->
+        <div class="general-buttons">
+          <h3 class="general-title">General</h3>
             <div>
-              <button class="payslip-button">
-                <img class="payslip-icon" src="../assets/payroll-icon.webp" alt="Payslip">
-                <span class="payslip-text">Payslip</span>
-              </button>
-            </div>
-          </a>
-          <!--Report Nav-->
-          <a class="report-nav-link">
-          <div>
-              <button class="report-button">
-                <img class="report-icon" src="../assets/report-icon.png" alt="report">
-                <span class="report-text">Report</span>
-              </button>
-            </div>
-          </a>
-        </div>
-      </div>
-      <!--Logout Nav-->
-      <form action="employee_login.html">
-        <div class="log-out-container">
-          <button class="log-out-button" id="logOutButton">
-            <img class="log-out-icon" src="../assets/log out - icon.webp" alt="log out">
-            <span class="log-out-text">Log Out</span>
-          </button>
-        </div>
-      </form>
-    </div>
-
-
-
-    <!--Main Content Profile-->
-    <!--Profile Header Notification-->
-    <div class="main-content">
-      <div class="profile-container">
-        <!--Profile Uploader-->
-        <div class="profile-pic-wrapper">
-          <img id="profile-pic" src="../assets/tsushikima.jpg" alt="Profile Picture" />
-          <input type="file" id="upload-input" accept="image/*" hidden />
-          <button id="upload-btn" class="upload-button">
-            <img src="../assets/upload-camera.png" id="upload-icon" alt="Upload" />
-          </button>
-        </div>
-        <!--Profile Info-->
-        <div class="profile-details">
-          <h1 class="welcome-text">Welcome to your Dashboard</h1>
-          <h2>
-            <span id="employee-name-display" class="name-profile" contenteditable="true">John Doe</span>
-          </h2>
-          <div class="employee-info">
-            <p>ID: <span id="employee-id-display" class="editable" contenteditable="true">EMP12345</span></p>
-            <p>Position: <span id="employee-position-display" class="editable" contenteditable="true">Web Developer</span></p>
-            <p>Department: <span id="employee-dept-display" class="editable" contenteditable="true">IT</span></p>
-          </div>
-          <img class="notif-icon" src="../assets/notif-icon.png" alt="notification">
-        </div>
-      </div>
-      <!--Services Features-->
-      <div class="dashboard-service">
-        <h1>General</h1>
-        <div class="grid-container">
-          <!--Announcement Container-->
-          <div class="grid-item-announcement">
-            <img class="announcement-icon" src="../assets/employee icons/announcement-icon.png" alt="announcement-icon">
-            <h2>Announcement</h2>
-            <p>
-              Keeps everyone informed with timely updates on events, news, 
-              and policies through clear, organized, and scheduled posts.
-            </p>
-            <div class="view-nav">
-              <h3>View</h3>
-              <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
-            </div>
-          </div>
-          <!--Training History Container-->
-          <div class="grid-item-training">
-            <img src="../assets/employee icons/training-history-icon.png" alt="training-history-icon">
-            <h2>Training History</h2>
-            <p>
-              Tracks completed trainings like webinars, orientations, and bootcamps, 
-              helping employees and HR monitor progress and development.
-            </p>
-            <div class="view-nav">
-              <h3>View</h3>
-              <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
-            </div>
-          </div>
-          <!--Policy Container-->
-          <div class="grid-item-policy">
-            <img src="../assets/employee icons/policy-icon.png" alt="policy-icon">
-            <h2>Policy</h2>
-            <p>
-              Provides access to company policies, guidelines, and procedures 
-              in one organized location for easy reference and compliance.
-            </p>
-            <div class="view-nav">
-              <h3>View</h3>
-              <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
-            </div>
-          </div>
-          <!--Report Container-->
-          <div class="grid-item-report">
-            <img src="../assets/employee icons/report-dashboard-icon.png" alt="report-icon">
-            <h2>Report</h2>
-            <p>
-              Displays a list of compliance records, feedback, and requests 
-              to help monitor and manage internal processes effectively.
-            </p>
-            <div class="view-nav">
-              <h3>View</h3>
-              <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
-            </div>
-          </div>
-          <!--Evaluation Container-->
-          <div class="grid-item-evaluation">
-            <img src="../assets/employee icons/evaluation-icon.png" alt="evaluation-icon">
-            <h2>Evaluation</h2>
-            <p>
-              Enables performance evaluations of employees based on set criteria, 
-              supporting feedback, growth, and improvement tracking.
-            </p>
-            <div class="view-nav" id="open-evaluation-btn">
-              <h3>View</h3>
-              <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
-            </div>
-          </div>
-          <!--Recognition Container-->
-          <div class="grid-item-recognition">
-            <img src="../assets/employee icons/recognition-icom.png" alt="recognition-icom">
-            <h2>Recognition</h2>
-            <p>
-              Highlights employee achievements and contributions to celebrate 
-              excellence and boost morale across the company.
-            </p>
-            <div class="view-nav">
-              <h3>View</h3>
-              <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
-            </div>
+            <!--Profile Nav-->
+            <a class="profile-nav-link">
+              <div class="profile-nav">
+                <button class="profile-button">
+                  <img class="profile-icon" src="../assets/dashboard-icon.png" alt="profile">
+                  <span class="profile-text">Dashboard</span>
+                </button>
+              </div>
+            </a>
+            <!--Payslip Nav-->
+            <a class="payslip-nav-link">
+              <div>
+                <button class="payslip-button">
+                  <img class="payslip-icon" src="../assets/payroll-icon.webp" alt="Payslip">
+                  <span class="payslip-text">Payslip</span>
+                </button>
+              </div>
+            </a>
+            <!--Report Nav-->
+            <a class="report-nav-link">
+            <div>
+                <button class="report-button">
+                  <img class="report-icon" src="../assets/report-icon.png" alt="report">
+                  <span class="report-text">Report</span>
+                </button>
+              </div>
+            </a>
           </div>
         </div>
-      </div>
-    </div>
-
-
-    <!-- EMPLOYEE EVALUATION SECTION -->
-    <div id="employee-evaluation-container" style="display: none;">
-      <div class="evaluation-header">
-        <h1>Evaluate Your Workmates</h1>
-        <button class="close-evaluation-btn" id="close-employee-eval-btn">&times;</button>
-      </div>
-
-      <div id="evaluation-content" style="display: none;">
-        <p>Employee Name: <span id="eval-name"></span></p>
-        <p>Department: <span id="eval-department"></span></p>
-        <p>Position: <span id="eval-position"></span></p>
-
-        <form id="evaluation-answer-form">
-          <div class="evaluation-questions">
-            <h3>Evaluation Questions</h3>
-
-            <div class="question">
-              <p>1. Work Quality</p>
-              <div class="choices">
-                <label><input type="radio" name="q1" value="Outstanding" required> Outstanding</label>
-                <label><input type="radio" name="q1" value="Very Good"> Very Good</label>
-                <label><input type="radio" name="q1" value="Good"> Good</label>
-                <label><input type="radio" name="q1" value="Fair"> Fair</label>
-                <label><input type="radio" name="q1" value="Poor"> Poor</label>
-              </div>
-            </div>
-
-            <div class="question">
-              <p>2. Communication Skills</p>
-              <div class="choices">
-                <label><input type="radio" name="q2" value="Outstanding" required> Outstanding</label>
-                <label><input type="radio" name="q2" value="Very Good"> Very Good</label>
-                <label><input type="radio" name="q2" value="Good"> Good</label>
-                <label><input type="radio" name="q2" value="Fair"> Fair</label>
-                <label><input type="radio" name="q2" value="Poor"> Poor</label>
-              </div>
-            </div>
-
-            <div class="question">
-              <p>3. Attendance & Punctuality</p>
-              <div class="choices">
-                <label><input type="radio" name="q3" value="Outstanding" required> Outstanding</label>
-                <label><input type="radio" name="q3" value="Very Good"> Very Good</label>
-                <label><input type="radio" name="q3" value="Good"> Good</label>
-                <label><input type="radio" name="q3" value="Fair"> Fair</label>
-                <label><input type="radio" name="q3" value="Poor"> Poor</label>
-              </div>
-            </div>
-
-            <div class="question">
-              <p>4. Teamwork</p>
-              <div class="choices">
-                <label><input type="radio" name="q4" value="Outstanding" required> Outstanding</label>
-                <label><input type="radio" name="q4" value="Very Good"> Very Good</label>
-                <label><input type="radio" name="q4" value="Good"> Good</label>
-                <label><input type="radio" name="q4" value="Fair"> Fair</label>
-                <label><input type="radio" name="q4" value="Poor"> Poor</label>
-              </div>
-            </div>
-
-            <div class="question">
-              <p>5. Problem Solving</p>
-              <div class="choices">
-                <label><input type="radio" name="q5" value="Outstanding" required> Outstanding</label>
-                <label><input type="radio" name="q5" value="Very Good"> Very Good</label>
-                <label><input type="radio" name="q5" value="Good"> Good</label>
-                <label><input type="radio" name="q5" value="Fair"> Fair</label>
-                <label><input type="radio" name="q5" value="Poor"> Poor</label>
-              </div>
-            </div>
+        <!--Logout Nav-->
+        <form action="employee_login.html">
+          <div class="log-out-container">
+            <button class="log-out-button" id="logOutButton">
+              <img class="log-out-icon" src="../assets/log out - icon.webp" alt="log out">
+              <span class="log-out-text">Log Out</span>
+            </button>
           </div>
-          <button type="submit">Submit Evaluation</button>
         </form>
       </div>
-    </div>
 
 
-    <!--Js link-->
-    <script src="./js/dashboard.js" defer></script>
-    <script src="./js/evaluation-admin.js"></script>
-    <script src="./js/employee-dashboard-js/evaluation-employee.js"></script>
-  </body>
-</html>
+
+      <!--Main Content Profile-->
+      <!--Profile Header Notification-->
+      <div class="main-content">
+        <div class="profile-container">
+          <!--Profile Uploader-->
+          <div class="profile-pic-wrapper">
+            <img id="profile-pic" src="../assets/tsushikima.jpg" alt="Profile Picture" />
+            <input type="file" id="upload-input" accept="image/*" hidden />
+            <button id="upload-btn" class="upload-button">
+              <img src="../assets/upload-camera.png" id="upload-icon" alt="Upload" />
+            </button>
+          </div>
+          <!--Profile Info-->
+          <div class="profile-details">
+            <h1 class="welcome-text">Welcome to your Dashboard</h1>
+            <h2>
+              <span id="employee-name-display" class="name-profile" contenteditable="true">John Doe</span>
+            </h2>
+            <div class="employee-info">
+              <p>ID: <span id="employee-id-display" class="editable" contenteditable="true">EMP12345</span></p>
+              <p>Position: <span id="employee-position-display" class="editable" contenteditable="true">Web Developer</span></p>
+              <p>Department: <span id="employee-dept-display" class="editable" contenteditable="true">IT</span></p>
+            </div>
+          </div>
+        </div>
+        <!--Services Features-->
+        <div class="dashboard-service">
+          <h1>General</h1>
+          <div class="grid-container">
+            <!--Announcement Container-->
+            <div class="grid-item-announcement">
+              <img class="announcement-icon" src="../assets/employee icons/announcement-icon.png" alt="announcement-icon">
+              <h2>Announcement</h2>
+              <p>
+                Keeps everyone informed with timely updates on events, news, 
+                and policies through clear, organized, and scheduled posts.
+              </p>
+              <div class="view-nav" id="open-employee-announcement-btn">
+                <h3>View</h3>
+                <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
+              </div>
+            </div>
+            <!--Training History Container-->
+            <div class="grid-item-training">
+              <img src="../assets/employee icons/training-history-icon.png" alt="training-history-icon">
+              <h2>Training History</h2>
+              <p>
+                Tracks completed trainings like webinars, orientations, and bootcamps, 
+                helping employees and HR monitor progress and development.
+              </p>
+              <div class="view-nav">
+                <h3>View</h3>
+                <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
+              </div>
+            </div>
+            <!--Policy Container-->
+            <div class="grid-item-policy">
+              <img src="../assets/employee icons/policy-icon.png" alt="policy-icon">
+              <h2>Policy & Compliance</h2>
+              <p>
+                Provides access to company policies, guidelines, and procedures 
+                in one organized location for easy reference and compliance.
+              </p>
+              <div class="view-nav" id="open-employee-policy-btn">
+                <h3>View</h3>
+                <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
+              </div>
+            </div>
+            <!--Report Container-->
+            <div class="grid-item-report">
+              <img src="../assets/employee icons/report-dashboard-icon.png" alt="report-icon">
+              <h2>Report</h2>
+              <p>
+                Displays a list of compliance records, feedback, and requests 
+                to help monitor and manage internal processes effectively.
+              </p>
+              <div class="view-nav">
+                <h3>View</h3>
+                <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
+              </div>
+            </div>
+            <!--Evaluation Container-->
+            <div class="grid-item-evaluation">
+              <img src="../assets/employee icons/evaluation-icon.png" alt="evaluation-icon">
+              <h2>Evaluation</h2>
+              <p>
+                Enables performance evaluations of employees based on set criteria, 
+                supporting feedback, growth, and improvement tracking.
+              </p>
+              <div class="view-nav" id="open-evaluation-btn">
+                <h3>View</h3>
+                <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
+              </div>
+            </div>
+            <!--Recognition Container-->
+            <div class="grid-item-recognition">
+              <img src="../assets/employee icons/recognition-icom.png" alt="recognition-icom">
+              <h2>Recognition</h2>
+              <p>
+                Highlights employee achievements and contributions to celebrate 
+                excellence and boost morale across the company.
+              </p>
+              <div class="view-nav" id="open-employee-recognition-btn"  >
+                <h3>View</h3>
+                <img src="../assets/employee icons/arrow-right-circle.png" alt="arrow-right-circle">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EMPLOYEE ANNOUNCEMENTS SECTION -->
+      <div class="employee-announcement-section" id="employee-announcement-section" style="display: none; padding: 2rem;">
+        <div class="announcement-header">
+          <h1>Announcements</h1>
+          <button class="close-announcement-btn" id="close-employee-announcement-btn">✕</button>
+        </div>
+        <div id="employee-announcement-list" class="announcement-list"></div>
+      </div>
+
+      <!-- EMPLOYEE POLICY SECTION -->
+      <div class="employee-policy-section" id="employee-policy-section" style="display: none; padding: 2rem;">
+        <div class="policy-header">
+          <h1>Policy & Compliance</h1>
+          <button class="close-policy-btn" id="close-employee-policy-btn">✕</button>
+        </div>
+        <div id="employee-policy-list" class="policy-list"></div>
+      </div>
+
+      <!-- EMPLOYEE EVALUATION SECTION -->
+      <div id="employee-evaluation-container" style="display: none;">
+        <div class="evaluation-header">
+          <h1>Evaluate Your Workmates</h1>
+          <button class="close-evaluation-btn" id="close-employee-eval-btn">&times;</button>
+        </div>
+
+        <div id="evaluation-content" style="display: none;">
+          <p>Employee Name: <span id="eval-name"></span></p>
+          <p>Department: <span id="eval-department"></span></p>
+          <p>Position: <span id="eval-position"></span></p>
+
+          <form id="evaluation-answer-form">
+            <div class="evaluation-questions">
+              <h3>Evaluation Questions</h3>
+
+              <div class="question">
+                <p>1. Work Quality</p>
+                <div class="choices">
+                  <label><input type="radio" name="q1" value="Outstanding" required> Outstanding</label>
+                  <label><input type="radio" name="q1" value="Very Good"> Very Good</label>
+                  <label><input type="radio" name="q1" value="Good"> Good</label>
+                  <label><input type="radio" name="q1" value="Fair"> Fair</label>
+                  <label><input type="radio" name="q1" value="Poor"> Poor</label>
+                </div>
+              </div>
+
+              <div class="question">
+                <p>2. Communication Skills</p>
+                <div class="choices">
+                  <label><input type="radio" name="q2" value="Outstanding" required> Outstanding</label>
+                  <label><input type="radio" name="q2" value="Very Good"> Very Good</label>
+                  <label><input type="radio" name="q2" value="Good"> Good</label>
+                  <label><input type="radio" name="q2" value="Fair"> Fair</label>
+                  <label><input type="radio" name="q2" value="Poor"> Poor</label>
+                </div>
+              </div>
+
+              <div class="question">
+                <p>3. Attendance & Punctuality</p>
+                <div class="choices">
+                  <label><input type="radio" name="q3" value="Outstanding" required> Outstanding</label>
+                  <label><input type="radio" name="q3" value="Very Good"> Very Good</label>
+                  <label><input type="radio" name="q3" value="Good"> Good</label>
+                  <label><input type="radio" name="q3" value="Fair"> Fair</label>
+                  <label><input type="radio" name="q3" value="Poor"> Poor</label>
+                </div>
+              </div>
+
+              <div class="question">
+                <p>4. Teamwork</p>
+                <div class="choices">
+                  <label><input type="radio" name="q4" value="Outstanding" required> Outstanding</label>
+                  <label><input type="radio" name="q4" value="Very Good"> Very Good</label>
+                  <label><input type="radio" name="q4" value="Good"> Good</label>
+                  <label><input type="radio" name="q4" value="Fair"> Fair</label>
+                  <label><input type="radio" name="q4" value="Poor"> Poor</label>
+                </div>
+              </div>
+
+              <div class="question">
+                <p>5. Problem Solving</p>
+                <div class="choices">
+                  <label><input type="radio" name="q5" value="Outstanding" required> Outstanding</label>
+                  <label><input type="radio" name="q5" value="Very Good"> Very Good</label>
+                  <label><input type="radio" name="q5" value="Good"> Good</label>
+                  <label><input type="radio" name="q5" value="Fair"> Fair</label>
+                  <label><input type="radio" name="q5" value="Poor"> Poor</label>
+                </div>
+              </div>
+            </div>
+            <button type="submit">Submit Evaluation</button>
+          </form>
+        </div>
+      </div>
+
+      <!--Recognition Section-->
+      <div class="employee-recognition-section" id="employee-recognition-section" style="display: none; padding: 2rem;">
+        <div class="recognition-header">
+          <h1>Recognitions</h1>
+          <button class="close-recognition-btn" id="close-employee-recognition-btn">✕</button>
+        </div>
+        <div id="employee-recognition-list" class="recognition-list"></div>
+      </div>
+
+      <!--Js link-->
+      <script src="./js/dashboard.js" defer></script>
+      <script src="./js/employee-dashboard-js/announcement-employee.js" defer></script>
+      <script src="./js/employee-dashboard-js/policy-employee.js" defer></script>
+      <script src="./js/evaluation-admin.js" defer></script>
+      <script src="./js/employee-dashboard-js/evaluation-employee.js" defer></script>
+      <script src="./js/employee-dashboard-js/recognition-employee.js" defer></script>
+    </body>
+  </html>
