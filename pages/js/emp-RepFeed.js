@@ -62,6 +62,23 @@ function resetAllForms() {
     if (fileInput) fileInput.value = '';
 }
 
+// Helper function to get display name for training types
+function getTrainingDisplayName(trainingType) {
+    const trainingNames = {
+        'technical-skills': 'Technical Skills Development',
+        'leadership': 'Leadership Training',
+        'communication': 'Communication Skills',
+        'project-management': 'Project Management',
+        'data-analysis': 'Data Analysis',
+        'customer-service': 'Customer Service Excellence',
+        'safety-training': 'Safety and Compliance',
+        'digital-literacy': 'Digital Literacy',
+        'team-building': 'Team Building',
+        'other': 'Other'
+    };
+    return trainingNames[trainingType] || trainingType;
+}
+
 // CONSOLIDATED VIEW BUTTON EVENT LISTENER (attached only once)
 viewButtons.forEach(button => {
     button.addEventListener('click', () => {
@@ -209,7 +226,7 @@ if (reportForm) {
     console.error('Report form not found in HTML');
 }
 
-// Training form submission
+// Training form submission - UPDATED VERSION with data storage
 if (trainingForm) {
     trainingForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -247,6 +264,40 @@ if (trainingForm) {
             if (customInput) customInput.focus();
             return;
         }
+        
+        // Create training request object
+        const trainingRequest = {
+            id: Date.now(), // Simple ID generation
+            name: employeeName.trim(),
+            department: department,
+            trainingType: trainingType,
+            customTraining: trainingType === 'other' ? customTraining.trim() : '',
+            selectedTraining: trainingType === 'other' ? 'Other' : getTrainingDisplayName(trainingType),
+            otherInformation: trainingType === 'other' ? customTraining.trim() : '',
+            progress: 'not-yet',
+            dateSubmitted: new Date().toISOString()
+        };
+        
+        // Save to memory storage (since localStorage is not available in Claude artifacts)
+        if (!window.trainingRequests) {
+            window.trainingRequests = [];
+        }
+        window.trainingRequests.push(trainingRequest);
+        
+        // Also try to save to localStorage if available (for external usage)
+        if (typeof(Storage) !== "undefined" && localStorage) {
+            try {
+                // Try to use localStorage if available
+                let existingRequests = JSON.parse(localStorage.getItem('trainingRequests') || '[]');
+                existingRequests.push(trainingRequest);
+                localStorage.setItem('trainingRequests', JSON.stringify(existingRequests));
+            } catch (e) {
+                // If localStorage fails, just use window storage
+                console.log('Using window storage instead of localStorage');
+            }
+        }
+        
+        console.log('Training request saved:', trainingRequest);
         
         // Show success message
         if (trainingSuccessMessage) {
