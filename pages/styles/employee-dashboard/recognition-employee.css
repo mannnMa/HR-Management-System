@@ -1,0 +1,99 @@
+.employee-recognition-section {
+  margin: 30px 60px 60px 315px;
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Poppins", sans-serif;
+}
+
+.employee-recognition-section .recognition-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.employee-recognition-section .recognition-header h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.employee-recognition-section .close-recognition-btn {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: #555;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.employee-recognition-section .close-recognition-btn:hover {
+  color: #cc0000;
+}
+
+.recognition-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.recognition-item {
+  background-color: #f9f9f9;
+  border-left: 6px solid #8EACCD;
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.3s ease;
+}
+
+.recognition-item h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.recognition-item p {
+  margin: 0.4rem 0;
+  font-size: 15px;
+}
+
+.recognition-img {
+  max-width: 250px;
+  border-radius: 6px;
+  margin-top: 0.8rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recognition-timestamp {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #777;
+  font-style: italic;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .recognition-item {
+    padding: 1rem;
+  }
+
+  .recognition-img {
+    max-width: 100%;
+  }
+
+  .employee-recognition-section .recognition-header h1 {
+    font-size: 20px;
+  }
+}
