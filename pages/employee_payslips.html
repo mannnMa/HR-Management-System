@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Payslips | Connectiv7</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Tailwind for card grid, your own CSS for sidebar -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/general.css">
+  <link rel="stylesheet" href="./styles/employee-sidebar.css">
+  <link rel="stylesheet" href="./styles/employee_payslips.css"><!-- NEW: your page-specific CSS -->
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-blue-50 min-h-screen">
+  <div class="flex">
+    <!-- Sidebar Navigation Start -->
+    <div class="sidebar">
+      <!--Company Logo-->
+      <div class="sidebar-logo-container">
+        <div>
+          <img class="company-logo" src="../assets/company logo.webp" alt="company-logo">
+        </div>
+        <div>
+          <h1 id="company-logo-text">Connectiv7</h1>
+        </div>
+      </div>
+      <div>
+        <h1 class="employee-title">Employee Portal</h1>
+      </div>
+      <!--Search Button side bar nav-->
+      <div>
+        <input class="seach-input" type="text" placeholder="Search" name="search" id="searchGeneral">
+      </div>
+      <!--General Buttons-->
+      <div class="general-buttons">
+        <h3 class="general-title">General</h3>
+        <div>
+          <!--Dashboard Nav-->
+          <a class="profile-nav-link profile-button" href="dashboard.html">
+            <img class="profile-icon" src="../assets/dashboard-icon.png" alt="profile">
+            <span class="profile-text">Dashboard</span>
+          </a>
+          <!--Payslip Nav-->
+          <a class="payslip-nav-link" href="employee_payslips.html">
+            <div>
+              <button class="payslip-button">
+                <img class="payslip-icon" src="../assets/payroll-icon.webp" alt="Payslip">
+                <span class="payslip-text">Payslip</span>
+              </button>
+            </div>
+          </a>
+          <!--Report Nav-->
+          <a class="report-nav-link" href="emp-RepFeed.html">
+            <div>
+              <button class="report-button">
+                <img class="report-icon" src="../assets/report-icon.png" alt="report">
+                <span class="report-text">Report</span>
+              </button>
+            </div>
+          </a>
+        </div>
+      </div>
+      <!--Logout Nav-->
+      <form action="employee_login.html">
+        <div class="log-out-container">
+          <button class="log-out-button" id="logOutButton">
+            <img class="log-out-icon" src="../assets/log out - icon.webp" alt="log out">
+            <span class="log-out-text">Log Out</span>
+          </button>
+        </div>
+      </form>
+    </div>
+    <!-- Sidebar Navigation End -->
+
+    <!-- Main Content -->
+    <main class="flex-1 p-10">
+      <div class="flex items-center justify-between mb-8">
+        <h1 class="text-4xl font-extrabold text-blue-900" style="font-family: 'Poppins', 'Inter', 'Public Sans', sans-serif;">My Payslips</h1>
+        <div class="bg-green-500 text-white px-4 py-2 rounded-full flex items-center font-bold text-lg shadow"
+             style="font-family: 'Inter', 'Poppins', 'Public Sans', sans-serif;">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          <span id="employeeId">EMP001</span>
+        </div>
+      </div>
+      <div id="payslipCards" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
+    </main>
+  </div>
+  <script src="./js/employee_payslips.js"></script>
+  <script>
+    const employeeId = 'EMP001';
+    document.getElementById('employeeId').textContent = employeeId;
+    fetch(`php/list_payslips.php?employeeId=${employeeId}`)
+  </script>
+</body>
+</html>
