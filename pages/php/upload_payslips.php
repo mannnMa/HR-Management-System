@@ -1,19 +1,15 @@
 <?php
-$uploadDir = __DIR__ . '/../../payslips/';
+$payslipDir = __DIR__ . '/../payslips/'; // Adjust path as needed
 
-// Create the /payslips folder if it doesn't exist
-if (!is_dir($uploadDir)) {
-    if (!mkdir($uploadDir, 0777, true)) {
-        die("Failed to create directory: $uploadDir");
-    }
+if (!is_dir($payslipDir)) {
+    mkdir($payslipDir, 0777, true);
 }
 
-foreach (['pdfFile', 'metaFile'] as $field) {
-    if (isset($_FILES[$field])) {
-        $fileName = basename($_FILES[$field]['name']);
-        $targetPath = $uploadDir . $fileName;
-        move_uploaded_file($_FILES[$field]['tmp_name'], $targetPath);
-    }
+if (isset($_FILES['pdfFile'])) {
+    move_uploaded_file($_FILES['pdfFile']['tmp_name'], $payslipDir . basename($_FILES['pdfFile']['name']));
 }
-echo "Upload complete";
+if (isset($_FILES['metaFile'])) {
+    move_uploaded_file($_FILES['metaFile']['tmp_name'], $payslipDir . basename($_FILES['metaFile']['name']));
+}
+echo "Payslip files uploaded!";
 ?>
