@@ -50,7 +50,7 @@
           <h3 class="general-title">General</h3>
             <div>
             <!--Profile Nav-->
-            <a class="profile-nav-link">
+            <a class="profile-nav-link" href="./dashboard.html">
               <div class="profile-nav">
                 <button class="profile-button">
                   <img class="profile-icon" src="../assets/dashboard-icon.png" alt="profile">
@@ -59,7 +59,7 @@
               </div>
             </a>
             <!--Payslip Nav-->
-            <a class="payslip-nav-link">
+            <a class="payslip-nav-link" href="./employee_payslips.html">
               <div>
                 <button class="payslip-button">
                   <img class="payslip-icon" src="../assets/payroll-icon.webp" alt="Payslip">
@@ -68,7 +68,7 @@
               </div>
             </a>
             <!--Report Nav-->
-            <a class="report-nav-link">
+            <a class="report-nav-link" href="./emp-RepFeed.html">
             <div>
                 <button class="report-button">
                   <img class="report-icon" src="../assets/report-icon.png" alt="report">
@@ -303,6 +303,18 @@
         <div id="employee-recognition-list" class="recognition-list"></div>
       </div>
 
+      <!-- Confirmation container Log Out Button -->
+      <div class="confirm-overlay-sidebar" id="confirmOverlay">
+        <div class="confirm-box-sidebar">
+          <video class="logout-animate" src="../assets/animation/logout.mp4" autoplay muted loop playsinline></video>
+          <p>Are you sure you want to log out?</p>
+          <div class="confirm-actions-sidebar">
+            <button id="confirmYes">Confirm</button>
+            <button id="confirmCancel">Cancel</button>
+          </div>
+        </div>
+      </div>
+
       <!--Js link-->
       <script src="./js/dashboard.js" defer></script>
       <script src="./js/employee-dashboard-js/announcement-employee.js" defer></script>
@@ -310,5 +322,6 @@
       <script src="./js/evaluation-admin.js" defer></script>
       <script src="./js/employee-dashboard-js/evaluation-employee.js" defer></script>
       <script src="./js/employee-dashboard-js/recognition-employee.js" defer></script>
+      <script src="./js/sidebar-employee.js" defer></script>
     </body>
   </html>

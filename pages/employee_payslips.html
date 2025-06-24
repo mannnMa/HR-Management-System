@@ -15,64 +15,67 @@
 </head>
 <body class="bg-blue-50 min-h-screen">
   <div class="flex">
-    <!-- Sidebar Navigation Start -->
-    <div class="sidebar">
-      <!--Company Logo-->
-      <div class="sidebar-logo-container">
-        <div>
-          <img class="company-logo" src="../assets/company logo.webp" alt="company-logo">
+    <!--Side Bar Navigation-->
+      <div class="sidebar">
+        <!--Company Logo-->
+        <div class="sidebar-logo-container">
+          <div>
+            <img class="company-logo" src="../assets/company logo.webp" alt="company-logo">
+          </div>
+          <div>
+            <h1 id="company-logo-text">Connectiv7</h1>
+          </div>
         </div>
         <div>
-          <h1 id="company-logo-text">Connectiv7</h1>
+          <h1 class="employee-title">Employee Portal</h1>
         </div>
-      </div>
-      <div>
-        <h1 class="employee-title">Employee Portal</h1>
-      </div>
-      <!--Search Button side bar nav-->
-      <div>
-        <input class="seach-input" type="text" placeholder="Search" name="search" id="searchGeneral">
-      </div>
-      <!--General Buttons-->
-      <div class="general-buttons">
-        <h3 class="general-title">General</h3>
+        <!--Search Button side bar nav-->
         <div>
-          <!--Dashboard Nav-->
-          <a class="profile-nav-link profile-button" href="dashboard.html">
-            <img class="profile-icon" src="../assets/dashboard-icon.png" alt="profile">
-            <span class="profile-text">Dashboard</span>
-          </a>
-          <!--Payslip Nav-->
-          <a class="payslip-nav-link" href="employee_payslips.html">
+          <input class="seach-input" type="text" placeholder="Search" name="search" id="searchGeneral">
+        </div>
+        <!--General Buttons-->
+        <div class="general-buttons">
+          <h3 class="general-title">General</h3>
             <div>
-              <button class="payslip-button">
-                <img class="payslip-icon" src="../assets/payroll-icon.webp" alt="Payslip">
-                <span class="payslip-text">Payslip</span>
-              </button>
-            </div>
-          </a>
-          <!--Report Nav-->
-          <a class="report-nav-link" href="emp-RepFeed.html">
+            <!--Profile Nav-->
+            <a class="profile-nav-link" href="./dashboard.html">
+              <div class="profile-nav">
+                <button class="profile-button">
+                  <img class="profile-icon" src="../assets/dashboard-icon.png" alt="profile">
+                  <span class="profile-text">Dashboard</span>
+                </button>
+              </div>
+            </a>
+            <!--Payslip Nav-->
+            <a class="payslip-nav-link" href="./employee_payslips.html">
+              <div>
+                <button class="payslip-button">
+                  <img class="payslip-icon" src="../assets/payroll-icon.webp" alt="Payslip">
+                  <span class="payslip-text">Payslip</span>
+                </button>
+              </div>
+            </a>
+            <!--Report Nav-->
+            <a class="report-nav-link" href="./emp-RepFeed.html">
             <div>
-              <button class="report-button">
-                <img class="report-icon" src="../assets/report-icon.png" alt="report">
-                <span class="report-text">Report</span>
-              </button>
-            </div>
-          </a>
+                <button class="report-button">
+                  <img class="report-icon" src="../assets/report-icon.png" alt="report">
+                  <span class="report-text">Report</span>
+                </button>
+              </div>
+            </a>
+          </div>
         </div>
+        <!--Logout Nav-->
+        <form action="employee_login.html">
+          <div class="log-out-container">
+            <button class="log-out-button" id="logOutButton">
+              <img class="log-out-icon" src="../assets/log out - icon.webp" alt="log out">
+              <span class="log-out-text">Log Out</span>
+            </button>
+          </div>
+        </form>
       </div>
-      <!--Logout Nav-->
-      <form action="employee_login.html">
-        <div class="log-out-container">
-          <button class="log-out-button" id="logOutButton">
-            <img class="log-out-icon" src="../assets/log out - icon.webp" alt="log out">
-            <span class="log-out-text">Log Out</span>
-          </button>
-        </div>
-      </form>
-    </div>
-    <!-- Sidebar Navigation End -->
 
     <!-- Main Content -->
     <main class="flex-1 p-10">
@@ -87,7 +90,21 @@
       <div id="payslipCards" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
     </main>
   </div>
+
+  <!-- Confirmation container Log Out Button -->
+  <div class="confirm-overlay-sidebar" id="confirmOverlay">
+    <div class="confirm-box-sidebar">
+      <video class="logout-animate" src="../assets/animation/logout.mp4" autoplay muted loop playsinline></video>
+      <p>Are you sure you want to log out?</p>
+      <div class="confirm-actions-sidebar">
+        <button id="confirmYes">Confirm</button>
+        <button id="confirmCancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
   <script src="./js/employee_payslips.js"></script>
+  <script src="./js/sidebar-employee.js" defer></script>
   <script>
     const employeeId = 'EMP001';
     document.getElementById('employeeId').textContent = employeeId;
