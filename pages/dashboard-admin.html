@@ -187,7 +187,7 @@
               </div>
             </div>
             <!--Evaluation Container-->
-            <div class="grid-item-evaluation">
+            <div class="grid-item-evaluation" id="open-evaluation-button">
               <img src="../assets/employee icons/evaluation-icon.png" alt="evaluation-icon">
               <h2>Evaluation</h2>
               <p>
@@ -264,13 +264,44 @@
 
     <!--Report Section-->
 
-    
     <!--Evaluation Section-->
+    <div class="evaluation-container" id="evaluation-container" style="display: none;">
+      <div class="evaluation-header">
+        <h1>Assign Employee Evaluation</h1>
+        <button class="close-evaluation-btn" id="close-evaluation-btn">X close</button>
+      </div>
 
+      <form id="evaluation-assignment-form">
+        <label for="admin-name">Employee Name:</label>
+        <input type="text" id="admin-name" required placeholder="Enter Full Name" />
 
+        <label for="admin-department">Department:</label>
+        <select id="admin-department" required>
+          <option value="">-- Select Department --</option>
+          <option value="Admin">Admin</option>
+          <option value="IT">IT</option>
+          <option value="HR">HR</option>
+          <option value="Sales">Sales</option>
+          <option value="Marketing">Marketing</option>
+          <option value="Finance">Finance</option>
+        </select>
+
+        <label for="admin-position">Position:</label>
+        <input type="text" id="admin-position" required placeholder="Enter Position" />
+
+        <button type="submit">Send Evaluation</button>
+      </form>
+
+      <h2 class="evaluation-result">Evaluation Results</h2>
+      <div id="evaluation-results"></div>
+    </div>
+
+    
     <!--Js link-->
     <script src="./js/dashboard-admin.js" defer></script>
     <script src="./js/announcement-admin.js" defer></script>
     <script src="./js/policy-admin.js" defer></script>
+    <script src="./js/evaluation-admin.js" defer></script>
+    <script src="./js/employee-dashboard-js/evaluation-employee.js"></script>
   </body>
 </html>
