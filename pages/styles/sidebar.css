@@ -143,6 +143,9 @@ button {
 .calendar-button:hover .calendar-icon { 
   content: url(../../assets/calendar-icon-hover.webp); 
 }
+.profile-button:hover .profile-icon { 
+  content: url(../../assets/dashboard-icon-hover.png); 
+}
 .log-out-button:hover .log-out-icon { 
   content: url(../../assets/log-out-hover.webp); 
 }
@@ -237,7 +240,8 @@ button {
 .employee-nav-link,
 .payroll-nav-link,
 .job-nav-link,
-.calendar-nav-link {
+.calendar-nav-link,
+.dashboard-nav-link {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.9);
 }
@@ -246,6 +250,7 @@ button {
 .payroll-button.active,
 .job-button.active,
 .calendar-button.active,
+.profile-button.active,
 .log-out-button.active {
   background-color: #09104D;
   color: rgba(255, 255, 255, 0.9);
@@ -262,6 +267,9 @@ button {
 }
 .calendar-button.active .calendar-icon { 
   content: url(../../assets/calendar-icon-hover.webp); 
+}
+.profile-button.active .profile-icon { 
+  content: url(../../assets/dashboard-icon-hover.png); 
 }
 .log-out-button.active .log-out-icon { 
   content: url(../../assets/log-out-hover.webp); 
