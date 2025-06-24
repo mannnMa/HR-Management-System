@@ -696,3 +696,99 @@
     margin-bottom: 0.5rem;
   }
 }
+
+  .detailed-report-view {
+    background: #fff;
+    border-radius: 8px;
+    padding: 24px;
+    width: 100%;
+    max-width: 800px;
+    margin: 40px auto;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+}
+
+.detail-title {
+    font-size: 1.75rem;
+    color: #333;
+}
+
+.detail-close-btn {
+    font-size: 1.5rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #888;
+    transition: color 0.3s ease;
+}
+
+.detail-close-btn:hover {
+    color: #e74c3c;
+}
+
+.detail-section {
+    margin-bottom: 28px;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px 24px;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 4px;
+}
+
+.detail-value {
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.detail-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+    margin-top: 20px;
+}
+
+.action-btn {
+    padding: 8px 18px;
+    font-weight: 500;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.approve-btn {
+    background-color: #27ae60;
+    color: white;
+}
+
+.decline-btn {
+    background-color: #c0392b;
+    color: white;
+}

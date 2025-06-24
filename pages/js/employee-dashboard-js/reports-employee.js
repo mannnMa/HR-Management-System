@@ -99,136 +99,70 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Function to create detailed report view
-    function createDetailedReportView(rowData) {
-        return `
-            <div class="detailed-report-view">
-                <div class="detail-header">
-                    <h3 class="detail-title">Report Details</h3>
-                    <button class="close-detail-btn" onclick="hideDetailView()">&times;</button>
-                </div>
-                <div class="detail-content">
-                    <div class="detail-section">
-                        <h4>Employee Information</h4>
-                        <div class="detail-grid">
-                            <div class="detail-item">
-                                <span class="detail-label">Name:</span>
-                                <span class="detail-value">${rowData.name}</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Department:</span>
-                                <span class="detail-value">${rowData.department}</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Request Type:</span>
-                                <span class="detail-value">${rowData.type}</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Date Submitted:</span>
-                                <span class="detail-value">${rowData.date || new Date().toLocaleDateString()}</span>
-                            </div>
-                        </div>
+   function createDetailedReportView(rowData) {
+    return `
+        <div class="detailed-report-view">
+            <div class="detail-header">
+                <h3 class="detail-title">Details</h3>
+                <button class="detail-close-btn" onclick="hideDetailView()" aria-label="Close">✕</button>
+            </div>
+            <div class="detail-content">
+                <section class="detail-section">
+                    <h4>Employee Information</h4>
+                    <div class="detail-grid">
+                        <div class="detail-item"><span class="detail-label">Name:</span><span class="detail-value">${rowData.name}</span></div>
+                        <div class="detail-item"><span class="detail-label">Department:</span><span class="detail-value">${rowData.department}</span></div>
+                        <div class="detail-item"><span class="detail-label">Request Type:</span><span class="detail-value">${rowData.type}</span></div>
+                        <div class="detail-item"><span class="detail-label">Date Submitted:</span><span class="detail-value">${rowData.date || new Date().toLocaleDateString()}</span></div>
                     </div>
-                    
-                    ${rowData.type.toLowerCase().includes('leave') ? `
-                    <div class="detail-section">
+                </section>
+
+                ${
+                    rowData.type.toLowerCase().includes('leave') ? `
+                    <section class="detail-section">
                         <h4>Leave Request Details</h4>
                         <div class="detail-grid">
-                            <div class="detail-item">
-                                <span class="detail-label">Leave Type:</span>
-                                <span class="detail-value">${rowData.leaveType || 'Sick Leave'}</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Start Date:</span>
-                                <span class="detail-value">${rowData.startDate || '6/24/2024'}</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">End Date:</span>
-                                <span class="detail-value">${rowData.endDate || '6/26/2024'}</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Duration:</span>
-                                <span class="detail-value">${rowData.duration || '3 days'}</span>
-                            </div>
+                            <div class="detail-item"><span class="detail-label">Leave Type:</span><span class="detail-value">${rowData.leaveType || 'Sick Leave'}</span></div>
+                            <div class="detail-item"><span class="detail-label">Start Date:</span><span class="detail-value">${rowData.startDate || '6/24/2024'}</span></div>
+                            <div class="detail-item"><span class="detail-label">End Date:</span><span class="detail-value">${rowData.endDate || '6/26/2024'}</span></div>
+                            <div class="detail-item"><span class="detail-label">Duration:</span><span class="detail-value">${rowData.duration || '3 days'}</span></div>
+                            <div class="detail-item full-width"><span class="detail-label">Reason:</span><span class="detail-value">${rowData.reason || 'Medical leave for recovery.'}</span></div>
+                            <div class="detail-item full-width"><span class="detail-label">Attached Files:</span><span class="detail-value">${rowData.attachedFiles || 'Medical.pdf'}</span></div>
                         </div>
-                        <div class="detail-item full-width">
-                            <span class="detail-label">Reason:</span>
-                            <div class="detail-description">
-                                ${rowData.reason || 'Medical leave for recovery.'}
-                            </div>
-                        </div>
-                        <div class="detail-item full-width">
-                            <span class="detail-label">Attached Files:</span>
-                            <div class="detail-description">
-                                ${rowData.attachedFiles || 'Medical.pdf'}
-                            </div>
-                        </div>
-                    </div>
+                    </section>
                     ` : rowData.type.toLowerCase().includes('feedback') ? `
-                    <div class="detail-section">
+                    <section class="detail-section">
                         <h4>Feedback Details</h4>
                         <div class="detail-grid">
-                            <div class="detail-item">
-                                <span class="detail-label">Feedback Type:</span>
-                                <span class="detail-value">${rowData.feedbackType || 'General Feedback'}</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Priority:</span>
-                                <span class="detail-value">${rowData.priority || 'Medium'}</span>
-                            </div>
+                            <div class="detail-item"><span class="detail-label">Feedback Type:</span><span class="detail-value">${rowData.feedbackType || 'General Feedback'}</span></div>
+                            <div class="detail-item"><span class="detail-label">Priority:</span><span class="detail-value">${rowData.priority || 'Medium'}</span></div>
+                            <div class="detail-item full-width"><span class="detail-label">Feedback Content:</span><span class="detail-value">${rowData.feedbackContent || 'Suggestions for improving workplace efficiency and team collaboration.'}</span></div>
                         </div>
-                        <div class="detail-item full-width">
-                            <span class="detail-label">Feedback Content:</span>
-                            <div class="detail-description">
-                                ${rowData.feedbackContent || 'Suggestions for improving workplace efficiency and team collaboration.'}
-                            </div>
-                        </div>
-                    </div>
+                    </section>
                     ` : `
-                    <div class="detail-section">
+                    <section class="detail-section">
                         <h4>Report Details</h4>
                         <div class="detail-grid">
-                            <div class="detail-item">
-                                <span class="detail-label">Report Type:</span>
-                                <span class="detail-value">${rowData.type}</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Status:</span>
-                                <span class="detail-value">${rowData.status || 'Pending Review'}</span>
-                            </div>
+                            <div class="detail-item"><span class="detail-label">Report Type:</span><span class="detail-value">${rowData.type}</span></div>
+                            <div class="detail-item"><span class="detail-label">Status:</span><span class="detail-value">${rowData.status || 'Pending Review'}</span></div>
+                            <div class="detail-item full-width"><span class="detail-label">Description:</span><span class="detail-value">${rowData.description || 'Monthly performance and project status report.'}</span></div>
                         </div>
-                        <div class="detail-item full-width">
-                            <span class="detail-label">Description:</span>
-                            <div class="detail-description">
-                                ${rowData.description || 'Monthly performance and project status report.'}
-                            </div>
-                        </div>
-                    </div>
-                    `}
-                    
-                    ${!rowData.type.toLowerCase().includes('report') ? `
+                    </section>
+                    `
+                }
+
+                ${
+                    !rowData.type.toLowerCase().includes('report') ? `
                     <div class="detail-actions">
-                        <button class="action-btn approve-btn" data-employee="${rowData.name}">
-                            Approve
-                        </button>
-                        <button class="action-btn decline-btn" data-employee="${rowData.name}">
-                            Decline
-                        </button>
-                        <button class="action-btn view-btn" onclick="hideDetailView()">
-                            Close
-                        </button>
+                        <button class="action-btn approve-btn" data-employee="${rowData.name}">Approve</button>
+                        <button class="action-btn decline-btn" data-employee="${rowData.name}">Decline</button>
                     </div>
-                    ` : `
-                    <div class="detail-actions">
-                        <button class="action-btn view-btn" onclick="hideDetailView()">
-                            Close
-                        </button>
-                    </div>
-                    `}
-                </div>
+                    ` : ''
+                }
             </div>
-        `;
-    }
+        </div>
+    `;
+}
     
     // Function to update button states
     function updateButtonState(button, state) {
