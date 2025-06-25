@@ -147,14 +147,14 @@
           <div class="form-row">
             <div class="form-group">
               <label class="form-label" for="employeeNameInput">Name of Employee:</label>
-              <input type="text" id="employeeNameInput" name="employeeName" class="form-input" placeholder="Enter your name here...">
+              <input type="text" id="employeeNameInput" name="employeeName" class="form-input" placeholder="Enter your name here..." required>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
               <label class="form-label" for="departmentSelect">Department:</label>
-              <select id="departmentSelect" name="department" class="form-select">
+              <select id="departmentSelect" name="department" class="form-select" required>
                 <option value="">Please Select</option>
                 <option value="admin">Administration</option>
                 <option value="it">Information Technology</option>
@@ -169,7 +169,7 @@
           <div class="form-row">
             <div class="form-group">
               <label class="form-label" for="trainingTypeSelect">List of available trainings:</label>
-              <select id="trainingTypeSelect" name="trainingType" class="form-select">
+              <select id="trainingTypeSelect" name="trainingType" class="form-select" required>
                 <option value="">Please Select</option>
                 <option value="technical-skills">Technical Skills Development</option>
                 <option value="leadership">Leadership Training</option>
@@ -189,7 +189,7 @@
           <div id="customTrainingRow" class="form-row form-hidden">
             <div class="form-group">
               <label class="form-label" for="customTrainingInput">Specify training type:</label>
-              <input type="text" id="customTrainingInput" name="customTraining" class="form-input" placeholder="Please specify the type of training you need...">
+              <input type="text" id="customTrainingInput" name="customTraining" class="form-input" placeholder="Please specify the type of training you need..." required>
             </div>
           </div>
 
@@ -266,7 +266,7 @@
           <div class="form-row">
             <div class="form-group">
               <label class="form-label" for="reasonTextarea">Reason (Brief):</label>
-              <textarea id="reasonTextarea" name="reason" class="form-textarea" placeholder="Please provide a brief reason for your leave..." rows="4"></textarea>
+              <textarea id="reasonTextarea" name="reason" class="form-textarea" placeholder="Please provide a brief reason for your leave..." rows="4" required></textarea>
             </div>
           </div>
 
@@ -274,7 +274,7 @@
             <div class="form-group file-upload-group">
               <label class="form-label" for="attachmentFiles">Attach Necessary Files:</label>
               <div class="file-upload-container">
-                <input type="file" id="attachmentFiles" name="attachmentFiles" class="file-input" accept=".pdf">
+                <input type="file" id="attachmentFiles" name="attachmentFiles" class="file-input" accept=".pdf" >
                 <label for="attachmentFiles" class="file-upload-btn">
                   <span class="file-icon">📂</span>
                   Choose Files
@@ -283,6 +283,8 @@
                   <span class="file-limit">Maximum file size: 25 MB</span>
                   <br>
                   <span class="file-limit">PDF file only</span>
+                  <br>
+                  <span class="file-limit" style="color: red;">*Required</span>
                 </div>
                 <div id="fileList" class="file-list"></div>
               </div>
