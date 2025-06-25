@@ -139,6 +139,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     });
 
+    document.querySelectorAll(".apply-btn").forEach(button => {
+      button.addEventListener("click", () => {
+        const jobCard = button.closest(".job-card");
+        const jobTitle = jobCard.querySelector("h3").textContent.trim();
+        const encodedTitle = encodeURIComponent(jobTitle);
+
+        // Redirect to the application page with job title as a URL parameter
+        window.open(`pages/application-form.html?title=${encodedTitle}`, '_blank');
+      });
+    });
+
   // Initialize
   populatePositions("");
 });

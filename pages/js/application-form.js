@@ -6,6 +6,12 @@ window.addEventListener("DOMContentLoaded", function () {
   const modal = document.getElementById("successModal");
   const termsModal = document.getElementById("termsModal");
 
+  const params = new URLSearchParams(window.location.search);
+  const jobTitle = params.get("title");
+    if (jobTitle) {
+      document.getElementById("applicationJobTitle").textContent = jobTitle;
+    }
+
   // === File label update ===
   resumeInput.addEventListener("change", () => {
     fileLabel.textContent = resumeInput.files.length > 0
