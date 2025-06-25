@@ -3,18 +3,56 @@ if (!employeeId) {
   window.location.href = 'employee_login.html';
 }
 
+function computePayDate(period) {
+  if (!period) return '';
+  const parts = period.split(' - ');
+  if (parts.length !== 2) return '';
+  const endDate = new Date(parts[1]);
+  if (isNaN(endDate)) return '';
+
+  const day = endDate.getDate();
+  const month = endDate.getMonth(); // 0-based
+  const year = endDate.getFullYear();
+
+  let payDate;
+
+  if (day === 15) {
+    // Pay date is last day of the same month
+    const lastDay = new Date(year, month + 1, 0).getDate();
+    payDate = new Date(year, month, lastDay);
+  } else if (day === 30 || day === 31) {
+    // Pay date is 15th of next month
+    let nextMonth = month + 1;
+    let nextYear = year;
+    if (nextMonth > 11) {
+      nextMonth = 0;
+      nextYear += 1;
+    }
+    payDate = new Date(nextYear, nextMonth, 15);
+  } else {
+    // Default: use the end date itself
+    payDate = endDate;
+  }
+
+  // Format: Month DD, YYYY
+  return payDate.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+}
+
 fetch(`php/list_payslips.php?employeeId=${encodeURIComponent(employeeId)}`)
   .then(res => res.json())
   .then(payslips => {
-    // Sort by period start date (assumes period is like "February 1, 2025 - February 15, 2025")
+    // Sort payslips by period end date descending (latest first)
     payslips.sort((a, b) => {
-      const getStartDate = p => {
+      const getEndDate = p => {
         if (!p.period) return new Date(0);
-        // Extract the first date in the period string
-        const match = p.period.match(/^([A-Za-z]+\s+\d{1,2},\s+\d{4})/);
-        return match ? new Date(match[1]) : new Date(0);
+        const parts = p.period.split(' - ');
+        return new Date(parts[1]);
       };
-      return getStartDate(a) - getStartDate(b);
+      return getEndDate(b) - getEndDate(a);
     });
 
     const container = document.getElementById("payslipCards");
@@ -22,14 +60,15 @@ fetch(`php/list_payslips.php?employeeId=${encodeURIComponent(employeeId)}`)
       container.innerHTML = `<div>No payslips found.</div>`;
     } else {
       container.innerHTML = payslips.map(p => `
-        <div class="bg-white rounded-2xl shadow-lg p-8 flex flex-col justify-between w-full max-w-xl">
-          <div>
-            <div class="text-xl font-semibold mb-2">${p.period || ''}</div>
-            <div class="text-gray-400 text-sm mb-1">Pay Date: ${p.payDate || ''}</div>
-            <div class="text-gray-400 text-sm mb-4">Net Pay: ₱${p.netPay ? Number(p.netPay).toFixed(2) : ''}</div>
-          </div>
-          <a href="${p.url}" target="_blank" class="mt-4 bg-blue-800 hover:bg-blue-900 text-white px-8 py-2 rounded-lg shadow flex items-center justify-center font-semibold transition">
-            Download
+        <div class="payslip-card">
+          <div class="pay-period">${p.period || ''}</div>
+          <div class="pay-date">Pay Date: ${computePayDate(p.period)}</div>
+          <div class="net-pay">Net Pay: ₱${p.netPay ? Number(p.netPay).toLocaleString() : ''}</div>
+          <a href="${p.url}" target="_blank" style="text-decoration:none;">
+            <button class="download-btn" type="button">
+              Download
+              <svg viewBox="0 0 24 24" style="margin-left:6px;"><path d="M12 5v14M12 19l-5-5M12 19l5-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
           </a>
         </div>
       `).join('');
