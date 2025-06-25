@@ -26,32 +26,11 @@ const resetButton = document.getElementById('resetButton');
 const savePayrollButton = document.getElementById('savePayrollButton');
 const generatePayslipButton = document.getElementById('generatePayslipButton');
 const payrollForm = document.getElementById('payrollForm');
-const messageArea = document.getElementById('messageArea');
 const payrollDateRangeEl = document.getElementById('payrollDateRange');
 
 // --- Helper Functions ---
 function formatCurrency(amount) {
     return parseFloat(amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-}
-
-function showMessage(message, type = "info") {
-    messageArea.textContent = message;
-    messageArea.classList.remove('hidden', 'bg-green-100', 'text-green-700', 'bg-red-100', 'text-red-700', 'bg-yellow-100', 'text-yellow-700', 'bg-blue-100', 'text-blue-700');
-    if (type === "success") {
-        messageArea.classList.add('bg-green-100', 'text-green-700');
-    } else if (type === "error") {
-        messageArea.classList.add('bg-red-100', 'text-red-700');
-    } else if (type === "warning") {
-        messageArea.classList.add('bg-yellow-100', 'text-yellow-700');
-    } else {
-        messageArea.classList.add('bg-blue-100', 'text-blue-700');
-    }
-    messageArea.classList.remove('hidden');
-    setTimeout(() => {
-        if (messageArea.textContent === message) {
-            messageArea.classList.add('hidden');
-        }
-    }, 5000);
 }
 
 // --- Calculation Logic ---
@@ -213,7 +192,7 @@ function performCalculations() {
     el.addEventListener('input', () => {
         if (parseFloat(el.value) < 0) {
             el.value = 0;
-            showMessage("Negative numbers are not allowed.", "warning");
+            showValidationModal("Negative numbers are not allowed.", "warning");
         }
         performCalculations();
     });
@@ -227,7 +206,7 @@ function performCalculations() {
 resetButton.addEventListener('click', () => {
     payrollForm.reset();
     performCalculations();
-    showMessage("Form reset.", "info");
+    showValidationModal("Form reset.", "info");
 });
 // Update allowed range based on payroll period
 workingDaysEl.addEventListener('change', () => {
@@ -236,13 +215,13 @@ workingDaysEl.addEventListener('change', () => {
     daysWorkedEl.max = 15;
     if (parseInt(daysWorkedEl.value) > 15) {
       daysWorkedEl.value = 15;
-      showMessage("For 15 Days, actual days worked can't exceed 15.", "warning");
+      showValidationModal("For 15 Days, actual days worked can't exceed 15.", "warning");
     }
   } else if (period === "1 Month") {
     daysWorkedEl.max = 30;
     if (parseInt(daysWorkedEl.value) > 30) {
       daysWorkedEl.value = 30;
-      showMessage("For 1 Month, actual days worked can't exceed 30.", "warning");
+      showValidationModal("For 1 Month, actual days worked can't exceed 30.", "warning");
     }
   }
 });
@@ -273,7 +252,7 @@ function validateRequiredFields() {
   });
 
   if (!valid) {
-    showMessage("Please fill in all required fields.", "warning");
+    showValidationModal("Please fill in all required fields.");
   }
 
   return valid;
@@ -287,12 +266,12 @@ function validateRequiredFields() {
   
   try {
     localStorage.setItem(localKey, JSON.stringify(payrollData));
-    showMessage(`Payroll for ${payrollData.employeeName} saved locally!`, "success");
+    showValidationModal(`Payroll for ${payrollData.employeeName} saved locally!`, "success");
     alert(`Payroll for ${payrollData.employeeName} has been saved!`);
     loadPayrollHistory();
   } catch (error) {
     console.error("Error saving payroll data: ", error);
-    showMessage("Error saving payroll data. Check console for details.", "error");
+    showValidationModal("Error saving payroll data. Check console for details.");
     alert("Error saving payroll data. Check the console for details.");
   }
 });
@@ -305,15 +284,15 @@ function validateRequiredFields() {
     
       if (value < 0) {
         daysWorkedEl.value = 0;
-        showMessage("Negative numbers are not allowed.", "warning");
+        showValidationModal("Negative numbers are not allowed.", "warning");
       }
     
       if (period === "15 Days" && value > 15) {
         daysWorkedEl.value = 15;
-        showMessage("For 15 Days, actual days worked can't exceed 15.", "warning");
+        showValidationModal("For 15 Days, actual days worked can't exceed 15.", "warning");
       } else if (period === "1 Month" && value > 30) {
         daysWorkedEl.value = 30;
-        showMessage("For 1 Month, actual days worked can't exceed 30.", "warning");
+        showValidationModal("For 1 Month, actual days worked can't exceed 30.", "warning");
       }
 
   performCalculations();
@@ -327,7 +306,7 @@ generatePayslipButton.addEventListener('click', () => {
   const modal = document.getElementById("payslipModal");
   const content = document.getElementById("payslipContent");
 
-  // Add close button inside modal content and re-attach event
+  // Fill modal content
   content.innerHTML = `
     <button id="closePayslipBtn" class="float-right text-red-500 font-bold text-lg mb-2">×</button>
     <p><strong>Name:</strong> ${data.employeeName}</p>
@@ -350,21 +329,15 @@ generatePayslipButton.addEventListener('click', () => {
     <p class="text-sm text-gray-500 mt-2"><em>Generated on: ${new Date(data.calculatedAt).toLocaleString()}</em></p>
   `;
 
-  // Attach close event to the new button
   document.getElementById("closePayslipBtn").addEventListener("click", () => {
     modal.classList.add("hidden");
   });
 
   modal.classList.remove("hidden");
 
-  // --- jsPDF generation and upload ---
-  const doc = new jsPDF({
-    orientation: "portrait",
-    unit: "mm",
-    format: "A4"
-  });
+  // --- jsPDF generation ---
+  const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "A4" });
 
-  // --- Header ---
   doc.setFont("times", "bold");
   doc.setFontSize(22);
   doc.text("Connectiv7", 105, 20, { align: "center" });
@@ -375,9 +348,8 @@ generatePayslipButton.addEventListener('click', () => {
 
   doc.setDrawColor(0);
   doc.setLineWidth(0.5);
-  doc.line(20, 32, 190, 32); // horizontal line
+  doc.line(20, 32, 190, 32);
 
-  // --- Employee Info ---
   doc.setFont("times", "bold");
   doc.setFontSize(12);
   doc.text("Employee Information", 20, 40);
@@ -387,15 +359,14 @@ generatePayslipButton.addEventListener('click', () => {
   doc.text(`Employee ID: ${data.employeeId}`, 20, 54);
   doc.text(`Payroll Period: ${data.payrollPeriod}`, 20, 61);
 
-  // --- Earnings and Deductions Columns ---
   const leftX = 25, rightX = 110, valueXLeft = 75, valueXRight = 170;
   let y = 72;
 
   doc.setFont("times", "bold");
   doc.text("Earnings", leftX, y);
   doc.text("Deductions", rightX, y);
-
   y += 7;
+
   doc.setFont("times", "normal");
   doc.text("Basic Pay:", leftX, y);
   doc.text(formatCurrency(data.actualBasicPayForPeriod), valueXLeft, y, { align: "right" });
@@ -423,51 +394,48 @@ generatePayslipButton.addEventListener('click', () => {
   doc.text(formatCurrency(data.withholdingTax), valueXRight, y, { align: "right" });
 
   y += 7;
-  doc.text("", leftX, y); // empty left
   doc.text("Other Deductions:", rightX, y);
   doc.text(formatCurrency(data.otherDeductions), valueXRight, y, { align: "right" });
 
   y += 7;
   doc.setFont("times", "bold");
-  doc.text("", leftX, y); // empty left
   doc.text("Total Deductions:", rightX, y);
   doc.text(formatCurrency(data.totalDeductions), valueXRight, y, { align: "right" });
 
-  // --- Net Pay Section ---
   y += 15;
   doc.setDrawColor(0, 128, 0);
   doc.setLineWidth(1);
-  doc.rect(20, y, 170, 15); // full width box
+  doc.rect(20, y, 170, 15);
 
-  doc.setFont("times", "bold");
   doc.setFontSize(16);
   doc.setTextColor(0, 128, 0);
   doc.text(`Net Pay: ${formatCurrency(data.netPay)}`, 105, y + 10, { align: "center" });
   doc.setTextColor(0, 0, 0);
 
-  // --- Footer ---
   doc.setFontSize(10);
   doc.setFont("times", "italic");
   doc.text(`Generated on: ${new Date(data.calculatedAt).toLocaleString()}`, 20, y + 25);
 
-  doc.setFont("times", "normal");
-  doc.setFontSize(12);
-
-  // --- Upload as before ---
+  // --- Upload logic ---
   const pdfBlob = doc.output('blob');
   const formData = new FormData();
-  const cleanName = data.employeeName.trim().replace(/\s+/g, '');
-  formData.append("pdfFile", pdfBlob, `payslip_${data.employeeId}_${cleanName}.pdf`);
 
-  // --- Add this block to generate and upload JSON metadata ---
+  const cleanName = data.employeeName.trim().replace(/\s+/g, '');
+  const cleanDateRange = payrollDateRangeEl.value.trim().replace(/[\/\s:]+/g, '_');
+
+  const pdfFilename = `payslip_${data.employeeId}_${cleanName}_${cleanDateRange}.pdf`;
+  const jsonFilename = `payslip_${data.employeeId}_${cleanName}_${cleanDateRange}.json`;
+
+  formData.append("pdfFile", pdfBlob, pdfFilename);
+
   const payslipMeta = {
-  period: payrollDateRangeEl.value, // Use the textbox value
-  payDate: new Date(data.calculatedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
-  netPay: data.netPay
-};
+    period: payrollDateRangeEl.value,
+    payDate: new Date(data.calculatedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+    netPay: data.netPay
+  };
+
   const metaBlob = new Blob([JSON.stringify(payslipMeta)], { type: "application/json" });
-  formData.append("metaFile", metaBlob, `payslip_${data.employeeId}_${cleanName}.json`);
-  // --- end block ---
+  formData.append("metaFile", metaBlob, jsonFilename);
 
   fetch("./php/upload_payslip.php", {
     method: "POST",
@@ -476,11 +444,11 @@ generatePayslipButton.addEventListener('click', () => {
     .then(response => response.text())
     .then(result => {
       console.log("Upload response:", result);
-      showMessage("Payslip uploaded to server!", "success");
+      showValidationModal("Payslip uploaded to server!", "success");
     })
     .catch(error => {
       console.error("Upload error:", error);
-      showMessage("Upload failed. Check connection or permissions.", "error");
+      showValidationModal("Upload failed. Check connection or permissions.", "error");
     });
 });
 // Initialize calculations
@@ -534,7 +502,7 @@ document.getElementById("deleteAllBtn").addEventListener("click", () => {
       .filter(key => key.startsWith("payroll_"))
       .forEach(key => localStorage.removeItem(key));
     loadPayrollHistory();
-    showMessage("All payroll history has been deleted.", "success");
+    showValidationModal("All payroll history has been deleted.", "success");
   }
 });
 
@@ -557,4 +525,15 @@ document.addEventListener("DOMContentLoaded", () => {
 document.getElementById("closePayslipBtn").addEventListener("click", () => {
   document.getElementById("payslipModal").classList.add("hidden");
 });
+
+// Validation Modal logic
+function showValidationModal(message, type = "warning") {
+  const msgEl = document.getElementById('validationModalMsg');
+  msgEl.textContent = message;
+  msgEl.style.color = type === "success" ? "#16a34a" : type === "error" ? "#b91c1c" : "#b45309";
+  document.getElementById('validationModal').style.display = 'flex';
+}
+document.getElementById('closeValidationModal').onclick = function() {
+  document.getElementById('validationModal').style.display = 'none';
+};
 

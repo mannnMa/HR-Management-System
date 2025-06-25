@@ -348,7 +348,6 @@
                   </div>
                 </div>
                 </div>
-                <div id="messageArea" class="mt-6 p-4 rounded-md text-center hidden"></div>
                
             </main>
             </div>
@@ -378,6 +377,15 @@
             </div>
           </div>
         </div>
+
+
+        <!-- Validation Modal -->
+<div id="validationModal" style="display:none; position:fixed; z-index:99999; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.3); align-items:center; justify-content:center;">
+  <div style="background:white; padding:32px 24px; border-radius:12px; box-shadow:0 4px 24px rgba(0,0,0,0.15); max-width:90vw; min-width:300px; text-align:center;">
+    <div id="validationModalMsg" style="font-size:1.1rem; color:#b91c1c; margin-bottom:20px;"></div>
+    <button id="closeValidationModal" style="background:#1C2AA8; color:white; border:none; border-radius:6px; padding:8px 24px; font-weight:bold; cursor:pointer;">OK</button>
+  </div>
+</div>
 
 
         <!--JS LINK-->
