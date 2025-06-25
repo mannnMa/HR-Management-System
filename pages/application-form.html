@@ -1,0 +1,70 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Job Application Form</title>
+    <link rel="stylesheet" href="styles/application-form.css" />
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+  <div class="application-container">
+    <h1>Be Part of Our Team!</h1>
+    <h2>Admin Manager</h2>
+    <div class="form-wrapper">
+      <form id="applicationForm">
+        <fieldset>
+          <legend>Personal Information</legend>
+          <input type="text" id="firstName" placeholder="First Name" required />
+          <input type="text" id="middleName" placeholder="Middle Name" />
+          <input type="text" id="lastName" placeholder="Last Name" required />
+          <input type="email" placeholder="Email Address" required />
+          <input type="tel" id="phone" placeholder="Phone Number" required 
+            pattern="^(\+639|09)\d{9}$" 
+            title="Use PH format: 09171234567 or +639171234567" />
+          <input type="url" placeholder="Profile Link (LinkedIn, Github, Portfolio, etc.)" />
+        </fieldset>
+
+        <fieldset class="resume-fieldset">
+          <legend>Resume Upload</legend>
+
+          <div class="resume-upload">
+            <input type="file" id="resume" accept=".pdf,.doc,.docx" required />
+            <p class="file-note">Accepted formats: .pdf, .doc, .docx</p>
+          </div>
+        </fieldset>
+
+        <div class="terms">
+          <input type="checkbox" id="terms" />
+          <label for="terms">
+            I Have read and Agree to the
+            <a href="#">Terms And Conditions</a>.
+          </label>
+        </div>
+        <button type="submit">Submit Application</button>
+      </form>
+
+      <div id="termsModal" class="modal">
+        <div class="modal-content">
+          <h2 class="error">Terms Not Accepted</h2>
+          <p>You must agree to the Terms and Conditions before submitting the application.</p>
+          <button onclick="closeTermsModal()">Close</button>
+        </div>
+      </div>
+
+      <div id="successModal" class="modal">
+        <div class="modal-content">
+          <h2>Application Submitted Successfully!</h2>
+          <p>Your Tracking Number:</p>
+          <div class="tracking-number" id="trackingNumber"></div>
+          <button onclick="closeModal()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/application-form.js"></script>
+</body>
+  </html>
