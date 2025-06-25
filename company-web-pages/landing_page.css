@@ -1,5 +1,4 @@
-<style>
-    * {
+   * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -233,8 +232,229 @@
       color: #444;
     }
 
-    .company-info {
+    .career-section {
+      padding: 4rem 2rem;
       background-color: #EEF2FF;
+    }
+
+    .career-section h2 {
+      font-size: 2.8rem;
+      color:#000;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .search-filter {
+      display: flex;
+      flex-direction: column;
+      margin: auto;
+      gap: 16px;
+      padding: 30px 100px;
+      border-radius: 12px;
+      max-width: 1200px;
+      align-items: center;
+    }
+
+    .search-filter input {
+      width: 100%;
+      height: 44px;
+      padding: 0 16px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    .filter-buttons select,
+    .filter-buttons button {
+      width: 220px;
+      height: 42px;
+      padding: 0 14px;
+      border-radius: 10px;
+      font-size: 14px;
+      background-color: #ffffff;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .filter-buttons .reset {
+      background-color: #1C2AA8;
+      color: white;
+      border: none;
+    }
+
+    .filter-buttons .reset:hover {
+      background-color: #152091;
+    }
+
+    .filter-buttons select:hover,
+    .filter-buttons button:hover {
+      background-color: #f4f6ff;
+      border-color: #aaa;
+    }
+
+    .featured,
+    .all-jobs {
+      padding: 1rem 2rem;
+    }
+
+    .featured h2,
+    .all-jobs h2 {
+      text-align: left;
+    }
+
+    .job-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: flex-start;
+    }
+
+    .job-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 24px;
+      width: 330px;
+      min-height: 200px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      position: relative;
+    }
+
+    .job-card h3 {
+      color: #1C2AA8;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .job-card p {
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .job-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .left-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .job-card .req a {
+      font-size: 15px;
+      color: #1c2aa8;
+      text-decoration: underline;
+    }
+
+    .job-card .slot {
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .right-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+
+    .job-card .apply-btn {
+      background: #1C2AA8;
+      color: white;
+      padding: 10px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      white-space: nowrap;
+      min-width: 130px;
+    }
+
+    .job-card .apply-btn:hover {
+      background: #152091;
+    }
+
+    .job-card .deadline {
+      font-size: 13px;
+      color: #d10000;
+      font-weight: 500;
+    }
+
+    .requirements-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 200;
+    }
+
+    .requirements-modal.hidden {
+      display: none;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 24px 30px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      position: relative;
+      font-size: 15px;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .modal-content h3 {
+      margin-top: 0;
+      font-size: 22px;
+      color: #1C2AA8;
+      text-align: center;
+    }
+
+    .modal-content h4 {
+      margin-top: 20px;
+    }
+
+    .modal-content ul {
+      margin-top: 8px;
+      padding-left: 20px;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 12px;
+      right: 18px;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+
+    .company-info {
+      background-color: #DFE7FF;
       padding: 3rem 2rem;  
       margin: 0;           
       text-align: center;
@@ -465,4 +685,3 @@
     .footer-bottom a:hover {
       color: white;
     }
-  </style>

@@ -156,15 +156,26 @@
   position: relative;
 }
 
-.announcement-item { border-left: 4px solid #F25F5F; }
-.policy-item { border-left: 4px solid #3674B5; margin-bottom: 20px; }
+.announcement-item { 
+  border-left: 4px solid #F25F5F;
+}
+.policy-item { 
+  border-left: 4px solid #3674B5; 
+  margin-bottom: 20px; 
+}
 
-.announcement-item h3, .announcement-item p, .policy-item h3, .policy-item p {
+.announcement-item h3, 
+.announcement-item p, 
+.policy-item h3, 
+.policy-item p {
   font-family: "Inter", sans-serif;
   margin: 0;
 }
 
-.announcement-item h3, .policy-item h3 { margin-bottom: 0.5rem; }
+.announcement-item h3, 
+.policy-item h3 { 
+  margin-bottom: 0.5rem; 
+}
 
 .announcement-images {
   display: flex;
@@ -208,7 +219,9 @@
   cursor: pointer;
 }
 
-.policy-files, .evaluation-result, #evaluation-results {
+.policy-files, 
+.evaluation-result, 
+#evaluation-results {
   font-family: "Inter", sans-serif;
 }
 
@@ -227,7 +240,9 @@
   margin-bottom: 1rem;
 }
 
-.custom-file-upload input[type="file"] { display: none; }
+.custom-file-upload input[type="file"] { 
+  display: none; 
+}
 
 .custom-file-upload label {
   display: flex;
@@ -451,9 +466,6 @@
   flex-direction: column;
   gap: 15px;
 }
-
-
-
 
 
 
@@ -792,3 +804,77 @@
     background-color: #c0392b;
     color: white;
 }
+
+@media (max-width: 1024px) {
+  .announcement-container,
+  .policy-container,
+  .evaluation-container,
+  .training-requests-container,
+  .recognition-container,
+  .reports-container {
+    margin: 20px;
+    width: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .announcement-container,
+  .policy-container,
+  .evaluation-container,
+  .training-requests-container,
+  .recognition-container,
+  .reports-container {
+    margin: 15px 10px;
+    padding: 1rem;
+  }
+
+  .announcement-header,
+  .policy-header,
+  .evaluation-header,
+  .training-header,
+  .recognition-header,
+  .reports-header,
+  .section-header-with-close {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .recognition-images,
+  .announcement-images {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .recognition-img,
+  .announcement-img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .form-label {
+    min-width: auto;
+    margin-bottom: 0.5rem;
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-title {
+    font-size: 1.5rem;
+  }
+
+  .action-btn {
+    width: 100%;
+  }
+
+  .table-container {
+    overflow-x: auto;
+  }
+}
+
