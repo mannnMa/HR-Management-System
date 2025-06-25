@@ -247,6 +247,7 @@
     .search-filter {
       display: flex;
       flex-direction: column;
+      margin: auto;
       gap: 16px;
       padding: 30px 100px;
       border-radius: 12px;

@@ -6,8 +6,7 @@ body {
 }
 
 .application-container {
-  max-width: 700px;
-  margin: 30px auto;
+  margin: auto;
   background-color: #e6ecff;
   padding: 30px;
   border: 1px solid #ccc;
