@@ -804,3 +804,77 @@
     background-color: #c0392b;
     color: white;
 }
+
+@media (max-width: 1024px) {
+  .announcement-container,
+  .policy-container,
+  .evaluation-container,
+  .training-requests-container,
+  .recognition-container,
+  .reports-container {
+    margin: 20px;
+    width: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .announcement-container,
+  .policy-container,
+  .evaluation-container,
+  .training-requests-container,
+  .recognition-container,
+  .reports-container {
+    margin: 15px 10px;
+    padding: 1rem;
+  }
+
+  .announcement-header,
+  .policy-header,
+  .evaluation-header,
+  .training-header,
+  .recognition-header,
+  .reports-header,
+  .section-header-with-close {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .recognition-images,
+  .announcement-images {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .recognition-img,
+  .announcement-img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .form-label {
+    min-width: auto;
+    margin-bottom: 0.5rem;
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-title {
+    font-size: 1.5rem;
+  }
+
+  .action-btn {
+    width: 100%;
+  }
+
+  .table-container {
+    overflow-x: auto;
+  }
+}
+
