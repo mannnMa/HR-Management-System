@@ -1,4 +1,5 @@
-document.getElementById("feedbackForm").addEventListener("submit", function (e) {
+<script>
+  document.getElementById("feedbackForm").addEventListener("submit", function (e) {
     e.preventDefault();
     document.getElementById("toast").style.display = "block";
 
@@ -9,4 +10,4 @@ document.getElementById("feedbackForm").addEventListener("submit", function (e) 
   });
 
   document.getElementById("year").textContent = new Date().getFullYear();
-
+</script>
