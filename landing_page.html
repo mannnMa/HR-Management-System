@@ -100,6 +100,151 @@
     </div>
   </section>
 
+  <section class="career-section" id="career">
+    <h2>Build Your Future at Connectiv7</h2>
+    <div class="search-filter">
+      <input type="text" placeholder="Search Job Title, Keywords" />
+
+      <div class="filter-buttons">
+        <select id="sortBy">
+          <option value="">Sort By</option>
+          <option value="Newest">Newest</option>
+          <option value="Oldest">Oldest</option>
+        </select>
+
+        <select id="departmentFilter">
+          <option value="">Department</option>
+          <option value="Admin">Admin</option>
+          <option value="IT">IT</option>
+          <option value="HR">HR</option>
+          <option value="Sale">Sale</option>
+          <option value="Marketing">Marketing</option>
+        </select>
+
+        <select id="positionFilter">
+          <option value="">Position</option>
+          <option value=""disabled>-Select Department First-</option>
+        </select>
+
+        <select id="employmentTypeFilter">
+          <option value="">Employment Type</option>
+          <option value="Full-Time">Full-Time</option>
+          <option value="Part-Time">Part-Time</option>
+          <option value="Internship">Internship</option>
+        </select>
+
+        <button class="reset" id="resetFiltersBtn">Reset Filter</button>
+
+      </div>
+    </div>
+
+    <div class="featured">
+      <h2>Featured Jobs</h2>
+      <div class="job-cards">
+        <div class="job-card" data-department="Admin" data-position="Admin Manager" data-employment="Full-Time">
+          <h3>Admin Manager</h3>
+          <p>Coordinates city office operations, manages administrative staff, and ensures compliance with municipal regulations.</p>
+          <div class="job-footer">
+            <div class="left-info">
+              <p class="req"><a href="#">Requirements</a></p>
+              <p class="slot">Available Slot: 2</p>
+            </div>
+            <div class="right-info">
+              <a href="pages/application-form.html" target="_blank">
+                <button class="apply-btn">Apply Now</button>
+              </a> 
+              <p class="deadline">Deadline: June 25, 2025</p>
+            </div>
+          </div>
+        </div>
+        <div class="job-card" data-department="Admin" data-position="Office Assistant" data-employment="Internship">
+          <h3>Office Assistant</h3>
+          <p>Supports daily administrative tasks in city departments including scheduling, document preparation, and correspondence.</p>
+          <div class="job-footer">
+            <div class="left-info">
+              <p class="req"><a href="#">Requirements</a></p>
+              <p class="slot">Available Slot: 2</p>
+            </div>
+            <div class="right-info">
+              <a href="pages/application-form.html" target="_blank">
+                <button class="apply-btn">Apply Now</button>
+              </a> 
+              <p class="deadline">Deadline: June 25, 2025</p>
+            </div>
+          </div>
+        </div>
+        <div class="job-card" data-department="Admin" data-position="Document Controller" data-employment="Part-Time">
+          <h3>Document Controller</h3>
+          <p>Maintains city records and official documents, ensuring accurate filing and accessibility for public records requests.</p>
+          <div class="job-footer">
+            <div class="left-info">
+              <p class="req"><a href="#">Requirements</a></p>
+              <p class="slot">Available Slot: 2</p>
+            </div>
+            <div class="right-info">
+              <a href="pages/application-form.html" target="_blank">
+                <button class="apply-btn">Apply Now</button>
+              </a> 
+              <p class="deadline">Deadline: June 25, 2025</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="all-jobs">
+      <h2>All Jobs</h2>
+      <div class="job-cards">
+        <div class="job-card" data-department="Admin" data-position="Receptionist" data-employment="Internship">
+          <h3>Receptionist</h3>
+          <p>Welcomes visitors to city offices, manages inquiries, and directs citizens to appropriate services.</p>
+          <div class="job-footer">
+            <div class="left-info">
+              <p class="req"><a href="#">Requirements</a></p>
+              <p class="slot">Available Slot: 2</p>
+            </div>
+            <div class="right-info">
+              <a href="pages/application-form.html" target="_blank">
+                <button class="apply-btn">Apply Now</button>
+              </a>  
+              <p class="deadline">Deadline: June 25, 2025</p>
+            </div>
+          </div>
+        </div>
+        <div class="job-card" data-department="Admin" data-position="Executive Assistant" data-employment="Part-Time">
+          <h3>Executive Assistant</h3>
+          <p>Provides administrative support to city executives, including scheduling public meetings and managing official communications.</p>
+          <div class="job-footer">
+            <div class="left-info">
+              <p class="req"><a href="#">Requirements</a></p>
+              <p class="slot">Available Slot: 2</p>
+            </div>
+            <div class="right-info">
+              <a href="pages/application-form.html" target="_blank">
+                <button class="apply-btn">Apply Now</button>
+              </a> 
+              <p class="deadline">Deadline: June 25, 2025</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="requirements-modal hidden">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3 id="modalJobTitle">[Job Title] Requirements</h3>
+        <p><strong>Department:</strong> <span id="modalDepartment"></span></p>
+        <p><strong>Type:</strong> <span id="modalType"></span></p>
+        <p><strong>Deadline:</strong> <span id="modalDeadline"></span></p>
+
+        <h4>Qualifications:</h4>
+        <ul id="qualificationsList">
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <section class="company-info" id="company-info">
     <h2>Company Information</h2>
     <p>
