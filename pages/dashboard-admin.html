@@ -296,7 +296,7 @@
               <td class="cell-name">Sky Mason</td>
               <td class="cell-department">Finance</td>
               <td class="cell-training">Other</td>
-              <td class="cell-other">Lorem ipsum dolor sit amet.</td>
+              <td class="cell-other">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
               <td>
                 <select class="progress-dropdown">
                   <option value="not yet" selected>Not yet</option>
@@ -337,7 +337,8 @@
 
 
   <!--Report Section-->
-  <div class="reports-container">
+  <!--Report Section - Updated to match Training Section design-->
+  <div class="reports-container" id="reports-container" style="display:none;">
     <!-- Header section -->
     <div class="reports-header">
       <h1 class="page-title">Reports and Others</h1>
@@ -387,6 +388,57 @@
         </table>
       </div>
     </div>
+
+    <!-- Sick & Vacation Leave Form section -->
+    <div class="section-container leave-form-section">
+      <div class="section-header-with-close">
+        <h2 class="section-title">Sick & Vacation Leave Form</h2>
+        <button class="close-section-btn">✕</button>
+      </div>
+
+      <div class="form-container">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Name of Employee:</label>
+            <span class="form-value">Sky Mason</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Leave Type:</label>
+            <span class="form-value">Sick Leave</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Leave Dates:</label>
+            <span class="form-value">6/24/2024</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Return Date:</label>
+            <span class="form-value">6/26/2024</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Attach Files:</label>
+            <span class="form-value">Medical.pdf</span>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="action-btn decline-btn">Decline</button>
+          <button class="action-btn approve-btn">Approve</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!--Evaluation Section-->
   <div class="evaluation-container" id="evaluation-container" style="display: none;">
@@ -448,17 +500,20 @@
     <div id="recognition-list" class="recognition-list"></div>
   </div>
 
+
   <!-- Confirmation container Log Out Button -->
-      <div class="confirm-overlay-sidebar" id="confirmOverlay">
-        <div class="confirm-box-sidebar">
-          <video class="logout-animate" src="../assets/animation/logout.mp4" autoplay muted loop playsinline></video>
-          <p>Are you sure you want to log out?</p>
-          <div class="confirm-actions-sidebar">
-            <button id="confirmYes">Confirm</button>
-            <button id="confirmCancel">Cancel</button>
-          </div>
-        </div>
+  <div class="confirm-overlay-sidebar" id="confirmOverlay">
+    <div class="confirm-box-sidebar">
+      <video class="logout-animate" src="../assets/animation/logout.mp4" autoplay muted loop playsinline></video>
+      <p>Are you sure you want to log out?</p>
+      <div class="confirm-actions-sidebar">
+        <button id="confirmYes">Confirm</button>
+        <button id="confirmCancel">Cancel</button>
       </div>
+    </div>
+  </div>
+
+  
 
   <!--Js link-->
   <script src="./js/sidebar.js"></script>
