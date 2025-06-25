@@ -4,21 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Connectiv7 - HR Management Portal</title>
-  <link rel="icon" href="../assets/hr-logo-title.webp">
+  <link rel="icon" href="assets/hr-logo-title.webp">
   <link rel="stylesheet" href="company-web-pages/landing_page.css">
-
 </head>
 <body>
   <header>
     <div class="logo">
-      <img src="../assets/company logo.webp" alt="Company logo" />
+      <img src="assets/company logo.webp" alt="Company logo" />
       <span class="logo-text">Connectiv7</span>
     </div>
     <nav>
       <a href="#home">Home</a>
       <a href="#announcements">Announcements</a>
       <a href="#services">Services</a>
-      <a href="#career">Career</a>
+      <a href="career.html">Career</a>
       <a href="#feedback">Feedback</a>
       <a href="#contact">Contact Us</a>
 
@@ -26,7 +25,7 @@
   </header>
 
   <section class="hero" id="home">
-    <img src="../assets/user-icon.webp" alt="People Icon" />
+    <img src="assets/user-icon.webp" alt="People Icon" />
     <h1>HR Management Portal</h1>
     <p>Your comprehensive platform for Civil Service updates, HR policies, job opportunities, and public engagement</p>
   </section>
@@ -38,41 +37,41 @@
     <div class="cards-container">
       <div class="card">
         <div class="top-line">
-          <img src="../assets/document-icon.png" class="icon-doc" alt="doc" />
+          <img src="assets/document-icon.png" class="icon-doc" alt="doc" />
           <span class="tag">Exam Schedule</span>
         </div>
         <h3>Updated Civil Service Examination Schedule</h3>
-        <p class="date"><img src="../assets/calendar-icon.png" class="icon" alt="cal" /> 8/20/2025</p>
+        <p class="date"><img src="assets/calendar-icon.png" class="icon" alt="cal" /> 8/20/2025</p>
         <p class="desc">New examination dates for Career Service Examination have been announced for Q2 2025.</p>
       </div>
 
       <div class="card">
         <div class="top-line">
-          <img src="../assets/document-icon.png" class="icon-doc" alt="doc" />
+          <img src="assets/document-icon.png" class="icon-doc" alt="doc" />
           <span class="tag">Holiday</span>
         </div>
         <h3>Holiday Schedule and Office Hours</h3>
-        <p class="date"><img src="../assets/calendar-icon.png" class="icon" alt="cal" /> 8/18/2025</p>
+        <p class="date"><img src="assets/calendar-icon.png" class="icon" alt="cal" /> 8/18/2025</p>
         <p class="desc">Updated holiday calendar and modified office hours during special occasions.</p>
       </div>
 
       <div class="card">
         <div class="top-line">
-          <img src="../assets/document-icon.png" class="icon-doc" alt="doc" />
+          <img src="assets/document-icon.png" class="icon-doc" alt="doc" />
           <span class="tag">Policy Update</span>
         </div>
         <h3>New HR Policy on Remote Work</h3>
-        <p class="date"><img src="../assets/calendar-icon.png" class="icon" alt="cal" /> 8/17/2025</p>
+        <p class="date"><img src="assets/calendar-icon.png" class="icon" alt="cal" /> 8/17/2025</p>
         <p class="desc">Implementation of hybrid work arrangements and updated remote work guidelines.</p>
       </div>
 
       <div class="card">
         <div class="top-line">
-          <img src="../assets/document-icon.png" class="icon-doc" alt="doc" />
+          <img src="assets/document-icon.png" class="icon-doc" alt="doc" />
           <span class="tag">CSC Update</span>
         </div>
         <h3>Updated Civil Service Examination Schedule</h3>
-        <p class="date"><img src="../assets/calendar-icon.png" class="icon" alt="cal" /> 8/12/2025</p>
+        <p class="date"><img src="assets/calendar-icon.png" class="icon" alt="cal" /> 8/12/2025</p>
         <p class="desc">Updated requirements and procedures for Civil Service Commission accreditation.</p>
       </div>
     </div>
@@ -84,164 +83,19 @@
 
     <div class="services-container">
       <div class="service-card">
-        <img src="../assets/user2 icon.png" alt="Employee Icon" />
+        <img src="assets/user2 icon.png" alt="Employee Icon" />
         <h3>Employee Management</h3>
         <p>Comprehensive employee records, performance tracking, and personnel management services.</p>
       </div>
       <div class="service-card">
-        <img src="../assets/document-icon.png" alt="Document Icon" />
+        <img src="assets/document-icon.png" alt="Document Icon" />
         <h3>Document Processing</h3>
         <p>Efficient processing of HR documents, certifications, and official records.</p>
       </div>
       <div class="service-card">
-        <img src="../assets/training icon.png" alt="Training Icon" />
+        <img src="assets/training icon.png" alt="Training Icon" />
         <h3>Training & Development</h3>
         <p>Professional development programs, training schedules, and skill enhancement opportunities.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="career-section" id="career">
-    <h2>Build Your Future at Connectiv7</h2>
-    <div class="search-filter">
-      <input type="text" placeholder="Search Job Title, Keywords" />
-
-      <div class="filter-buttons">
-        <select id="sortBy">
-          <option value="">Sort By</option>
-          <option value="Newest">Newest</option>
-          <option value="Oldest">Oldest</option>
-        </select>
-
-        <select id="departmentFilter">
-          <option value="">Department</option>
-          <option value="Admin">Admin</option>
-          <option value="IT">IT</option>
-          <option value="HR">HR</option>
-          <option value="Sale">Sale</option>
-          <option value="Marketing">Marketing</option>
-        </select>
-
-        <select id="positionFilter">
-          <option value="">Position</option>
-          <option value=""disabled>-Select Department First-</option>
-        </select>
-
-        <select id="employmentTypeFilter">
-          <option value="">Employment Type</option>
-          <option value="Full-Time">Full-Time</option>
-          <option value="Part-Time">Part-Time</option>
-          <option value="Internship">Internship</option>
-        </select>
-
-        <button class="reset" id="resetFiltersBtn">Reset Filter</button>
-
-      </div>
-    </div>
-
-    <div class="featured">
-      <h2>Featured Jobs</h2>
-      <div class="job-cards">
-        <div class="job-card" data-department="Admin" data-position="Admin Manager" data-employment="Full-Time">
-          <h3>Admin Manager</h3>
-          <p>Coordinates city office operations, manages administrative staff, and ensures compliance with municipal regulations.</p>
-          <div class="job-footer">
-            <div class="left-info">
-              <p class="req"><a href="#">Requirements</a></p>
-              <p class="slot">Available Slot: 2</p>
-            </div>
-            <div class="right-info">
-              <a href="pages/application-form.html" target="_blank">
-                <button class="apply-btn">Apply Now</button>
-              </a> 
-              <p class="deadline">Deadline: June 25, 2025</p>
-            </div>
-          </div>
-        </div>
-        <div class="job-card" data-department="Admin" data-position="Office Assistant" data-employment="Internship">
-          <h3>Office Assistant</h3>
-          <p>Supports daily administrative tasks in city departments including scheduling, document preparation, and correspondence.</p>
-          <div class="job-footer">
-            <div class="left-info">
-              <p class="req"><a href="#">Requirements</a></p>
-              <p class="slot">Available Slot: 2</p>
-            </div>
-            <div class="right-info">
-              <a href="pages/application-form.html" target="_blank">
-                <button class="apply-btn">Apply Now</button>
-              </a> 
-              <p class="deadline">Deadline: June 25, 2025</p>
-            </div>
-          </div>
-        </div>
-        <div class="job-card" data-department="Admin" data-position="Document Controller" data-employment="Part-Time">
-          <h3>Document Controller</h3>
-          <p>Maintains city records and official documents, ensuring accurate filing and accessibility for public records requests.</p>
-          <div class="job-footer">
-            <div class="left-info">
-              <p class="req"><a href="#">Requirements</a></p>
-              <p class="slot">Available Slot: 2</p>
-            </div>
-            <div class="right-info">
-              <a href="pages/application-form.html" target="_blank">
-                <button class="apply-btn">Apply Now</button>
-              </a> 
-              <p class="deadline">Deadline: June 25, 2025</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="all-jobs">
-      <h2>All Jobs</h2>
-      <div class="job-cards">
-        <div class="job-card" data-department="Admin" data-position="Receptionist" data-employment="Internship">
-          <h3>Receptionist</h3>
-          <p>Welcomes visitors to city offices, manages inquiries, and directs citizens to appropriate services.</p>
-          <div class="job-footer">
-            <div class="left-info">
-              <p class="req"><a href="#">Requirements</a></p>
-              <p class="slot">Available Slot: 2</p>
-            </div>
-            <div class="right-info">
-              <a href="pages/application-form.html" target="_blank">
-                <button class="apply-btn">Apply Now</button>
-              </a>  
-              <p class="deadline">Deadline: June 25, 2025</p>
-            </div>
-          </div>
-        </div>
-        <div class="job-card" data-department="Admin" data-position="Executive Assistant" data-employment="Part-Time">
-          <h3>Executive Assistant</h3>
-          <p>Provides administrative support to city executives, including scheduling public meetings and managing official communications.</p>
-          <div class="job-footer">
-            <div class="left-info">
-              <p class="req"><a href="#">Requirements</a></p>
-              <p class="slot">Available Slot: 2</p>
-            </div>
-            <div class="right-info">
-              <a href="pages/application-form.html" target="_blank">
-                <button class="apply-btn">Apply Now</button>
-              </a> 
-              <p class="deadline">Deadline: June 25, 2025</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="requirements-modal hidden">
-      <div class="modal-content">
-        <span class="close-modal">&times;</span>
-        <h3 id="modalJobTitle">[Job Title] Requirements</h3>
-        <p><strong>Department:</strong> <span id="modalDepartment"></span></p>
-        <p><strong>Type:</strong> <span id="modalType"></span></p>
-        <p><strong>Deadline:</strong> <span id="modalDeadline"></span></p>
-
-        <h4>Qualifications:</h4>
-        <ul id="qualificationsList">
-        </ul>
       </div>
     </div>
   </section>
@@ -261,7 +115,7 @@
 
   <div class="feedback-container">
     <form class="feedback-form" id="feedbackForm">
-      <h3><img src="../assets/feedback icon.png" alt="Feedback Icon" style="height: 1.5em; vertical-align: middle;"/> Submit Your Feedback</h3>
+      <h3><img src="assets/feedback icon.png" alt="Feedback Icon" style="height: 1.5em; vertical-align: middle;"/> Submit Your Feedback</h3>
       <p>Report issues, suggest improvements, or share your experience with our HR services</p>
 
       <div class="form-row">
@@ -310,7 +164,7 @@
   <div class="footer-container">
     <div class="footer-section">
       <div class="logo">
-        <img src="../assets/company logo.webp" alt="Company logo" />
+        <img src="assets/company logo.webp" alt="Company logo" />
         <span class="logo1-text">Connectiv7</span>
       </div>
       <p>Your comprehensive platform for human resource management, Civil Service updates, and public engagement services.</p>
@@ -339,7 +193,5 @@
     <a href="#">Public Engagement</a>
   </div>
 </footer>
-
-  <script src="pages/js/career.js"></script>
 </body>
 </html>
