@@ -79,8 +79,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const div = document.createElement("div");
       div.className = "recognition-item";
       div.innerHTML = `
-        <button type="button" class="delete-recognition-btn" data-id="${rec.id}">&times;</button>
+      <div class="recognition-item-header">
         <h3>${rec.title}</h3>
+        <button type="button" class="delete-recognition-btn" data-id="${rec.id}">&times;</button>
+      </div>
         <p><strong>${rec.employee}</strong></p>
         <p>${rec.message}</p>
         <div class="recognition-image-container">
